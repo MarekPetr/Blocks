@@ -9,7 +9,7 @@ import connection.Connection;
 /**
  * Created by petr on 3/28/18.
  */
-public class Blocks {
+public class Main {
     public static void main(final String[] args) {
         double resValue = 0;
 
