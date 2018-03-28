@@ -1,5 +1,5 @@
 package items;
-import project.repository.Item;
+import repository.Item;
 /**
  * Created by petr on 3/28/18.
  */

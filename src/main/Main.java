@@ -2,7 +2,7 @@ package main;
 import items.AbstractItem;
 import items.ItemMinus;
 import items.ItemPlus;
-import project.repository.Repository;
+import repository.Repository;
 import connection.Connection;
 
 

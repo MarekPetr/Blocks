@@ -1,8 +1,10 @@
-package project.repository;
+package repository;
 
 /**
  * Created by petr on 3/28/18.
  */
+import repository.Item;
+
 import java.util.HashSet;
 import java.util.Set;
 
