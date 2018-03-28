@@ -8,6 +8,8 @@ public abstract class AbstractItem implements Item {
     String name;
     double state;
     double operand;
+    public double inValue = 0;
+    public double outValue = 0;
 
     public AbstractItem(String name, int numberOfPorts, double operand) {
         this.name = name;
@@ -45,5 +47,9 @@ public abstract class AbstractItem implements Item {
         }
 
         return true;
+    }
+
+    public void setInValue(double _value) {
+        this.inValue = _value;
     }
 }

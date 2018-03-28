@@ -3,8 +3,6 @@ package project.repository;
 /**
  * Created by petr on 3/28/18.
  */
-import project.repository.Item;
-
 import java.util.HashSet;
 import java.util.Set;
 

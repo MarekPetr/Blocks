@@ -9,6 +9,8 @@ public class ItemPlus extends AbstractItem{
     }
 
     public void execute(){
+        super.state = inValue;
         super.state += super.operand;
+        super.outValue = super.state;
     }
 }
