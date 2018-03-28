@@ -1,9 +1,9 @@
-package project;
-import project.items.AbstractItem;
-import project.items.ItemMinus;
-import project.items.ItemPlus;
+package main;
+import items.AbstractItem;
+import items.ItemMinus;
+import items.ItemPlus;
 import project.repository.Repository;
-import project.connection.Connection;
+import connection.Connection;
 
 
 /**
