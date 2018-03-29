@@ -12,6 +12,7 @@ import java.util.Set;
 public class Repository {
     private final String name;
     private final Set<Item> content;
+    private int numberOfItems;
 
     public Repository(String var1) {
         this.name = var1;
