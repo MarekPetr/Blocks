@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1cc8367-db88-4da1-a82d-d81a2762c5e7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Blocks/project/items/Item.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/Main.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/connection/Connection.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/connection/Connection.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/items/AbstractItem.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/items/AbstractItem.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/repository/Repository.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/repository/Repository.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/connection/Connection.java" afterPath="$PROJECT_DIR$/src/project/connection/Connection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/items/ItemDiv.java" afterPath="$PROJECT_DIR$/src/project/items/ItemDiv.java" />
@@ -850,10 +855,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11187000" />
+    <option name="totallyTimeSpent" value="11194000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1051" extended-state="6" />
+    <frame x="-1" y="0" width="1922" height="1051" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
