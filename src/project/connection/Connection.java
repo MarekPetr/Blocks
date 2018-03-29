@@ -6,22 +6,18 @@ public class Connection {
 	private AbstractItem inBlock;
 	private AbstractItem outBlock;
 
-	public Connection(int _id) {
-		this.id = _id;
+	public Connection(int id, AbstractItem input, AbstractItem output) {
+		this.id = id;
+		setInBlock(input);
+		setOutBlock(output);
 	}
 
-	public Connection(int _id, AbstractItem _input, AbstractItem _output) {
-		this.id = _id;
-		setInBlock(_input);
-		setOutBlock(_output);
+	public void setInBlock(AbstractItem input) {
+		this.inBlock = input;
 	}
 
-	public void setInBlock(AbstractItem _input) {
-		this.inBlock = _input;
-	}
-
-	public void setOutBlock(AbstractItem _output) {
-		this.outBlock = _output;
+	public void setOutBlock(AbstractItem output) {
+		this.outBlock = output;
 	}
 
 	public void transferValue() {
