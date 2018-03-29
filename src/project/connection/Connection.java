@@ -1,5 +1,5 @@
-package connection;
-import items.AbstractItem;
+package project.connection;
+import project.items.AbstractItem;
 
 public class Connection {
 	private final int id;

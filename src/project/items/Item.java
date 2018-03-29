@@ -1,4 +1,4 @@
-package repository;
+package project.items;
 
 /**
  * Created by petr on 3/28/18.

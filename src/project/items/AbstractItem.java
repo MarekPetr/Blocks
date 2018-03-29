@@ -1,5 +1,5 @@
-package items;
-import repository.Item;
+package project.items;
+
 /**
  * Created by petr on 3/28/18.
  */
