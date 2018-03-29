@@ -13,7 +13,7 @@ public class TestBlocks {
     private Connection con1, con2, con3;
 
     @Before
-    public void setUp() {
+    public void setUp(){
         itPlus = new ItemPlus("plus", 2, 100);
         itMinus = new ItemMinus("minus", 2, 80);
         itMul = new ItemMul("Mul", 2, 2);

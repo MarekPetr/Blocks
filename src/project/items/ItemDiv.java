@@ -3,12 +3,12 @@ package project.items;
 /**
  * Created by petr on 3/28/18.
  */
-public class ItemDiv extends AbstractItem {
+public class ItemDiv extends AbstractItem{
     public ItemDiv(String name, int numberOfPorts, double operand) {
         super(name, numberOfPorts, operand);
     }
 
-    public void execute() {
+    public void execute(){
         super.state = inValue;
         if (super.operand != 0.0)
             super.state /= super.operand;
