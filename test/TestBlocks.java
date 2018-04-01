@@ -2,26 +2,36 @@
  * Created by petr on 3/28/18.
  */
 
+import jdk.nashorn.internal.ir.Block;
+import project.blockArray.BlockArray;
+import project.blockArray.BlockArrayItem;
 import project.connection.Connection;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 import project.items.*;
 
+import java.util.ArrayList;
+
 public class TestBlocks {
-    private AbstractItem itFirst, itPlus, itMinus, itMul, itDiv;
-    private Connection con1, con2, con3;
+    private AbstractItem itFirst, itPlus, itMinus, itMul, itDiv, itLast;
+    private Connection con1, con2, con3, conFirstPlus, conPlusLast;
+    private BlockArray Blocks = new BlockArray();
 
     @Before
     public void setUp() {
+        itFirst = new ItemFirst("first", 1);
         itPlus = new ItemPlus("plus", 2, 100);
         itMinus = new ItemMinus("minus", 2, 80);
         itMul = new ItemMul("Mul", 2, 2);
         itDiv = new ItemDiv("Div", 2, 10);
+        itLast = new ItemLast("Last", 1);
+        conFirstPlus = new Connection(4, itFirst, itPlus);
+        conPlusLast = new Connection(5, itPlus, itLast);
     }
 
     @Test
-    public void test() {
+    public void test01() {
         con1 = new Connection(1, itPlus, itMinus);
         itPlus.execute();
         Assert.assertEquals("Test Plus out value",100, itPlus.outValue, 1.0);
@@ -44,5 +54,29 @@ public class TestBlocks {
         Assert.assertEquals("Test result value",4, itDiv.outValue, 1.0);
     }
 
+    @Test
+    public void test02() {
+        Blocks.add_to_list(new BlockArrayItem(itFirst));
+        Blocks.add_to_list(new BlockArrayItem(conFirstPlus));
+        Blocks.add_to_list(new BlockArrayItem(itPlus));
+        Blocks.add_to_list(new BlockArrayItem(conPlusLast));
+        Blocks.add_to_list(new BlockArrayItem(itLast));
+        Assert.assertEquals("Test First out value", 0, itFirst.outValue, 1.0);
+        Blocks.run();
+        Assert.assertEquals("Test Last in value", 100, itLast.inValue, 1.0);
+        Blocks.clear();
+    }
 
+    @Test
+    public void test03() {
+        Blocks.add_to_list(new BlockArrayItem(conFirstPlus));
+        Blocks.add_to_list(new BlockArrayItem(itFirst));
+        Blocks.add_to_list(new BlockArrayItem(itLast));
+        Blocks.add_to_list(new BlockArrayItem(conPlusLast));
+        Blocks.add_to_list(new BlockArrayItem(itPlus));
+        Assert.assertEquals("Test First out value", 0, itFirst.outValue, 1.0);
+        Blocks.run();
+        Assert.assertEquals("Test Last in value", 100, itLast.inValue, 1.0);
+        Blocks.clear();
+    }
 }
