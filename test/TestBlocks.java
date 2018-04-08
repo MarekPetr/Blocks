@@ -2,7 +2,6 @@
  * Created by petr on 3/28/18.
  */
 
-import jdk.nashorn.internal.ir.Block;
 import project.blockArray.BlockArray;
 import project.blockArray.BlockArrayItem;
 import project.connection.Connection;
@@ -11,13 +10,12 @@ import org.junit.Test;
 import org.junit.Assert;
 import project.items.*;
 
-import java.util.ArrayList;
-
 public class TestBlocks {
     private AbstractItem itFirst, itPlus, itMinus, itMul, itDiv, itLast;
     private Connection con1, con2, con3, conFirstPlus, conPlusLast;
     private BlockArray Blocks = new BlockArray();
 
+    // Made by Petr Marek
     @Before
     public void setUp() {
         itFirst = new ItemFirst("first", 1);
@@ -30,6 +28,8 @@ public class TestBlocks {
         conPlusLast = new Connection(5, itPlus, itLast);
     }
 
+    // Vypracoval Petr Marek
+    // Tests item connections
     @Test
     public void test01() {
         con1 = new Connection(1, itPlus, itMinus);
@@ -54,6 +54,8 @@ public class TestBlocks {
         Assert.assertEquals("Test result value",4, itDiv.outValue, 1.0);
     }
 
+    // Made by Jakub Štefanišin
+    // Tests adding items to list in the order from first to last
     @Test
     public void test02() {
         Blocks.add_to_list(new BlockArrayItem(itFirst));
@@ -67,6 +69,8 @@ public class TestBlocks {
         Blocks.clear();
     }
 
+    // Made by Jakub Štefanišin
+    // Tests adding items to list in any order
     @Test
     public void test03() {
         Blocks.add_to_list(new BlockArrayItem(conFirstPlus));
