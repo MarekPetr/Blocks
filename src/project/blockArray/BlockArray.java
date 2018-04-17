@@ -13,7 +13,7 @@ public class BlockArray{
 
     public BlockArray() {
         super();
-            this.blockArray = empty_element_data;
+        this.blockArray = empty_element_data;
     }
 
     public boolean add_to_list(BlockArrayItem e) {
