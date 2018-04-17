@@ -8,14 +8,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
  * Created by petr on 4/17/18.
  */
 public class UserInterface {
-    Button button;
     Stage window;
     Scene scene;
     Group root;
@@ -33,21 +31,16 @@ public class UserInterface {
 
     public void init() {
         window.setTitle("Title of the Window");
-        button = new Button();
-        button.setText("Click me");
-        button.setOnAction(e -> System.out.println("Lambda expressions are awesome!"));
 
         root = new Group();
         scene = new Scene(root, 630, 750);
         line = new Line();
-
 
         double y = 20;
         double width = 40;
         double space = 15;
         double offset = 2*space + width;
         double x = space;
-        //root.getChildren().add(button);
 
         // draws menuItem items
         for (int i = 0; i < 5; i++) {
@@ -57,12 +50,11 @@ public class UserInterface {
 
         drawLine();
         
-        scene.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
-                // draws line under menuItem items
-                root.getChildren().remove(line);
-                drawLine();
-            }
+        scene.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
+            // deletes last line
+            root.getChildren().remove(line);
+            // draws updated line
+            drawLine();
         });
 
         window.setTitle("Drawing a Rectangle");
@@ -71,6 +63,7 @@ public class UserInterface {
         window.setMinWidth(x);
         window.show();
     }
+
     public void drawLine() {
         line.setStartX(0.0f);
         line.setStartY(menuWidth);
@@ -89,7 +82,8 @@ public class UserInterface {
         rectangle.setHeight(50.0f);
 
         rectangle.setStroke(Color.BLACK);
-        rectangle.setFill(Color.LIGHTGRAY);        
+        rectangle.setFill(Color.LIGHTGRAY);
+        rectangle.toFront();
         
         if (menuItem) {
             System.out.printf("menuItem\n");
@@ -107,8 +101,10 @@ public class UserInterface {
         rectangle.setOnMousePressed(e -> {
             Rectangle rect = ((Rectangle)(e.getSource()));
             if (e.getButton() == MouseButton.PRIMARY) {
-                root.getChildren().add(getRectangle(rect.getX(), rect.getY()+100, false));
+                rect = getRectangle(rect.getX(), rect.getY()+100, false);
+                root.getChildren().add(rect);
                 System.out.printf("taham ven\n");
+
             }
         });
         return rectangle;
@@ -117,34 +113,38 @@ public class UserInterface {
     public Rectangle setMovable(Rectangle rectangle) {
 
         rectangle.setOnMouseDragged(e -> {
-            Rectangle rect = ((Rectangle)(e.getSource()));
-            double offsetX = e.getSceneX() - orgSceneX;
-            double offsetY = e.getSceneY() - orgSceneY;
+            if (e.isPrimaryButtonDown()) {
+                Rectangle rect = ((Rectangle)(e.getSource()));
+                double offsetX = e.getSceneX() - orgSceneX;
+                double offsetY = e.getSceneY() - orgSceneY;
 
-            double newTranslateX = orgTranslateX + offsetX;
-            double newTranslateY = orgTranslateY + offsetY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
 
-            double leftBorder = -rect.getX();
-            double rightBorder = scene.getWidth() - rect.getWidth() - rect.getX();
-            double upBorder = -rect.getY() + menuWidth;
-            double downBorder = scene.getHeight() - rect.getHeight() - rect.getY();
+                double leftBorder = -rect.getX();
+                double rightBorder = scene.getWidth() - rect.getWidth() - rect.getX();
+                double upBorder = -rect.getY() + menuWidth;
+                double downBorder = scene.getHeight() - rect.getHeight() - rect.getY();
 
-            if (newTranslateX >= leftBorder && newTranslateX <= rightBorder) {
-                rect.setTranslateX(newTranslateX);
+                if (newTranslateX >= leftBorder && newTranslateX <= rightBorder) {
+                    rect.setTranslateX(newTranslateX);
+                }
+                if (newTranslateY >= upBorder && newTranslateY <= downBorder)
+                    rect.setTranslateY(newTranslateY);
             }
-            if (newTranslateY >= upBorder && newTranslateY <= downBorder)
-                rect.setTranslateY(newTranslateY);
         });
 
         // Sets new item coordinates
         rectangle.setOnMousePressed(e -> {
             Rectangle rect = ((Rectangle)(e.getSource()));
             if (e.getButton() == MouseButton.PRIMARY) {
+                rect.toFront();
                 orgSceneX = e.getSceneX();
                 orgSceneY = e.getSceneY();
                 orgTranslateX = rect.getTranslateX();
                 orgTranslateY = rect.getTranslateY();
-            } else if (e.getButton() == MouseButton.SECONDARY) {
+            }
+            else if (e.getButton() == MouseButton.SECONDARY) {
                 System.out.printf("Udela port\n");
             }
         });
@@ -152,5 +152,4 @@ public class UserInterface {
         return rectangle;
 
     }
-
 }
