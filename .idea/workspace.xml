@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1cc8367-db88-4da1-a82d-d81a2762c5e7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/project/GUI/UserInterface.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/project/TryConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/Main.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Blocks/TestBlocks.class" afterPath="$PROJECT_DIR$/out/test/Blocks/TestBlocks.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/Main.java" afterPath="$PROJECT_DIR$/src/project/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" afterPath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/UserInterface.java" afterPath="$PROJECT_DIR$/src/project/GUI/UserInterface.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,8 +106,8 @@
       <file leaf-file-name="UserInterface.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/UserInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state relative-caret-position="159">
+              <caret line="97" column="45" lean-forward="false" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#663#664#0" expanded="true" />
@@ -143,6 +137,7 @@
       <find>menuItemWidth</find>
       <find>dragAndDrop</find>
       <find>windowWidth</find>
+      <find>NewItem</find>
     </findStrings>
     <replaceStrings>
       <replace>window</replace>
@@ -154,6 +149,7 @@
       <replace>windowWidth</replace>
       <replace>NewItem</replace>
       <replace>menuWidth</replace>
+      <replace>newItem</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -884,7 +880,7 @@
       <workItem from="1523195893932" duration="105000" />
       <workItem from="1523196739726" duration="804000" />
       <workItem from="1523947157705" duration="10885000" />
-      <workItem from="1523962439566" duration="9006000" />
+      <workItem from="1523962439566" duration="9458000" />
     </task>
     <servers />
   </component>
@@ -921,10 +917,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34476000" />
+    <option name="totallyTimeSpent" value="34928000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1051" extended-state="6" />
+    <frame x="-1" y="0" width="1922" height="1051" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1375,8 +1371,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/GUI/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+        <state relative-caret-position="159">
+          <caret line="97" column="45" lean-forward="false" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#663#664#0" expanded="true" />

@@ -93,7 +93,7 @@ public class UserInterface {
         
         if (menuItem) {
             System.out.printf("menuItem\n");
-            rectangle = NewItem(rectangle);
+            rectangle = newItem(rectangle);
         } else {
             System.out.printf("setMovable\n");
             rectangle = setMovable(rectangle);
@@ -102,7 +102,7 @@ public class UserInterface {
         return rectangle;
     }
 
-    public Rectangle NewItem(Rectangle rectangle) {
+    public Rectangle newItem(Rectangle rectangle) {
 
         rectangle.setOnMousePressed(e -> {
             Rectangle rect = ((Rectangle)(e.getSource()));
