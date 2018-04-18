@@ -1,12 +1,10 @@
 package project.GUI;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -14,15 +12,16 @@ import javafx.stage.Stage;
  * Created by petr on 4/17/18.
  */
 public class UserInterface {
-    Stage window;
-    Scene scene;
-    Group root;
+    private Stage window;
+    private Scene scene;
+    private Group root;
 
-    Line line;
+    private Line line;
+    private double circRadius = 50;
 
-    double orgSceneX, orgSceneY;
-    double orgTranslateX, orgTranslateY;
-    double menuWidth = 100;
+    private double orgSceneX, orgSceneY;
+    private double orgTranslateX, orgTranslateY;
+    private double menuWidth = 1.8*circRadius;
 
     public UserInterface(Stage window) {
         this.window = window;
@@ -36,15 +35,15 @@ public class UserInterface {
         scene = new Scene(root, 630, 750);
         line = new Line();
 
-        double y = 20;
-        double width = 40;
-        double space = 15;
-        double offset = 2*space + width;
-        double x = space;
+        double y = circRadius;
+        double width = circRadius;
+        double space = circRadius/2;
+        double offset = space + width;
+        double x = width;
 
         // draws menuItem items
         for (int i = 0; i < 5; i++) {
-            root.getChildren().add(getRectangle(x, y, true));
+            root.getChildren().add(getCircle(x, y, true));
             x += offset;
         }
 
@@ -57,7 +56,7 @@ public class UserInterface {
             drawLine();
         });
 
-        window.setTitle("Drawing a Rectangle");
+        window.setTitle("Drawing a Circle");
         window.setScene(scene);
         window.setMinHeight(menuWidth+100);
         window.setMinWidth(x);
@@ -72,84 +71,82 @@ public class UserInterface {
         root.getChildren().add(line);
     }
 
-    public Rectangle getRectangle(double x, double y, boolean menuItem) {
-        Rectangle rectangle = new Rectangle();
+    public Circle getCircle(double x, double y, boolean menuItem) {
+        Circle circle = new Circle();
 
-        //Setting the properties of the rectangle
-        rectangle.setX(x);
-        rectangle.setY(y);
-        rectangle.setWidth(50.0f);
-        rectangle.setHeight(50.0f);
+        //Setting the properties of the circle
+        circle.setCenterX(x);
+        circle.setCenterY(y);
+        circle.setRadius(circRadius/2);
 
-        rectangle.setStroke(Color.BLACK);
-        rectangle.setFill(Color.LIGHTGRAY);
-        rectangle.toFront();
+        circle.setStroke(Color.BLACK);
+        circle.setFill(Color.LIGHTGRAY);
+        circle.toFront();
         
         if (menuItem) {
             System.out.printf("menuItem\n");
-            rectangle = newItem(rectangle);
+            circle = newCircle(circle);
         } else {
             System.out.printf("setMovable\n");
-            rectangle = setMovable(rectangle);
+            circle = setMovable(circle);
         }
-
-        return rectangle;
+        return circle;
     }
 
-    public Rectangle newItem(Rectangle rectangle) {
+    public Circle newCircle(Circle circle) {
 
-        rectangle.setOnMousePressed(e -> {
-            Rectangle rect = ((Rectangle)(e.getSource()));
+        circle.setOnMousePressed(e -> {
+            Circle circ = ((Circle)(e.getSource()));
             if (e.getButton() == MouseButton.PRIMARY) {
-                rect = getRectangle(rect.getX(), rect.getY()+100, false);
-                root.getChildren().add(rect);
+                circ = getCircle(circ.getCenterX(), circ.getCenterY()+100, false);
+                root.getChildren().add(circ);
                 System.out.printf("taham ven\n");
 
             }
         });
-        return rectangle;
+        return circle;
     }
 
-    public Rectangle setMovable(Rectangle rectangle) {
+    public Circle setMovable(Circle circle) {
 
-        rectangle.setOnMouseDragged(e -> {
+        circle.setOnMouseDragged(e -> {
             if (e.isPrimaryButtonDown()) {
-                Rectangle rect = ((Rectangle)(e.getSource()));
+                Circle circ = ((Circle)(e.getSource()));
                 double offsetX = e.getSceneX() - orgSceneX;
                 double offsetY = e.getSceneY() - orgSceneY;
 
                 double newTranslateX = orgTranslateX + offsetX;
                 double newTranslateY = orgTranslateY + offsetY;
 
-                double leftBorder = -rect.getX();
-                double rightBorder = scene.getWidth() - rect.getWidth() - rect.getX();
-                double upBorder = -rect.getY() + menuWidth;
-                double downBorder = scene.getHeight() - rect.getHeight() - rect.getY();
+                double leftBorder = -circ.getCenterX() + circ.getRadius();
+                double rightBorder = scene.getWidth() - circ.getRadius() - circ.getCenterX();
+                double upBorder = -circ.getCenterY() + menuWidth + circ.getRadius();
+                double downBorder = scene.getHeight() - circ.getRadius() - circ.getCenterY();
 
                 if (newTranslateX >= leftBorder && newTranslateX <= rightBorder) {
-                    rect.setTranslateX(newTranslateX);
+                    circ.setTranslateX(newTranslateX);
                 }
                 if (newTranslateY >= upBorder && newTranslateY <= downBorder)
-                    rect.setTranslateY(newTranslateY);
+                    circ.setTranslateY(newTranslateY);
             }
         });
 
         // Sets new item coordinates
-        rectangle.setOnMousePressed(e -> {
-            Rectangle rect = ((Rectangle)(e.getSource()));
+        circle.setOnMousePressed(e -> {
+            Circle circ = ((Circle)(e.getSource()));
             if (e.getButton() == MouseButton.PRIMARY) {
-                rect.toFront();
+                circ.toFront();
                 orgSceneX = e.getSceneX();
                 orgSceneY = e.getSceneY();
-                orgTranslateX = rect.getTranslateX();
-                orgTranslateY = rect.getTranslateY();
+                orgTranslateX = circ.getTranslateX();
+                orgTranslateY = circ.getTranslateY();
             }
             else if (e.getButton() == MouseButton.SECONDARY) {
                 System.out.printf("Udela port\n");
             }
         });
 
-        return rectangle;
+        return circle;
 
     }
 }
