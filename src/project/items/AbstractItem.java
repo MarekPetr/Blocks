@@ -1,16 +1,18 @@
 package project.items;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by petr on 3/28/18.
  */
 public abstract class AbstractItem implements Item {
     int numberOfPorts;
     String name;
-    double state;
+    public Map<String, Double> state = new HashMap<>();
     double operand;
-    public double inValue = 0;
-    public double outValue = 0;
-
+    public Map<String, Double> inValue = new HashMap<>();
+    public Map<String, Double> outValue = new HashMap<>();
     public AbstractItem(String name, int numberOfPorts, double operand) {
         this.name = name;
         this.numberOfPorts = numberOfPorts;
@@ -25,7 +27,7 @@ public abstract class AbstractItem implements Item {
         return name;
     }
 
-    public double getState() {
+    public Map<String, Double> getState() {
         return state;
     }
 
@@ -49,7 +51,7 @@ public abstract class AbstractItem implements Item {
         return true;
     }
 
-    public void setInValue(double _value) {
-        this.inValue = _value;
+    public void setInValue(String _key, double _value) {
+        this.inValue.put(_key, _value);
     }
 }

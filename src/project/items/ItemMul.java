@@ -1,5 +1,7 @@
 package project.items;
 
+import java.util.Map;
+
 /**
  * Created by petr on 3/28/18.
  */
@@ -9,8 +11,10 @@ public class ItemMul extends AbstractItem {
     }
 
     public void execute() {
-        super.state = inValue;
-        super.state *= super.operand;
-        super.outValue = super.state;
+        super.state.putAll(super.inValue);
+        for (Map.Entry<String, Double> entry : super.state.entrySet()) {
+            super.state.put(entry.getKey(), entry.getValue() * super.operand);
+        }
+        super.outValue.putAll(super.state);
     }
 }
