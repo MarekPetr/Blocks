@@ -4,11 +4,9 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Circle;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import project.GUI.CircleItem;
 import static project.GUI.ItemType.*;
 
 /**
@@ -126,7 +124,7 @@ public class UserInterface {
 
         circle.setOnMouseDragged(e -> {
             if (e.isPrimaryButtonDown()) {
-                Circle circ = ((CircleItem)(e.getSource()));
+                CircleItem circ = ((CircleItem)(e.getSource()));
                 double offsetX = e.getSceneX() - orgSceneX;
                 double offsetY = e.getSceneY() - orgSceneY;
 
@@ -148,7 +146,7 @@ public class UserInterface {
 
         // Sets new item coordinates
         circle.setOnMousePressed(e -> {
-            Circle circ = ((CircleItem)(e.getSource()));
+            CircleItem circ = ((CircleItem)(e.getSource()));
             if (e.getButton() == MouseButton.PRIMARY) {
                 circ.toFront();
                 orgSceneX = e.getSceneX();
