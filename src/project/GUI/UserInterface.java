@@ -148,8 +148,11 @@ public class UserInterface {
                 circ.toFront();
                 portLine.setVisible(true);
             } else if (e.getButton() == MouseButton.PRIMARY){
-                scene.setOnKeyPressed(keyEvent -> {
-                    root.getChildren().remove(circ);
+                scene.setOnKeyPressed(ke -> {
+                    KeyCode keyCode = ke.getCode();
+                    if (keyCode.equals(KeyCode.DELETE)) {
+                        root.getChildren().remove(circ);
+                    }
                 });
             }
         });
