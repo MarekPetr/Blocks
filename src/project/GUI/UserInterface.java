@@ -8,6 +8,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import project.GUI.CircleItem;
+import static project.GUI.ItemType.*;
+
 /**
  * Created by petr on 4/17/18.
  */
@@ -42,10 +45,13 @@ public class UserInterface {
         double x = width;
 
         // draws menuItem items
-        for (int i = 0; i < 5; i++) {
-            root.getChildren().add(getCircle(x, y, true));
-            x += offset;
-        }
+
+        root.getChildren().add(newCircle(x, y, true, itemPlus));
+        x += offset;
+        root.getChildren().add(newCircle(x, y, true, itemMinus));
+        x += offset;
+        root.getChildren().add(newCircle(x, y, true, itemMul));
+        x += offset;
 
         drawLine();
         
@@ -70,35 +76,44 @@ public class UserInterface {
         line.setEndY(menuWidth);
         root.getChildren().add(line);
     }
-
-    public Circle getCircle(double x, double y, boolean menuItem) {
-        Circle circle = new Circle();
+    
+    // creates new circle
+    public CircleItem newCircle(double x, double y, boolean menuItem, ItemType type) {
+        CircleItem circle = new CircleItem();
 
         //Setting the properties of the circle
         circle.setCenterX(x);
         circle.setCenterY(y);
         circle.setRadius(circRadius/2);
+        circle.setType(type);
 
         circle.setStroke(Color.BLACK);
-        circle.setFill(Color.LIGHTGRAY);
+        if (circle.getType() == itemPlus) {
+            circle.setFill(Color.LIGHTGRAY);
+        } else if (circle.getType() == itemMinus) {
+            circle.setFill(Color.BLACK);
+        } else if (circle.getType() == itemMul) {
+            circle.setFill(Color.BLUE);
+        }
         circle.toFront();
         
         if (menuItem) {
             System.out.printf("menuItem\n");
-            circle = newCircle(circle);
+            circle = IconToItem(circle);
         } else {
             System.out.printf("setMovable\n");
             circle = setMovable(circle);
         }
         return circle;
     }
-
-    public Circle newCircle(Circle circle) {
+    
+    // copy circle from menu to workspace
+    public CircleItem IconToItem(CircleItem circle) {
 
         circle.setOnMousePressed(e -> {
-            Circle circ = ((Circle)(e.getSource()));
+            CircleItem circ = ((CircleItem)(e.getSource()));
             if (e.getButton() == MouseButton.PRIMARY) {
-                circ = getCircle(circ.getCenterX(), circ.getCenterY()+100, false);
+                circ = newCircle(circ.getCenterX(), circ.getCenterY()+100, false, circ.getType());
                 root.getChildren().add(circ);
                 System.out.printf("taham ven\n");
 
@@ -107,11 +122,11 @@ public class UserInterface {
         return circle;
     }
 
-    public Circle setMovable(Circle circle) {
+    public CircleItem setMovable(CircleItem circle) {
 
         circle.setOnMouseDragged(e -> {
             if (e.isPrimaryButtonDown()) {
-                Circle circ = ((Circle)(e.getSource()));
+                Circle circ = ((CircleItem)(e.getSource()));
                 double offsetX = e.getSceneX() - orgSceneX;
                 double offsetY = e.getSceneY() - orgSceneY;
 
@@ -133,7 +148,7 @@ public class UserInterface {
 
         // Sets new item coordinates
         circle.setOnMousePressed(e -> {
-            Circle circ = ((Circle)(e.getSource()));
+            Circle circ = ((CircleItem)(e.getSource()));
             if (e.getButton() == MouseButton.PRIMARY) {
                 circ.toFront();
                 orgSceneX = e.getSceneX();
