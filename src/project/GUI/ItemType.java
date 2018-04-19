@@ -7,7 +7,7 @@ public enum ItemType {
     itemDiv,
     itemFirst,
     itemLast,
-    itemMinus,// BLACK
+    itemMinus,// RED
     itemMul,  // BLUE
     itemPlus  // LIGHTGRAY
 }

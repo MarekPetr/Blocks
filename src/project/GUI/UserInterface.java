@@ -19,9 +19,6 @@ public class UserInterface {
 
     private Line line;
     private double circRadius = 50;
-
-    private double orgSceneX, orgSceneY;
-    private double orgTranslateX, orgTranslateY;
     private double menuWidth = 1.8*circRadius;
 
     public UserInterface(Stage window) {
@@ -60,6 +57,7 @@ public class UserInterface {
             drawLine();
         });
 
+
         window.setTitle("Drawing a Circle");
         window.setScene(scene);
         window.setMinHeight(menuWidth+100);
@@ -89,7 +87,7 @@ public class UserInterface {
         if (circle.getType() == itemPlus) {
             circle.setFill(Color.LIGHTGRAY);
         } else if (circle.getType() == itemMinus) {
-            circle.setFill(Color.BLACK);
+            circle.setFill(Color.RED);
         } else if (circle.getType() == itemMul) {
             circle.setFill(Color.BLUE);
         }
@@ -121,41 +119,35 @@ public class UserInterface {
     }
 
     public CircleItem setMovable(CircleItem circle) {
-
         circle.setOnMouseDragged(e -> {
             if (e.isPrimaryButtonDown()) {
                 CircleItem circ = ((CircleItem)(e.getSource()));
-                double offsetX = e.getSceneX() - orgSceneX;
-                double offsetY = e.getSceneY() - orgSceneY;
+                circ.toFront();
+                if (e.getSceneX() >= circ.getRadius() && e.getSceneX() <= scene.getWidth()-circ.getRadius())
+                    circ.setCenterX(e.getSceneX());
 
-                double newTranslateX = orgTranslateX + offsetX;
-                double newTranslateY = orgTranslateY + offsetY;
+                if (e.getSceneY() >= circ.getRadius()+menuWidth && e.getSceneY() <= scene.getHeight()-circ.getRadius())
+                    circ.setCenterY(e.getSceneY());
+            } else if (e.isSecondaryButtonDown()) {
 
-                double leftBorder = -circ.getCenterX() + circ.getRadius();
-                double rightBorder = scene.getWidth() - circ.getRadius() - circ.getCenterX();
-                double upBorder = -circ.getCenterY() + menuWidth + circ.getRadius();
-                double downBorder = scene.getHeight() - circ.getRadius() - circ.getCenterY();
-
-                if (newTranslateX >= leftBorder && newTranslateX <= rightBorder) {
-                    circ.setTranslateX(newTranslateX);
-                }
-                if (newTranslateY >= upBorder && newTranslateY <= downBorder)
-                    circ.setTranslateY(newTranslateY);
             }
         });
 
         // Sets new item coordinates
+
         circle.setOnMousePressed(e -> {
             CircleItem circ = ((CircleItem)(e.getSource()));
-            if (e.getButton() == MouseButton.PRIMARY) {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                Line portLine = new Line();
+                portLine.setStartX(circ.getCenterX());
+                portLine.setStartY(circ.getCenterY());
+                portLine.setEndX(300);
+                portLine.setEndY(300);
+                portLine.setStrokeWidth(5f);
+                portLine.setVisible(false);
+                root.getChildren().add(portLine);
                 circ.toFront();
-                orgSceneX = e.getSceneX();
-                orgSceneY = e.getSceneY();
-                orgTranslateX = circ.getTranslateX();
-                orgTranslateY = circ.getTranslateY();
-            }
-            else if (e.getButton() == MouseButton.SECONDARY) {
-                System.out.printf("Udela port\n");
+                portLine.setVisible(true);
             }
         });
 
