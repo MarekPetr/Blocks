@@ -1,7 +1,9 @@
 package project.GUI;
 
 import javafx.scene.Group;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.Scene;
@@ -40,7 +42,6 @@ public class UserInterface {
         double x = width;
 
         // draws menuItem items
-
         root.getChildren().add(newCircle(x, y, true, itemPlus));
         x += offset;
         root.getChildren().add(newCircle(x, y, true, itemMinus));
@@ -133,9 +134,7 @@ public class UserInterface {
             }
         });
 
-        // Sets new item coordinates
-
-        circle.setOnMousePressed(e -> {
+        circle.setOnMousePressed((MouseEvent e) -> {
             CircleItem circ = ((CircleItem)(e.getSource()));
             if (e.getButton() == MouseButton.SECONDARY) {
                 Line portLine = new Line();
@@ -148,8 +147,14 @@ public class UserInterface {
                 root.getChildren().add(portLine);
                 circ.toFront();
                 portLine.setVisible(true);
+            } else if (e.getButton() == MouseButton.PRIMARY){
+                scene.setOnKeyPressed(keyEvent -> {
+                    root.getChildren().remove(circ);
+                });
             }
         });
+
+
 
         return circle;
 
