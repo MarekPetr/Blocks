@@ -114,7 +114,7 @@ public class UserInterface {
                 circ = newCircle(circ.getCenterX(), circ.getCenterY()+100, false, circ.getType());
                 root.getChildren().add(circ);
                 System.out.printf("taham ven\n");
-
+                // TADY PRIDAT ITEM DO SEZNAMU
             }
         });
         return circle;
