@@ -1,5 +1,6 @@
 package project.items;
 
+
 /**
  * Created by petr on 3/29/18.
  */
@@ -9,7 +10,7 @@ public class ItemLast extends AbstractItem {
     }
 
     public void execute() {
-        super.state = inValue;
-        super.outValue = 0;
+        super.state.putAll(super.inValue);
+        super.outValue.put("value", (double) 0);
     }
 }

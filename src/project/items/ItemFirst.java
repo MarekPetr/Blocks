@@ -6,10 +6,10 @@ package project.items;
 public class ItemFirst extends AbstractItem {
     public ItemFirst(String name, int numberOfPorts) {
         super(name, numberOfPorts, 0);
+        super.state.put("value", (double) 0);
     }
 
     public void execute() {
-        super.state = 0;
-        super.outValue = super.state;
+        super.outValue.putAll(super.state);
     }
 }
