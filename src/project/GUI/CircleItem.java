@@ -12,10 +12,6 @@ public class CircleItem extends Circle {
         this.type = type;
     }
 
-    public void setType(ItemType type) {
-        this.type = type;
-    }
-
     public ItemType getType() {
         return this.type;
     }

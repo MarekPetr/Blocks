@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import static project.GUI.ItemType.*;
+import java.util.UUID;
 
 /**
  * Created by petr on 4/17/18.
@@ -22,6 +23,9 @@ public class UserInterface {
     private Line line;
     private double circRadius = 50;
     private double menuWidth = 1.8*circRadius;
+
+    private Object sourceID;
+    private Object targetID;
 
     public UserInterface(Stage window) {
         this.window = window;
@@ -108,6 +112,7 @@ public class UserInterface {
                 root.getChildren().add(circ);
                 System.out.printf("taham ven\n");
                 // TADY PRIDAT ITEM DO SEZNAMU
+                circ.setId(UUID.randomUUID().toString()); // ID objektu
             }
         });
         return circle;
@@ -116,28 +121,25 @@ public class UserInterface {
     public CircleItem setMovable(CircleItem circle) {
         circle.setOnMouseDragged(e -> {
             CircleItem circ = ((CircleItem)(e.getSource()));
+            System.out.printf("%s\n", circ.getId()); //ID objektu
+
             if (e.isPrimaryButtonDown()) {
                 circ.toFront();
                 if (e.getSceneX() >= circ.getRadius() && e.getSceneX() <= scene.getWidth()-circ.getRadius())
                     circ.setCenterX(e.getSceneX());
-
                 if (e.getSceneY() >= circ.getRadius()+menuWidth && e.getSceneY() <= scene.getHeight()-circ.getRadius())
                     circ.setCenterY(e.getSceneY());
             } else if (e.isSecondaryButtonDown()) {
                 if (e.getButton() == MouseButton.SECONDARY) {
+                    // TODO: Kontejner s ID itemu, ktere se spoji
+                    CircleItem circle2 = new CircleItem(250,250, circRadius/2, itemPlus);
+                    root.getChildren().add(circle2);
 
-                    circle.setOnMouseReleased( event -> {
-                        // TODO: Kontejner s ID itemu, ktere se spoji
-                        CircleItem circle2 = new CircleItem(250,250, circRadius/2, itemPlus);
-                        root.getChildren().add(circle2);
-                        System.out.printf("Released");
-
-                        CircleItem circ2 = ((CircleItem)(event.getSource()));
-                        Linking linking = new Linking(circ2, circle2);
-                        linking.setStroke(Color.CYAN);
-                        linking.setStrokeWidth(5);
-                        root.getChildren().add(0, linking);
-                    });
+                    CircleItem circ2 = ((CircleItem)(e.getSource()));
+                    Linking linking = new Linking(circ2, circle2);
+                    linking.setStroke(Color.CYAN);
+                    linking.setStrokeWidth(5);
+                    root.getChildren().add(0, linking);
                 }
             }
         });
@@ -153,9 +155,6 @@ public class UserInterface {
                 });
             }
         });
-
-
-
         return circle;
 
     }
