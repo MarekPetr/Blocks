@@ -76,13 +76,7 @@ public class UserInterface {
     
     // creates new circle
     public CircleItem newCircle(double x, double y, boolean menuItem, ItemType type) {
-        CircleItem circle = new CircleItem();
-
-        //Setting the properties of the circle
-        circle.setCenterX(x);
-        circle.setCenterY(y);
-        circle.setRadius(circRadius/2);
-        circle.setType(type);
+        CircleItem circle = new CircleItem(x, y, circRadius/2, type);
 
         circle.setStroke(Color.BLACK);
         if (circle.getType() == itemPlus) {
@@ -121,8 +115,8 @@ public class UserInterface {
 
     public CircleItem setMovable(CircleItem circle) {
         circle.setOnMouseDragged(e -> {
+            CircleItem circ = ((CircleItem)(e.getSource()));
             if (e.isPrimaryButtonDown()) {
-                CircleItem circ = ((CircleItem)(e.getSource()));
                 circ.toFront();
                 if (e.getSceneX() >= circ.getRadius() && e.getSceneX() <= scene.getWidth()-circ.getRadius())
                     circ.setCenterX(e.getSceneX());
@@ -130,24 +124,27 @@ public class UserInterface {
                 if (e.getSceneY() >= circ.getRadius()+menuWidth && e.getSceneY() <= scene.getHeight()-circ.getRadius())
                     circ.setCenterY(e.getSceneY());
             } else if (e.isSecondaryButtonDown()) {
+                if (e.getButton() == MouseButton.SECONDARY) {
 
+                    circle.setOnMouseReleased( event -> {
+                        // TODO: Kontejner s ID itemu, ktere se spoji
+                        CircleItem circle2 = new CircleItem(250,250, circRadius/2, itemPlus);
+                        root.getChildren().add(circle2);
+                        System.out.printf("Released");
+
+                        CircleItem circ2 = ((CircleItem)(event.getSource()));
+                        Linking linking = new Linking(circ2, circle2);
+                        linking.setStroke(Color.CYAN);
+                        linking.setStrokeWidth(5);
+                        root.getChildren().add(0, linking);
+                    });
+                }
             }
         });
 
         circle.setOnMousePressed((MouseEvent e) -> {
             CircleItem circ = ((CircleItem)(e.getSource()));
-            if (e.getButton() == MouseButton.SECONDARY) {
-                Line portLine = new Line();
-                portLine.setStartX(circ.getCenterX());
-                portLine.setStartY(circ.getCenterY());
-                portLine.setEndX(300);
-                portLine.setEndY(300);
-                portLine.setStrokeWidth(5f);
-                portLine.setVisible(false);
-                root.getChildren().add(portLine);
-                circ.toFront();
-                portLine.setVisible(true);
-            } else if (e.getButton() == MouseButton.PRIMARY){
+            if (e.getButton() == MouseButton.PRIMARY){
                 scene.setOnKeyPressed(ke -> {
                     KeyCode keyCode = ke.getCode();
                     if (keyCode.equals(KeyCode.DELETE)) {
