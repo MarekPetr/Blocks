@@ -21,6 +21,12 @@
             rgba(255, 255, 255, 0.35);
 }
 
+.close-button:hover {
+    -fx-background-radius: 4 4 4 4;
+    -fx-background-color:
+            rgba(255, 255, 255, 0.35);
+}
+
 .icon-blue {
     -fx-background-color: blue;
 }

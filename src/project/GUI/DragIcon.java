@@ -1,19 +1,18 @@
 package project.GUI;
+import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
+public class DragIcon extends AnchorPane{
 
-/**
- * Created by petr on 4/21/18.
- */
-public class DragIcon extends AnchorPane {
-    private DragIconType mType;
+    @FXML AnchorPane root_pane;
+
+    private DragIconType mType = null;
 
     public DragIcon() {
-
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("/DragIcon.fxml")
         );
@@ -23,7 +22,6 @@ public class DragIcon extends AnchorPane {
 
         try {
             fxmlLoader.load();
-
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -32,16 +30,27 @@ public class DragIcon extends AnchorPane {
     @FXML
     private void initialize() {}
 
+    public void relocateToPoint (Point2D p) {
 
+        //relocates the object to a point that has been converted to
+        //scene coordinates
+        Point2D localCoords = getParent().sceneToLocal(p);
 
-    public DragIconType getType() { return mType;}
+        relocate (
+                (int) (localCoords.getX() - (getBoundsInLocal().getWidth() / 2)),
+                (int) (localCoords.getY() - (getBoundsInLocal().getHeight() / 2))
+        );
+    }
 
-    public void setType(DragIconType type) {
+    public DragIconType getType () { return mType; }
+
+    public void setType (DragIconType type) {
 
         mType = type;
 
         getStyleClass().clear();
         getStyleClass().add("dragicon");
+
         switch (mType) {
 
             case blue:

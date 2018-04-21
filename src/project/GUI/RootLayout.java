@@ -105,7 +105,6 @@ public class RootLayout extends AnchorPane {
             // updates DragBoard's content with Clipboard object
             // containing updated DragContainer data
             event.getDragboard().setContent(content);
-
             event.setDropCompleted(true);
         };
 
@@ -123,22 +122,29 @@ public class RootLayout extends AnchorPane {
             DragContainer container =
                     (DragContainer) event.getDragboard().getContent(DragContainer.AddNode);
 
-            // if there is an icon to drag, drag it
             if (container != null) {
                 if (container.getValue("scene_coords") != null) {
 
-                    DragIcon droppedIcon = new DragIcon();
-                    droppedIcon.setType(DragIconType.valueOf(container.getValue("type")));
-                    // creates icon at default coordinates (0,0)
-                    right_pane.getChildren().add(droppedIcon);
+                    // add Node operation
+                    DraggableNode node = new DraggableNode();
+                    node.setType(DragIconType.valueOf(container.getValue("type")));
+                    right_pane.getChildren().add(node);
 
-                    // relocate the icon to mouse cursor position
                     Point2D cursorPoint = container.getValue("scene_coords");
-                    droppedIcon.relocateToPoint(
+
+                    node.relocateToPoint(
                             new Point2D(cursorPoint.getX() - 32, cursorPoint.getY() - 32)
                     );
                 }
             }
+
+            //AddLink drag operation
+            container = (DragContainer) event.getDragboard().getContent(DragContainer.AddLink);
+
+            if (container != null) {
+                System.out.println(container.getData());
+            }
+
             event.consume();
         });
     }
