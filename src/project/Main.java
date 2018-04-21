@@ -1,47 +1,31 @@
 package project;
-import project.items.AbstractItem;
-import project.items.ItemDiv;
-import project.items.ItemMinus;
-import project.items.ItemPlus;
-import project.repository.Repository;
-import project.connection.Connection;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import project.GUI.RootLayout;
 
 
-/**
- * Created by petr on 3/28/18.
- */
-public class Main {
-    public static void main(final String[] args) {
-        double resValue = 0;
+public class Main extends Application {
 
-        AbstractItem item1, item2, item3, item4, it5, it6;
-        Connection con1, con2;
-        item1 = new ItemPlus("first", 2, 4);
-        System.out.printf("1jmeno: %s, stav:%f\n", item1.getName(), item1.getState());
-        item1.execute();
-        System.out.printf("1jmeno: %s, stav:%f\n\n", item1.getName(), item1.getState());
+    @Override
+    public void start(Stage primaryStage) {
+        BorderPane root = new BorderPane();
 
-        item2 = new ItemMinus("second", 2, 3);
-        System.out.printf("2jmeno: %s, stav:%f\n", item2.getName(), item2.getState());
-        item2.execute();
-        System.out.printf("2jmeno: %s, stav:%f\n", item2.getName(), item2.getState());
+        try {
+            Scene scene = new Scene(root,640,480);
+            scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
-        item3 = new ItemPlus("third", 2, 1);
-        item4 = new ItemPlus("Fourth", 2, 2);
-        con1 = new Connection(1, item3, item4);
-        item3.execute();
-        con1.transferValue();
-        item4.execute();
-        System.out.printf("%f\n", item4.outValue);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
-        it5 = new ItemDiv("Fourth", 2, 3);
-        con2 = new Connection(2, item4, it5);
-        con2.transferValue();
-        it5.execute();
+        root.setCenter(new RootLayout());
+    }
 
-        System.out.printf("5: %f\n", it5.outValue);
-
-        Repository rep1 = new Repository("Repo1");
-        rep1.add(item1);
+    public static void main(String[] args) {
+        launch(args);
     }
 }

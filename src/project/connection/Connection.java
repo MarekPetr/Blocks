@@ -5,11 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Connection {
-	private final int id;
+	private final String id;
 	private AbstractItem inBlock;
 	private AbstractItem outBlock;
 
-	public Connection(int id, AbstractItem input, AbstractItem output) {
+	public Connection(String id, AbstractItem input) {
+		this.id = id;
+		setInBlock(input);
+	}
+
+	public Connection(String id, AbstractItem input, AbstractItem output) {
 		this.id = id;
 		setInBlock(input);
 		setOutBlock(output);
@@ -17,11 +22,11 @@ public class Connection {
 
 	private void setInBlock(AbstractItem input) { this.inBlock = input; }
 
-	private void setOutBlock(AbstractItem output) { this.outBlock = output; }
+	public void setOutBlock(AbstractItem output) { this.outBlock = output; }
 
 	public void transferValue() { this.outBlock.inValue.putAll(this.inBlock.outValue); }
 
-	public int getId() { return this.id; }
+	public String getId() { return this.id; }
 
 	public AbstractItem getInBlock() { return this.inBlock; }
 

@@ -1,22 +1,38 @@
 package project.items;
 
-import java.util.HashMap;
-import java.util.Map;
+import project.connection.Connection;
+
+import java.util.*;
 
 /**
  * Created by petr on 3/28/18.
  */
 public abstract class AbstractItem implements Item {
-    int numberOfPorts;
     String name;
-    public Map<String, Double> state = new HashMap<>();
+    int numberOfPorts;
     double operand;
+    public Map<String, Double> state = new HashMap<>();
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
+    public List<Connection> links = new ArrayList<>();
+
     public AbstractItem(String name, int numberOfPorts, double operand) {
         this.name = name;
         this.numberOfPorts = numberOfPorts;
         this.operand = operand;
+    }
+
+    public void createConnection() {
+        this.links.add(new Connection(UUID.randomUUID().toString(), this));
+    }
+
+    public void createConnection(AbstractItem output) {
+        createConnection();
+        setConnection(output);
+    }
+
+    public void setConnection(AbstractItem output) {
+        this.links.get(this.links.size()).setOutBlock(output);
     }
 
     public int numberOfPorts() {
