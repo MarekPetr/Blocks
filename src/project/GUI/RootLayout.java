@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
@@ -139,10 +140,50 @@ public class RootLayout extends AnchorPane {
             }
 
             //AddLink drag operation
+            // TODO ODSTRANIT DEBUG PRINTL
             container = (DragContainer) event.getDragboard().getContent(DragContainer.AddLink);
-
             if (container != null) {
                 System.out.println(container.getData());
+            }
+
+            //AddLink drag operation
+            container =
+                    (DragContainer) event.getDragboard().getContent(DragContainer.AddLink);
+
+            if (container != null) {
+
+                //bind the ends of our link to the nodes whose id's are stored in the drag container
+                String sourceId = container.getValue("source");
+                String targetId = container.getValue("target");
+
+                if (sourceId != null && targetId != null) {
+
+                    //	System.out.println(container.getData());
+                    NodeLink link = new NodeLink();
+
+                    //add our link at the top of the rendering order so it's rendered first
+                    right_pane.getChildren().add(0,link);
+
+                    DraggableNode source = null;
+                    DraggableNode target = null;
+
+                    for (Node n: right_pane.getChildren()) {
+
+                        if (n.getId() == null)
+                            continue;
+
+                        if (n.getId().equals(sourceId))
+                            source = (DraggableNode) n;
+
+                        if (n.getId().equals(targetId))
+                            target = (DraggableNode) n;
+
+                    }
+
+                    if (source != null && target != null)
+                        link.bindEnds(source, target);
+                }
+
             }
 
             event.consume();

@@ -1,12 +1,18 @@
 package project.GUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.UUID;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -33,10 +39,19 @@ public class DraggableNode extends AnchorPane {
     @FXML AnchorPane left_link_handle;
     @FXML AnchorPane right_link_handle;
 
+    // reusable object during drag and drop operations
+    // every node will have its own
+    private NodeLink mDragLink = null;
+    // reference to the right_pane - link can occur only there
+    private AnchorPane right_pane = null;
+
     private EventHandler <MouseEvent> mLinkHandleDragDetected;
     private EventHandler <DragEvent> mLinkHandleDragDropped;
     private EventHandler <DragEvent> mContextLinkDragOver;
     private EventHandler <DragEvent> mContextLinkDragDropped;
+
+    // list of IDs of currently connected links
+    private final List mLinkIds = new ArrayList();
 
     public DraggableNode() {
         // dragging has to be handled in root Anchor - referenced by 'this'
@@ -66,7 +81,14 @@ public class DraggableNode extends AnchorPane {
 
         left_link_handle.setOnDragDropped(mLinkHandleDragDropped);
         right_link_handle.setOnDragDropped(mLinkHandleDragDropped);
+
+        mDragLink = new NodeLink();
+        mDragLink.setVisible(false);
+
+        parentProperty().addListener((observable, oldValue, newValue)
+                -> right_pane = (AnchorPane) getParent());
     }
+
     public void buildNodeDragHandlers() {
         //drag detection (on title bar) for node dragging
         title_bar.setOnDragDetected (event -> {
@@ -111,9 +133,36 @@ public class DraggableNode extends AnchorPane {
         };
 
         //close button click
+        //close button click
         close_button.setOnMouseClicked(event -> {
             AnchorPane parent  = (AnchorPane) self.getParent();
             parent.getChildren().remove(self);
+
+            //iterate each link id connected to this node
+            //find it's corresponding component in the right-hand
+            //AnchorPane and delete it.
+
+            //Note:  other nodes connected to these links are not being
+            //notified that the link has been removed.
+            for (ListIterator<String> iterId = mLinkIds.listIterator();
+                 iterId.hasNext();) {
+
+                String id = iterId.next();
+
+                for (ListIterator <Node> iterNode = parent.getChildren().listIterator();
+                     iterNode.hasNext();) {
+
+                    Node node = iterNode.next();
+
+                    if (node.getId() == null)
+                        continue;
+
+                    if (node.getId().equals(id))
+                        iterNode.remove();
+                }
+
+                iterId.remove();
+            }
         });
     }
 
@@ -124,6 +173,18 @@ public class DraggableNode extends AnchorPane {
 
             getParent().setOnDragOver(mContextLinkDragOver);
             getParent().setOnDragDropped(mLinkHandleDragDropped);
+
+            //Set up user-draggable link
+            // index zero means, that the curve is rendered before nodes
+            // - to prevent being drawn over them
+            right_pane.getChildren().add(0,mDragLink);
+            mDragLink.setVisible(false);
+            // get the position of the center of node, where drag operation began
+            Point2D p = new Point2D(
+                    getLayoutX() + (getWidth() / 2.0),
+                    getLayoutY() + (getHeight() / 2.0)
+            );
+            mDragLink.setStart(p);
 
             //Drag content code
             ClipboardContent content = new ClipboardContent();
@@ -151,6 +212,10 @@ public class DraggableNode extends AnchorPane {
             if (container == null)
                 return;
 
+            //hide the draggable NodeLink and remove it from the right-hand AnchorPane's children
+            mDragLink.setVisible(false);
+            right_pane.getChildren().remove(0);
+
             ClipboardContent content = new ClipboardContent();
             container.addData("target", getId());
             content.put(DragContainer.AddLink, container);
@@ -163,6 +228,12 @@ public class DraggableNode extends AnchorPane {
         mContextLinkDragOver = event -> {
             // this call must occur for successful drag operation
             event.acceptTransferModes(TransferMode.ANY);
+
+            //Relocate user-draggable link to follow mouse cursor
+            if (!mDragLink.isVisible())
+                mDragLink.setVisible(true);
+            mDragLink.setEnd(new Point2D(event.getX(), event.getY()));
+
             event.consume();
         };
 
@@ -171,9 +242,17 @@ public class DraggableNode extends AnchorPane {
             getParent().setOnDragOver(null);
             getParent().setOnDragDropped(null);
 
+            //hide the draggable NodeLink and remove it from the right-hand AnchorPane's children
+            mDragLink.setVisible(false);
+            right_pane.getChildren().remove(0);
+
             event.setDropCompleted(true);
             event.consume();
         };
+    }
+
+    public void registerLink(String linkId) {
+        mLinkIds.add(linkId);
     }
 
     public void relocateToPoint (Point2D p) {
