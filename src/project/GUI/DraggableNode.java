@@ -12,11 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.control.TextField;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class DraggableNode extends AnchorPane {
 
@@ -31,11 +30,16 @@ public class DraggableNode extends AnchorPane {
 
     @FXML private Label title_bar;
     @FXML private Label close_button;
+    @FXML private AnchorPane body_handle;
+    @FXML private VBox input_table;
+    @FXML private TextField text_field1;
+    @FXML private TextField text_field2;
+    @FXML private TextField text_field3;
 
     private final DraggableNode self;
 
-    @FXML AnchorPane left_link_handle;
-    @FXML AnchorPane right_link_handle;
+    @FXML private AnchorPane left_link_handle;
+    @FXML private AnchorPane right_link_handle;
 
     // reusable object during drag and drop operations
     // every node will have its own
@@ -71,8 +75,9 @@ public class DraggableNode extends AnchorPane {
 
     @FXML
     private void initialize() {
-        buildNodeDragHandlers();
-        buildLinkDragHandlers();
+        buildNodeHandlers();
+        buildLinkHandlers();
+        buildInputHandlers();
 
         left_link_handle.setOnDragDetected(mLinkHandleDragDetected);
         right_link_handle.setOnDragDetected(mLinkHandleDragDetected);
@@ -82,12 +87,44 @@ public class DraggableNode extends AnchorPane {
 
         mDragLink = new NodeLink();
         mDragLink.setVisible(false);
+        input_table.setVisible(false);
 
         parentProperty().addListener((observable, oldValue, newValue)
                 -> right_pane = (AnchorPane) getParent());
+
     }
 
-    public void buildNodeDragHandlers() {
+    private void setTextField(TextField field, int index) {
+        field.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                text_field1.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        field.setOnKeyPressed(ke -> {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                System.out.printf("%d. saved\n", index);
+                this.requestFocus();
+            }
+        });
+    }
+
+    public void buildInputHandlers() {
+        // middle of the node shows text fields of current node map input values
+        body_handle.setOnMouseClicked(event -> {
+            if (input_table.isVisible()) {
+                input_table.setVisible(false);
+            } else {
+                input_table.setVisible(true);
+            }
+        });
+        setTextField(text_field1, 1);
+        setTextField(text_field2, 2);
+        setTextField(text_field3, 3);
+    }
+
+
+    public void buildNodeHandlers() {
         //drag detection (on title bar) for node dragging
         title_bar.setOnDragDetected (event -> {
 
@@ -150,7 +187,6 @@ public class DraggableNode extends AnchorPane {
                      iterNode.hasNext();) {
 
                     Node node = iterNode.next();
-
                     if (node.getId() == null)
                         continue;
 
@@ -163,7 +199,7 @@ public class DraggableNode extends AnchorPane {
         });
     }
 
-    private void buildLinkDragHandlers() {
+    private void buildLinkHandlers() {
         mLinkHandleDragDetected = event -> {
             getParent().setOnDragOver(null);
             getParent().setOnDragDropped(null);
@@ -172,7 +208,7 @@ public class DraggableNode extends AnchorPane {
             getParent().setOnDragDropped(mLinkHandleDragDropped);
 
             //Set up user-draggable link
-            // index zero means, that the curve is rendeminus before nodes
+            // index zero means, that the curve is rendered before nodes
             // - to prevent being drawn over them
             right_pane.getChildren().add(0,mDragLink);
             mDragLink.setVisible(false);
@@ -187,7 +223,6 @@ public class DraggableNode extends AnchorPane {
             ClipboardContent content = new ClipboardContent();
             DragContainer container = new DragContainer ();
 
-            AnchorPane link_handle = (AnchorPane) event.getSource();
             container.addData("source", getId()); //pass type of node to DragBoard
             content.put(DragContainer.AddLink, container); // pass DrabBoard container to ClipBoard content
 
@@ -240,8 +275,8 @@ public class DraggableNode extends AnchorPane {
             getParent().setOnDragDropped(null);
 
             //hide the draggable NodeLink and remove it from the right-hand AnchorPane's children
-            mDragLink.setVisible(false);
-            right_pane.getChildren().remove(0);
+            //right_pane.getChildren().remove(0);
+            //mDragLink.setVisible(false);
 
             event.setDropCompleted(true);
             event.consume();
