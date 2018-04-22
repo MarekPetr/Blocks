@@ -7,7 +7,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
@@ -59,7 +58,7 @@ public class RootLayout extends AnchorPane {
         getChildren().add(mDragOverIcon);
 
         //populate left pane with multiple colored icons for testing
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
 
             DragIcon icn = new DragIcon();
             addDragDetection(icn);
@@ -140,13 +139,6 @@ public class RootLayout extends AnchorPane {
             }
 
             //AddLink drag operation
-            // TODO ODSTRANIT DEBUG PRINTL
-            container = (DragContainer) event.getDragboard().getContent(DragContainer.AddLink);
-            if (container != null) {
-                System.out.println(container.getData());
-            }
-
-            //AddLink drag operation
             container =
                     (DragContainer) event.getDragboard().getContent(DragContainer.AddLink);
 
@@ -158,7 +150,6 @@ public class RootLayout extends AnchorPane {
 
                 if (sourceId != null && targetId != null) {
 
-                    //	System.out.println(container.getData());
                     NodeLink link = new NodeLink();
 
                     //add our link at the top of the rendering order so it's rendered first
@@ -180,7 +171,7 @@ public class RootLayout extends AnchorPane {
 
                     }
 
-                    if (source != null && target != null)
+                    if (source != null && target != null && source != target)
                         link.bindEnds(source, target);
                 }
 

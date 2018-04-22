@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.UUID;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +48,7 @@ public class DraggableNode extends AnchorPane {
     private EventHandler <DragEvent> mContextLinkDragOver;
     private EventHandler <DragEvent> mContextLinkDragDropped;
 
-    // list of IDs of currently connected links
+    // list of IDs of currently connected links to this node
     private final List mLinkIds = new ArrayList();
 
     public DraggableNode() {
@@ -133,7 +131,6 @@ public class DraggableNode extends AnchorPane {
         };
 
         //close button click
-        //close button click
         close_button.setOnMouseClicked(event -> {
             AnchorPane parent  = (AnchorPane) self.getParent();
             parent.getChildren().remove(self);
@@ -175,7 +172,7 @@ public class DraggableNode extends AnchorPane {
             getParent().setOnDragDropped(mLinkHandleDragDropped);
 
             //Set up user-draggable link
-            // index zero means, that the curve is rendered before nodes
+            // index zero means, that the curve is rendeminus before nodes
             // - to prevent being drawn over them
             right_pane.getChildren().add(0,mDragLink);
             mDragLink.setVisible(false);
@@ -280,32 +277,28 @@ public class DraggableNode extends AnchorPane {
 
         switch (mType) {
 
-            case blue:
-                getStyleClass().add("icon-blue");
+            case plus:
+                getStyleClass().add("node-icon-plus");
                 break;
 
-            case red:
-                getStyleClass().add("icon-red");
+            case minus:
+                getStyleClass().add("node-icon-minus");
                 break;
 
-            case green:
-                getStyleClass().add("icon-green");
+            case div:
+                getStyleClass().add("node-icon-div");
                 break;
 
-            case grey:
-                getStyleClass().add("icon-grey");
+            case mul:
+                getStyleClass().add("node-icon-mul");
                 break;
 
-            case purple:
-                getStyleClass().add("icon-purple");
+            case out:
+                getStyleClass().add("node-icon-out");
                 break;
 
-            case yellow:
-                getStyleClass().add("icon-yellow");
-                break;
-
-            case black:
-                getStyleClass().add("icon-black");
+            case in:
+                getStyleClass().add("node-icon-in");
                 break;
 
             default:
