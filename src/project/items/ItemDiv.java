@@ -12,14 +12,12 @@ public class ItemDiv extends AbstractItem {
     }
 
     public void execute() {
-        super.state.putAll(super.inValue);
         if (super.operand != 0.0)
-            for (Map.Entry<String, Double> entry : super.state.entrySet()) {
-                super.state.put(entry.getKey(), entry.getValue() / super.operand);
+            for (Map.Entry<String, Double> entry : super.inValue.entrySet()) {
+                super.outValue.put(entry.getKey(), entry.getValue() / super.operand);
             }
         else {
             throw new ArithmeticException("Division by zero!");
         }
-        super.outValue.putAll(super.state);
     }
 }

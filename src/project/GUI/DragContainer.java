@@ -31,18 +31,11 @@ public class DragContainer implements Serializable {
 
     // get a particular value
     public <T> T getValue (String key) {
-
         for (Pair<String, Object> data: mDataPairs) {
-
             if (data.getKey().equals(key)) {
-                System.out.printf("key:%s = data %s\n", key, data.getKey());
                 return (T) data.getValue();
-            } else {
-                System.out.printf("else: key:%s = data %s\n", key, data.getKey());
             }
-
         }
-
         return null;
     }
 

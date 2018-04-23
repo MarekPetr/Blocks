@@ -1,20 +1,25 @@
 package project.items;
 
-import project.connection.Connection;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by petr on 3/28/18.
  */
 public abstract class AbstractItem implements Item {
-    String name;
     int numberOfPorts;
+    String name;
     double operand;
-    public Map<String, Double> state = new HashMap<>();
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
-    public List<Connection> links = new ArrayList<>();
+    public List<String> links = new ArrayList<>();
+
+    public AbstractItem(String name, int numberOfPorts) {
+        this.name = name;
+        this.numberOfPorts = numberOfPorts;
+    }
 
     public AbstractItem(String name, int numberOfPorts, double operand) {
         this.name = name;
@@ -22,18 +27,7 @@ public abstract class AbstractItem implements Item {
         this.operand = operand;
     }
 
-    public void createConnection() {
-        this.links.add(new Connection(UUID.randomUUID().toString(), this));
-    }
-
-    public void createConnection(AbstractItem output) {
-        createConnection();
-        setConnection(output);
-    }
-
-    public void setConnection(AbstractItem output) {
-        this.links.get(this.links.size()).setOutBlock(output);
-    }
+    public void setOperand(double val) { this.operand = val; }
 
     public int numberOfPorts() {
         return numberOfPorts;
@@ -43,8 +37,22 @@ public abstract class AbstractItem implements Item {
         return name;
     }
 
-    public Map<String, Double> getState() {
-        return state;
+    public Map<String, Double> getInValue() {
+        return this.inValue;
+    }
+
+    public Map<String, Double> getOutValue() {
+        return this.outValue;
+    }
+
+    public List<String> getLinks() { return this.links; }
+
+    public void addLink(String link) { this.links.add(link); }
+
+    public void clean() {
+        this.links.clear();
+        this.inValue.clear();
+        this.outValue.clear();
     }
 
     @Override

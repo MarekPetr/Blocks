@@ -12,6 +12,4 @@ public interface Item {
     int numberOfPorts();
 
     void execute();
-
-    Map<String, Double> getState();
 }
