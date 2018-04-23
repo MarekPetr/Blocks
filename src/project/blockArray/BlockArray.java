@@ -1,56 +1,64 @@
 package project.blockArray;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import project.connection.Connection;
 import project.items.*;
 
-
+//TODO
 public class BlockArray{
+    private boolean first = true;
+    private boolean found = false;
     private int size;
     private static final int DEFAULT_CAPACITY = 5;
     private static final Object[] empty_element_data = {};
+    public List<Connection> connections;
 
     private transient Object[] blockArray;
 
     public BlockArray() {
         super();
         this.blockArray = empty_element_data;
+        this.connections = new ArrayList<>();
     }
 
-    public boolean addToList(BlockArrayItem e) {
+    public void addToList(BlockArrayItem e) {
         if (size == blockArray.length) {
             ensureCapacity(size + 1);
         }
-
-        if (e.item instanceof ItemFirst) {
-            add(0, e);
-        } else if (e.item instanceof ItemLast) {
-            add(size, e);
-        } else if (e.con != null) {
-            for(int i = 0; i < size; i++) {
-                if(size != 0) {
-                    if (get(i).item != null && get(i).item.getName().equals(e.con.getInBlock().getName())) {
-                        add(i + 1, e);
-                    } else if (get(i).item != null && get(i).item.getName().equals(e.con.getOutBlock().getName())) {
-                        add(i, e);
-                    }
-                } else {
+        if (e.con != null) {
+            connections.add(e.con);
+        } else {
+            if (e.item instanceof ItemFirst && this.first) {
+                this.first = false;
+                add(0, e);
+            } else if (e.item instanceof ItemLast) {
+                add(e);
+            } else {
+                if (isEmpty()) {
                     add(e);
-                }
-            }
-        } else if(e.item != null) {
-            for(int i = 0; i < size; i++) {
-                if(size != 0) {
-                    if (get(i).con != null && get(i).con.getOutBlock().getName().equals(e.item.getName())) {
-                        add(i + 1, e);
-                    } else if (get(i).con != null && get(i).con.getInBlock().getName().equals(e.item.getName())) {
-                        add(i, e);
-                    }
+                } else if (contains(ItemLast.class)) {
+                    add(this.size - 1, e);
                 } else {
-                    add(e);
+                    add(this.size, e);
                 }
             }
         }
-        return true;
+    }
+
+    private boolean contains(Class C) {
+        for (int i = 0; i < size; i++) {
+            if (get(i).item.getClass().equals(C)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isEmpty() {
+        return size == 0;
     }
 
     private void add(BlockArrayItem e) {
@@ -98,113 +106,57 @@ public class BlockArray{
             blockArray[i] = null;
         }
         size = 0;
+        this.connections.clear();
     }
 
-    private void checkForCycles() {
+    private int index(String name) {
         for (int i = 0; i < size; i++) {
-            if (get(i).con != null) {
-                AbstractItem check = get(i).con.getOutBlock();
-                for (int j = 0; j < i; j++) {
-                    if (get(j).item != null && check.equals(get(j).item)) {
-                        System.out.println("Cycle found, exiting");
-                        System.exit(-1);
-                    }
-                }
-            }
-        }
-    }
-
-    public boolean contains(AbstractItem item) {
-        return indexOf(item) >= 0;
-    }
-
-    public int indexOf(AbstractItem item) {
-        if (item == null) {
-            for (int i = 0; i < size; i++) {
-                if (get(i).item == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (get(i).item != null && item.equals(get(i).item)) {
-                    return i;
-                }
+            if (get(i).item.getName().equals(name)) {
+                return i;
             }
         }
         return -1;
     }
 
-    public boolean containsConnection(AbstractItem it, int option) {
-        return indexOfCon(it, option) >= 0;
-    }
-
-    public int indexOfCon(AbstractItem it, int opt) {
-        for (int i = 0; i < size; i++) {
-            if (get(i).con != null) {
-                switch (opt) {
-                    case 1:
-                        if (it.equals(get(i).con.getInBlock())) { return i; }
-                        break;
-                    case 2:
-                        if (it.equals(get(i).con.getOutBlock())) { return i; }
-                        break;
-                    default:
-                        System.out.println("Invalid option, exiting");
-                        System.exit(-1);
-                }
-            }
-        }
-        return -1;
-    }
-
-    private void checkIfMissing() {
-        for (int i = 0; i < size; i++) {
-            if (get(i).con != null) {
-                if (!(contains(get(i).con.getInBlock()) && contains(get(i).con.getOutBlock()))) {
-                    System.out.println("BlockArray is missing item, exiting");
+    public void checkForCycles() {
+        for (int i = 0; i < connections.size(); i++) {
+            AbstractItem in = connections.get(i).getInBlock();
+            String name = in.getName();
+            for (int j = 0; j < index(name); j++) {
+                if (connections.get(i).getOutBlock().equals(get(j).item)) {
+                    System.out.println("Cycle found. Exiting...");
                     System.exit(-1);
                 }
             }
-            if (get(i).item != null) {
-                if (get(i).item instanceof ItemFirst) {
-                    if (!(containsConnection(get(i).item, 1))) {
-                        System.out.println("BlockArray is missing connection, exiting");
-                        System.exit(-1);
-                    }
-                } else if (get(i).item instanceof ItemLast) {
-                    if (!(containsConnection(get(i).item, 2))) {
-                        System.out.println("BlockArray is missing connection, exiting");
-                        System.exit(-1);
-                    }
-                } else {
-                    if (!(containsConnection(get(i).item, 1)) || !(containsConnection(get(i).item, 2))) {
-                        System.out.println("BlockArray is missing connection, exiting");
-                        System.exit(-1);
-                    }
-                }
-            }
         }
     }
 
-    public void run() {
-        checkIfMissing();
-        checkForCycles();
-
-        if (get(0).con != null || !(get(0).item instanceof ItemFirst)) {
-            System.out.println("First item in list has to be instance of ItemFirst, exiting");
-            System.exit(-1);
-        }
-        if (get(size - 1).con != null || !(get(size - 1).item instanceof ItemLast)) {
-            System.out.println("Last item in list has to be instance of ItemLast, exiting");
-            System.exit(-1);
-        }
-        for(int i = 0; i < size; i++) {
-            if(get(i).item != null) {
-                get(i).item.execute();
+    private void checkIfMissing() {
+        for (int i = 0; i < size; i++)
+            if (!(get(i).item instanceof ItemFirst)) {
+                for (Connection connection : connections) {
+                    if (connection.getOutBlock().equals(get(i).item)) {
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    System.out.println("Missing connection between blocks. Exiting...");
+                    System.exit(-1);
+                }
+                found = false;
             }
-            if(get(i).con != null) {
-                get(i).con.transferValue();
+    }
+
+    public void run() {
+        checkForCycles();
+        checkIfMissing();
+
+        for (int i = 0; i < size; i++) {
+            get(i).item.execute();
+            for (Connection connection : connections) {
+                if (connection.getInBlock().equals(get(i).item)) {
+                    connection.transferValue();
+                }
             }
         }
     }

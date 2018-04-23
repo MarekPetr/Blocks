@@ -3,25 +3,29 @@ import project.items.AbstractItem;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Connection {
-	private final int id;
+	private final String id;
 	private AbstractItem inBlock;
 	private AbstractItem outBlock;
 
-	public Connection(int id, AbstractItem input, AbstractItem output) {
-		this.id = id;
+	public Connection(AbstractItem input, AbstractItem output) {
+		this.id = UUID.randomUUID().toString();
 		setInBlock(input);
 		setOutBlock(output);
 	}
 
-	private void setInBlock(AbstractItem input) { this.inBlock = input; }
+	private void setInBlock(AbstractItem input) {
+	    this.inBlock = input;
+	    this.inBlock.addLink(getId());
+	}
 
 	private void setOutBlock(AbstractItem output) { this.outBlock = output; }
 
 	public void transferValue() { this.outBlock.inValue.putAll(this.inBlock.outValue); }
 
-	public int getId() { return this.id; }
+	public String getId() { return this.id; }
 
 	public AbstractItem getInBlock() { return this.inBlock; }
 

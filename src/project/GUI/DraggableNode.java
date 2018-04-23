@@ -75,8 +75,8 @@ public class DraggableNode extends AnchorPane {
 
     @FXML
     private void initialize() {
-        buildNodeHandlers();
-        buildLinkHandlers();
+        buildNodeDragHandlers();
+        buildLinkDragHandlers();
         buildInputHandlers();
 
         left_link_handle.setOnDragDetected(mLinkHandleDragDetected);
@@ -124,7 +124,7 @@ public class DraggableNode extends AnchorPane {
     }
 
 
-    public void buildNodeHandlers() {
+    public void buildNodeDragHandlers() {
         //drag detection (on title bar) for node dragging
         title_bar.setOnDragDetected (event -> {
 
@@ -199,13 +199,13 @@ public class DraggableNode extends AnchorPane {
         });
     }
 
-    private void buildLinkHandlers() {
+    private void buildLinkDragHandlers() {
         mLinkHandleDragDetected = event -> {
             getParent().setOnDragOver(null);
             getParent().setOnDragDropped(null);
 
             getParent().setOnDragOver(mContextLinkDragOver);
-            getParent().setOnDragDropped(mLinkHandleDragDropped);
+            getParent().setOnDragDropped(mContextLinkDragDropped);
 
             //Set up user-draggable link
             // index zero means, that the curve is rendered before nodes
@@ -275,8 +275,8 @@ public class DraggableNode extends AnchorPane {
             getParent().setOnDragDropped(null);
 
             //hide the draggable NodeLink and remove it from the right-hand AnchorPane's children
-            //right_pane.getChildren().remove(0);
-            //mDragLink.setVisible(false);
+            right_pane.getChildren().remove(0);
+            mDragLink.setVisible(false);
 
             event.setDropCompleted(true);
             event.consume();

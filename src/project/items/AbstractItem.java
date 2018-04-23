@@ -1,6 +1,8 @@
 package project.items;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,15 +11,23 @@ import java.util.Map;
 public abstract class AbstractItem implements Item {
     int numberOfPorts;
     String name;
-    public Map<String, Double> state = new HashMap<>();
     double operand;
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
+    public List<String> links = new ArrayList<>();
+
+    public AbstractItem(String name, int numberOfPorts) {
+        this.name = name;
+        this.numberOfPorts = numberOfPorts;
+    }
+
     public AbstractItem(String name, int numberOfPorts, double operand) {
         this.name = name;
         this.numberOfPorts = numberOfPorts;
         this.operand = operand;
     }
+
+    public void setOperand(double val) { this.operand = val; }
 
     public int numberOfPorts() {
         return numberOfPorts;
@@ -27,8 +37,22 @@ public abstract class AbstractItem implements Item {
         return name;
     }
 
-    public Map<String, Double> getState() {
-        return state;
+    public Map<String, Double> getInValue() {
+        return this.inValue;
+    }
+
+    public Map<String, Double> getOutValue() {
+        return this.outValue;
+    }
+
+    public List<String> getLinks() { return this.links; }
+
+    public void addLink(String link) { this.links.add(link); }
+
+    public void clean() {
+        this.links.clear();
+        this.inValue.clear();
+        this.outValue.clear();
     }
 
     @Override

@@ -10,7 +10,6 @@ public class ItemLast extends AbstractItem {
     }
 
     public void execute() {
-        super.state.putAll(super.inValue);
-        super.outValue.put("value", (double) 0);
+        super.outValue.putAll(super.inValue);
     }
 }

@@ -15,25 +15,25 @@ public class TryConnection {
         AbstractItem item1, item2, item3, item4, it5, it6;
         Connection con1, con2;
         item1 = new ItemPlus("first", 2, 4);
-        System.out.printf("1jmeno: %s, stav:%f\n", item1.getName(), item1.getState());
+        System.out.printf("1jmeno: %s, stav:%f\n", item1.getName(), item1.getInValue().values());
         item1.execute();
-        System.out.printf("1jmeno: %s, stav:%f\n\n", item1.getName(), item1.getState());
+        System.out.printf("1jmeno: %s, stav:%f\n\n", item1.getName(), item1.getOutValue().values());
 
         item2 = new ItemMinus("second", 2, 3);
-        System.out.printf("2jmeno: %s, stav:%f\n", item2.getName(), item2.getState());
+        System.out.printf("2jmeno: %s, stav:%f\n", item2.getName(), item2.getInValue().values());
         item2.execute();
-        System.out.printf("2jmeno: %s, stav:%f\n", item2.getName(), item2.getState());
+        System.out.printf("2jmeno: %s, stav:%f\n", item2.getName(), item2.getOutValue().values());
 
         item3 = new ItemPlus("third", 2, 1);
         item4 = new ItemPlus("Fourth", 2, 2);
-        con1 = new Connection(1, item3, item4);
+        con1 = new Connection(item3, item4);
         item3.execute();
         con1.transferValue();
         item4.execute();
         System.out.printf("%f\n", item4.outValue);
 
         it5 = new ItemDiv("Fourth", 2, 3);
-        con2 = new Connection(2, item4, it5);
+        con2 = new Connection(item4, it5);
         con2.transferValue();
         it5.execute();
 
