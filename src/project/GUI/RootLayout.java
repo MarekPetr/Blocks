@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
+import static project.GUI.DragIconType.*;
+
 /**
  * Created by petr on 4/21/18.
  */
@@ -112,7 +114,6 @@ public class RootLayout extends AnchorPane {
         // User can drop the icon even in left_pane to stop dragging operation
         // This handler controls both successful and failed tries to drag and drop icon
         this.setOnDragDone (event -> {
-
             right_pane.removeEventHandler(DragEvent.DRAG_OVER, mIconDragOverRightPane);
             right_pane.removeEventHandler(DragEvent.DRAG_DROPPED, mIconDragDropped);
             base_pane.removeEventHandler(DragEvent.DRAG_OVER, mIconDragOverRoot);
@@ -126,8 +127,18 @@ public class RootLayout extends AnchorPane {
                 if (container.getValue("scene_coords") != null) {
 
                     // add Node operation
-                    DraggableNode node = new DraggableNode();
-                    node.setType(DragIconType.valueOf(container.getValue("type")));
+                    DraggableNode node;
+                    DragContainer val_container = (DragContainer) event.getDragboard().getContent(DragContainer.AddInput);
+
+                    DragIconType type = DragIconType.valueOf(container.getValue("type"));
+                    if (type == in) {
+                        node = new DraggableNodeIN(val_container);
+                    } else if (type == out) {
+                        node = new DraggableNodeOUT(val_container);
+                    } else {
+                        node = new DraggableNodeOP();
+                    }
+                    node.setType(type);
                     right_pane.getChildren().add(node);
 
                     Point2D cursorPoint = container.getValue("scene_coords");
