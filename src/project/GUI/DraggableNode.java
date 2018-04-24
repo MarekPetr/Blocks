@@ -19,6 +19,8 @@ import javafx.scene.layout.VBox;
 
 public class DraggableNode extends AnchorPane {
 
+    RootLayout layout = null;
+
     @FXML AnchorPane root_pane;
 
     private EventHandler mContextDragOver;
@@ -32,9 +34,6 @@ public class DraggableNode extends AnchorPane {
     @FXML private Label close_button;
     @FXML private AnchorPane body_handle;
     @FXML private VBox input_table;
-    @FXML private TextField text_field1;
-    @FXML private TextField text_field2;
-    @FXML private TextField text_field3;
 
     private final DraggableNode self;
 
@@ -55,16 +54,14 @@ public class DraggableNode extends AnchorPane {
     // list of IDs of currently connected links to this node
     private final List mLinkIds = new ArrayList();
 
-    public DraggableNode() {
+    public DraggableNode(RootLayout lay) {
         // dragging has to be handled in root Anchor - referenced by 'this'
         self = this;
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("/DraggableNode.fxml")
-        );
+        FXMLLoader fxmlLoader = setResource();
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
+        layout = lay;
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
@@ -73,10 +70,16 @@ public class DraggableNode extends AnchorPane {
         setId(UUID.randomUUID().toString());
     }
 
+    public FXMLLoader setResource() {
+        return new FXMLLoader(
+                getClass().getResource("/DraggableNode.fxml"));
+    }
+
     @FXML
     private void initialize() {
         buildNodeDragHandlers();
         buildLinkDragHandlers();
+        buildBodyHandler();
         buildInputHandlers();
 
         left_link_handle.setOnDragDetected(mLinkHandleDragDetected);
@@ -87,30 +90,17 @@ public class DraggableNode extends AnchorPane {
 
         mDragLink = new NodeLink();
         mDragLink.setVisible(false);
-        input_table.setVisible(false);
 
         parentProperty().addListener((observable, oldValue, newValue)
                 -> right_pane = (AnchorPane) getParent());
 
     }
 
-    private void setTextField(TextField field, int index) {
-        field.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                text_field1.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-        field.setOnKeyPressed(ke -> {
-            if (ke.getCode().equals(KeyCode.ENTER))
-            {
-                System.out.printf("%d. saved\n", index);
-                this.requestFocus();
-            }
-        });
+    public void buildInputHandlers() {
     }
 
-    public void buildInputHandlers() {
-        // middle of the node shows text fields of current node map input values
+    public void buildBodyHandler() {
+        input_table.setVisible(false);
         body_handle.setOnMouseClicked(event -> {
             if (input_table.isVisible()) {
                 input_table.setVisible(false);
@@ -118,11 +108,7 @@ public class DraggableNode extends AnchorPane {
                 input_table.setVisible(true);
             }
         });
-        setTextField(text_field1, 1);
-        setTextField(text_field2, 2);
-        setTextField(text_field3, 3);
     }
-
 
     public void buildNodeDragHandlers() {
         //drag detection (on title bar) for node dragging
@@ -170,6 +156,7 @@ public class DraggableNode extends AnchorPane {
         //close button click
         close_button.setOnMouseClicked(event -> {
             AnchorPane parent  = (AnchorPane) self.getParent();
+            layout.blocks.remove(getId());
             parent.getChildren().remove(self);
 
             //iterate each link id connected to this node

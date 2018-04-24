@@ -15,6 +15,7 @@ public class BlockArray{
     private static final int DEFAULT_CAPACITY = 5;
     private static final Object[] empty_element_data = {};
     public List<Connection> connections;
+    private static BlockArrayItem current_state;
 
     private transient Object[] blockArray;
 
@@ -81,6 +82,15 @@ public class BlockArray{
         }
     }
 
+    public BlockArrayItem get(String name) {
+        for (int i = 0; i < size; i++) {
+            if (get(i).item.getName().equals(name)) {
+                return get(i);
+            }
+        }
+        return null;
+    }
+
     private void ensureCapacity(int minCapacity) {
         int oldCapacity = blockArray.length;
         if (minCapacity > oldCapacity) {
@@ -91,14 +101,39 @@ public class BlockArray{
         }
     }
 
-    public BlockArrayItem remove(int index) {
-        BlockArrayItem item = (BlockArrayItem) blockArray[index];
-
-        for (int i = index; i < this.size; i++) {
-            blockArray[i] = blockArray[i + 1];
+    private int indexC(String name) {
+        for (int i = 0; i < connections.size(); i++) {
+            if (connections.get(i).getId().equals(name)) {
+                return i;
+            }
         }
+        return -1;
+    }
+
+    public void remove(String name) {
+        System.out.println("Item " + name + " is being removed.");
+        int index = index(name);
+        System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
         this.size--;
-        return item;
+        removeConnections(name);
+    }
+
+    private void removeConnections(String input_name) {
+        for (int i = 0; i < connections.size(); i++) {
+            if (connections.get(i).getInBlock().getName().equals(input_name)) {
+                System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + input_name + " and output: " + connections.get(i).getOutBlock().getName());
+                System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
+            }
+        }
+    }
+
+    public void removeConnection(String input_name, String output_name) {
+        for (int i = 0; i < connections.size(); i++) {
+            if (connections.get(i).getInBlock().getName().equals(input_name) && connections.get(i).getOutBlock().getName().equals(output_name)) {
+                System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + input_name + " and output: " + output_name);
+                System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
+            }
+        }
     }
 
     public void clear() {
@@ -124,7 +159,7 @@ public class BlockArray{
             String name = in.getName();
             for (int j = 0; j < index(name); j++) {
                 if (connections.get(i).getOutBlock().equals(get(j).item)) {
-                    System.out.println("Cycle found. Exiting...");
+                    System.out.println("ERROR: Cycle found. Exiting...");
                     System.exit(-1);
                 }
             }
@@ -149,7 +184,16 @@ public class BlockArray{
 
     public void run() {
         checkForCycles();
-        checkIfMissing();
+        //checkIfMissing();
+        if (!contains(ItemFirst.class) || !contains(ItemLast.class)) {
+            System.out.println("ERROR: System does not contain block of type ItemFist or ItemLast. Exiting...");
+            System.exit(-1);
+        }
+
+        if (get(0).item.inValue == null) {
+            System.out.println("ERROR: In value is null. Exiting...");
+            System.exit(-1);
+        }
 
         for (int i = 0; i < size; i++) {
             get(i).item.execute();
@@ -158,6 +202,23 @@ public class BlockArray{
                     connection.transferValue();
                 }
             }
+        }
+    }
+
+    public void runStep() {
+        if (current_state.item instanceof ItemLast) {
+            current_state = null;
+        } else if (current_state.item != null) {
+            String link = current_state.item.links.get(0);
+            int index = indexC(link);
+            current_state = new BlockArrayItem(connections.get(index));
+            current_state.con.transferValue();
+        } else if (current_state.con != null) {
+            current_state = get(current_state.con.getOutBlock().getName());
+            current_state.item.execute();
+        } else {
+                current_state = get(0);
+                current_state.item.execute();
         }
     }
 }

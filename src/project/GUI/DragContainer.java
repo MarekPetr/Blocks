@@ -23,6 +23,9 @@ public class DragContainer implements Serializable {
     public static final DataFormat AddLink =
             new DataFormat("project.NodeLink.add");
 
+    public static final DataFormat AddInput =
+            new DataFormat("project.input.add");
+
     private final List <Pair<String, Object> > mDataPairs = new ArrayList <Pair<String, Object> > ();
 
     public void addData (String key, Object value) {
