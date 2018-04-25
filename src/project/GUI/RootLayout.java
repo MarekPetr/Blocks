@@ -10,6 +10,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import project.blockArray.BlockArray;
 import project.blockArray.BlockArrayItem;
@@ -29,6 +30,7 @@ public class RootLayout extends AnchorPane {
     private EventHandler mIconDragOverRightPane=null;
 
     private @FXML SplitPane base_pane;
+    private @FXML StackPane menu_pane;
     private @FXML AnchorPane right_pane;
     private @FXML VBox left_pane;
 
@@ -59,6 +61,8 @@ public class RootLayout extends AnchorPane {
 
     @FXML
     private void initialize() {
+
+
 
         //Add one icon that will be used for the drag-drop processblue
         //This is added as a child to the root AnchorPane so it can begreen
