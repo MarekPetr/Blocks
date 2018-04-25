@@ -4,8 +4,8 @@ package project.items;
  * Created by petr on 3/29/18.
  */
 public class ItemFirst extends AbstractItem {
-    public ItemFirst(String name, int numberOfPorts) {
-        super(name, numberOfPorts, 0);
+    public ItemFirst(String name) {
+        super(name, 0);
         super.inValue.put("value", (double) 0);
     }
 

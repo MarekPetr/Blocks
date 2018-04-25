@@ -17,8 +17,8 @@ public class DraggableNodeOUT extends DraggableNode {
     @FXML private Label value3;
 
 
-    public DraggableNodeOUT(DragContainer container) {
-        super();
+    public DraggableNodeOUT(DragContainer container, RootLayout layout) {
+        super(layout);
     }
 
     @Override

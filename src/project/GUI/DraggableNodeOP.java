@@ -9,8 +9,8 @@ public class DraggableNodeOP extends DraggableNode {
     @FXML private TextField value;
 
 
-    public DraggableNodeOP() {
-        super();
+    public DraggableNodeOP(RootLayout layout) {
+        super(layout);
     }
     @Override
     public FXMLLoader setResource() {
@@ -33,6 +33,7 @@ public class DraggableNodeOP extends DraggableNode {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
                 System.out.printf("operand value saved\n");
+                layout.blocks.get(getId()).item.setOperand(Double.parseDouble(field.getText()));
                 this.requestFocus();
             }
         });
