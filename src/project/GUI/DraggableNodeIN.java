@@ -59,23 +59,10 @@ public class DraggableNodeIN extends DraggableNode {
         });
         text_field.setOnKeyPressed(ke -> {
             TextField input_field = (TextField) ke.getSource();
-            if (ke.getCode().equals(KeyCode.ENTER))
-            {
-                double value = 0;
-                boolean success = true;
-                try {
-                    value = Double.parseDouble(input_field.getText());
-                } catch (NumberFormatException e) {
-                    success = false;
-                    // TODO PRIDAT VYPIS CHYBY NA OBRAZOVKU
-                    System.err.println("Input is not a float value");
-                }
-
-                if (success) {
-                    layout.blocks.get(getId()).item.setInValue(current_key, value);
-                    System.out.printf("%d. saved\n", index);
-                    this.requestFocus();
-                }
+            if (ke.getCode().equals(KeyCode.ENTER)) {
+                double value = get_double_input(input_field);
+                layout.blocks.get(getId()).item.setInValue(current_key, value);
+                System.out.printf("%d. saved\n", index);
             }
         });
     }

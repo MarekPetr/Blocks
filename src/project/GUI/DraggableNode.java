@@ -17,6 +17,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import javax.xml.soap.Text;
+
 public class DraggableNode extends AnchorPane {
 
     RootLayout layout = null;
@@ -326,5 +328,21 @@ public class DraggableNode extends AnchorPane {
             default:
                 break;
         }
+    }
+    public double get_double_input(TextField input_field) {
+        double value = 0;
+        boolean success = true;
+        try {
+            value = Double.parseDouble(input_field.getText());
+        } catch (NumberFormatException e) {
+            success = false;
+            // TODO PRIDAT VYPIS CHYBY NA OBRAZOVKU
+            System.err.println("Input is not a float value");
+        }
+
+        if (success) {
+            this.requestFocus();
+        }
+        return value;
     }
 }

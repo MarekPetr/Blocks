@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.CubicCurve;
 
 public class NodeLink extends AnchorPane {
-    @FXML CubicCurve node_link;
+    private @FXML CubicCurve node_link;
 
     // these controls distance of the control points of curve from its end points
     private final DoubleProperty mControlOffsetX = new SimpleDoubleProperty();
@@ -85,6 +85,8 @@ public class NodeLink extends AnchorPane {
                         mControlOffsetY.multiply(mControlDirectionY2)
                 )
         );
+
+        node_link.setOnMouseEntered(event -> System.out.println("Mouse Over link"));
     }
 
     // set starting point of the curve
