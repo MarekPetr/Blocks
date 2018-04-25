@@ -25,6 +25,8 @@ public class BlockArray{
         this.connections = new ArrayList<>();
     }
 
+    public int size() { return this.size; }
+
     public void addToList(BlockArrayItem e) {
         if (size == blockArray.length) {
             ensureCapacity(size + 1);
@@ -185,21 +187,28 @@ public class BlockArray{
     public void run() {
         checkForCycles();
         //checkIfMissing();
-        if (!contains(ItemFirst.class) || !contains(ItemLast.class)) {
-            System.out.println("ERROR: System does not contain block of type ItemFist or ItemLast. Exiting...");
-            System.exit(-1);
+        if (!contains(ItemFirst.class)) {
+            System.out.println("ERROR: System does not contain block of type ItemFist. Exiting...");
+            //System.exit(-1);
         }
 
-        if (get(0).item.inValue == null) {
+        if (!contains(ItemLast.class)) {
+            System.out.println("ERROR: System does not contain block of type ItemLast. Exiting...");
+            //System.exit(-1);
+        }
+
+        if (get(0).item.inValue.isEmpty()) {
             System.out.println("ERROR: In value is null. Exiting...");
-            System.exit(-1);
+            //System.exit(-1);
         }
 
         for (int i = 0; i < size; i++) {
-            get(i).item.execute();
-            for (Connection connection : connections) {
-                if (connection.getInBlock().equals(get(i).item)) {
-                    connection.transferValue();
+            if (get(i).item.links != null) {
+                get(i).item.execute();
+                for (Connection connection : connections) {
+                    if (connection.getInBlock().equals(get(i).item)) {
+                        connection.transferValue();
+                    }
                 }
             }
         }
@@ -217,6 +226,7 @@ public class BlockArray{
             current_state = get(current_state.con.getOutBlock().getName());
             current_state.item.execute();
         } else {
+            System.out.println("Sem tu");
                 current_state = get(0);
                 current_state.item.execute();
         }

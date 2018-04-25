@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by petr on 4/24/18.
  */
@@ -17,6 +20,8 @@ public class DraggableNodeIN extends DraggableNode {
     @FXML private TextField value3;
 
     private String current_key;
+    private int current_index;
+    private List<String> keys = new ArrayList<>(5);
 
     public DraggableNodeIN(RootLayout layout) {
         super(layout);
@@ -44,7 +49,14 @@ public class DraggableNodeIN extends DraggableNode {
         text_field.setOnKeyPressed(ke -> {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
+                if (keys.size() >= index && keys.get(index - 1) != null) {
+                    layout.blocks.get(getId()).item.inValue.remove(keys.get(index));
+                    System.out.println("Removing key " + current_key);
+                }
+                keys.add(index - 1, text_field.getText());
                 current_key = text_field.getText();
+                current_index = index;
+
                 System.out.printf("%d. saved\n", index);
                 this.requestFocus();
             }
@@ -60,8 +72,13 @@ public class DraggableNodeIN extends DraggableNode {
         text_field.setOnKeyPressed(ke -> {
             TextField input_field = (TextField) ke.getSource();
             if (ke.getCode().equals(KeyCode.ENTER)) {
-                double value = get_double_input(input_field);
-                layout.blocks.get(getId()).item.setInValue(current_key, value);
+                if (!current_key.isEmpty()) {
+                    if (current_index == index - 1) {
+                        double value = get_double_input(input_field);
+                        layout.blocks.get(getId()).item.setInValue(current_key, value);
+                    }
+                }
+                keys.add(index - 1, text_field.getText());
                 System.out.printf("%d. saved\n", index);
             }
         });

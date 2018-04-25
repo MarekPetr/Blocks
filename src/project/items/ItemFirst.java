@@ -6,7 +6,6 @@ package project.items;
 public class ItemFirst extends AbstractItem {
     public ItemFirst(String name) {
         super(name, 0);
-        super.inValue.put("value", (double) 0);
     }
 
     public void execute() {
