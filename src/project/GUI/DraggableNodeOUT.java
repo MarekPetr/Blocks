@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
  * Created by petr on 4/24/18.
  */
 public class DraggableNodeOUT extends DraggableNode {
-    private DragContainer container;
-
     @FXML private Label key1;
     @FXML private Label value1;
     @FXML private Label key2;
@@ -17,7 +15,7 @@ public class DraggableNodeOUT extends DraggableNode {
     @FXML private Label value3;
 
 
-    public DraggableNodeOUT(DragContainer container, RootLayout layout) {
+    public DraggableNodeOUT(RootLayout layout) {
         super(layout);
     }
 

@@ -9,8 +9,6 @@ import javafx.scene.input.KeyCode;
  * Created by petr on 4/24/18.
  */
 public class DraggableNodeIN extends DraggableNode {
-    private DragContainer container;
-
     @FXML private TextField key1;
     @FXML private TextField key2;
     @FXML private TextField key3;
@@ -20,10 +18,8 @@ public class DraggableNodeIN extends DraggableNode {
 
     private String current_key;
 
-
-    public DraggableNodeIN(DragContainer container, RootLayout layout) {
+    public DraggableNodeIN(RootLayout layout) {
         super(layout);
-        this.container = container;
     }
 
     @Override
@@ -57,19 +53,31 @@ public class DraggableNodeIN extends DraggableNode {
 
     private void setValueField(TextField text_field, int index) {
         text_field.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                text_field.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.matches("\\d\\.*")) {
+                text_field.setText(newValue.replaceAll("[^\\d.]", ""));
             }
         });
         text_field.setOnKeyPressed(ke -> {
+            TextField input_field = (TextField) ke.getSource();
             if (ke.getCode().equals(KeyCode.ENTER))
             {
-                layout.blocks.get(getId()).item.setInValue(current_key, Double.parseDouble(text_field.getText()));
-                System.out.printf("%d. saved\n", index);
-                this.requestFocus();
+                double value = 0;
+                boolean success = true;
+                try {
+                    value = Double.parseDouble(input_field.getText());
+                } catch (NumberFormatException e) {
+                    success = false;
+                    // TODO PRIDAT VYPIS CHYBY NA OBRAZOVKU
+                    System.err.println("Input is not a float value");
+                }
+
+                if (success) {
+                    layout.blocks.get(getId()).item.setInValue(current_key, value);
+                    System.out.printf("%d. saved\n", index);
+                    this.requestFocus();
+                }
             }
         });
     }
-
 }
 
