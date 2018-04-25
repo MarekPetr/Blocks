@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -30,7 +31,9 @@ public class RootLayout extends AnchorPane {
     private EventHandler mIconDragOverRightPane=null;
 
     private @FXML SplitPane base_pane;
-    private @FXML StackPane menu_pane;
+    private @FXML Button run_button;
+    private @FXML Button step_button;
+
     private @FXML AnchorPane right_pane;
     private @FXML VBox left_pane;
 
@@ -62,6 +65,13 @@ public class RootLayout extends AnchorPane {
     @FXML
     private void initialize() {
 
+        run_button.setOnMouseClicked(event -> {
+            System.out.println("Kliknul RUN");
+        });
+
+        step_button.setOnMouseClicked(event -> {
+            System.out.println("Kliknul STEP");
+        });
 
 
         //Add one icon that will be used for the drag-drop processblue
