@@ -138,7 +138,6 @@ public class RootLayout extends AnchorPane {
 
                     // add Node operation
                     DraggableNode node;
-
                     DragIconType type = DragIconType.valueOf(container.getValue("type"));
                     if (type == in) {
                         node = new DraggableNodeIN(this);
