@@ -38,6 +38,7 @@
 
 .lion-button:pressed {
     -fx-background-color:
+            linear-gradient(#9a9a9a, #909090),
             rgb(0,179,60);
 }
 

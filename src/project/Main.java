@@ -13,7 +13,7 @@ public class Main extends Application {
         BorderPane root = new BorderPane();
 
         try {
-            Scene scene = new Scene(root,640,480);
+            Scene scene = new Scene(root,1152,864);
             scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
