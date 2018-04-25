@@ -19,12 +19,12 @@ public class TestBlocks {
     // Made by Petr Marek
     @Before
     public void setUp() {
-        itFirst = new ItemFirst("first");
-        itPlus = new ItemPlus("plus", 100);
-        itMinus = new ItemMinus("minus", 80);
-        itMul = new ItemMul("Mul", 2);
-        itDiv = new ItemDiv("Div", 10);
-        itLast = new ItemLast("Last");
+        itFirst = new ItemFirst("first", 1);
+        itPlus = new ItemPlus("plus", 2, 100);
+        itMinus = new ItemMinus("minus", 2, 80);
+        itMul = new ItemMul("Mul", 2, 2);
+        itDiv = new ItemDiv("Div", 2, 10);
+        itLast = new ItemLast("Last", 1);
         conFirstPlus = new Connection(itFirst, itPlus);
         conPlusLast = new Connection(itPlus, itLast);
     }

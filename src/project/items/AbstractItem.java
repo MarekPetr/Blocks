@@ -9,24 +9,28 @@ import java.util.Map;
  * Created by petr on 3/28/18.
  */
 public abstract class AbstractItem implements Item {
+    int numberOfPorts;
     String name;
     double operand;
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
     public List<String> links = new ArrayList<>();
 
-    public AbstractItem(String name) {
+    public AbstractItem(String name, int numberOfPorts) {
         this.name = name;
+        this.numberOfPorts = numberOfPorts;
     }
 
-    public AbstractItem(String name, double operand) {
+    public AbstractItem(String name, int numberOfPorts, double operand) {
         this.name = name;
+        this.numberOfPorts = numberOfPorts;
         this.operand = operand;
     }
 
-    public void setOperand(double val) {
-        this.operand = val;
-        System.out.println("Operand for " + name + " was set to " + val);
+    public void setOperand(double val) { this.operand = val; }
+
+    public int numberOfPorts() {
+        return numberOfPorts;
     }
 
     public String getName() {
@@ -64,14 +68,14 @@ public abstract class AbstractItem implements Item {
             return false;
         }
 
+        if (item.numberOfPorts != this.numberOfPorts) {
+            return false;
+        }
+
         return true;
     }
 
     public void setInValue(String _key, double _value) {
-        System.out.println("To item " + name + " inValue with key " + _key + " and value " + _value);
-        if (_key == null) {
-            System.out.println("WARNING: Key is null.");
-        }
         this.inValue.put(_key, _value);
     }
 }

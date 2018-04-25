@@ -11,10 +11,6 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import project.blockArray.BlockArray;
-import project.blockArray.BlockArrayItem;
-import project.connection.Connection;
-import project.items.*;
 
 import java.io.IOException;
 
@@ -32,9 +28,6 @@ public class RootLayout extends AnchorPane {
     private @FXML AnchorPane right_pane;
     private @FXML VBox left_pane;
 
-    //
-    BlockArray blocks;
-
     // semi transparent icon drawn on drag and drop
     private DragIcon mDragOverIcon = null;
 
@@ -45,9 +38,6 @@ public class RootLayout extends AnchorPane {
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
-        //
-        blocks = new BlockArray();
 
         try {
             fxmlLoader.load();
@@ -151,33 +141,6 @@ public class RootLayout extends AnchorPane {
                     node.setType(type);
                     right_pane.getChildren().add(node);
 
-                    switch (node.getType()) {
-                        case in:
-                            blocks.addToList(new BlockArrayItem(new ItemFirst(node.getId())));
-                            System.out.println("ItemFist added.");
-                            break;
-                        case out:
-                            blocks.addToList(new BlockArrayItem(new ItemLast(node.getId())));
-                            System.out.println("ItemLast added.");
-                            break;
-                        case plus:
-                            blocks.addToList(new BlockArrayItem(new ItemPlus(node.getId())));
-                            System.out.println("ItemPlus added.");
-                            break;
-                        case minus:
-                            blocks.addToList(new BlockArrayItem(new ItemMinus(node.getId())));
-                            System.out.println("ItemMinus added.");
-                            break;
-                        case mul:
-                            blocks.addToList(new BlockArrayItem(new ItemMul(node.getId())));
-                            System.out.println("ItemMul added.");
-                            break;
-                        case div:
-                            blocks.addToList(new BlockArrayItem(new ItemDiv(node.getId())));
-                            System.out.println("ItemDiv added.");
-                            break;
-                    }
-
                     Point2D cursorPoint = container.getValue("scene_coords");
 
                     node.relocateToPoint(
@@ -219,11 +182,8 @@ public class RootLayout extends AnchorPane {
 
                     }
 
-                    if (source != null && target != null && source != target) {
-                        blocks.addToList(new BlockArrayItem(new Connection(blocks.get(sourceId).item, blocks.get(targetId).item)));
-                        System.out.println("Connection between " + blocks.get(sourceId).item.getName() + " and " + blocks.get(targetId).item.getName() + " added.");
+                    if (source != null && target != null && source != target)
                         link.bindEnds(source, target);
-                    }
                 }
 
             }

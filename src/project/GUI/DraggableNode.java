@@ -19,8 +19,6 @@ import javafx.scene.layout.VBox;
 
 public class DraggableNode extends AnchorPane {
 
-    RootLayout layout = null;
-
     @FXML AnchorPane root_pane;
 
     private EventHandler mContextDragOver;
@@ -54,14 +52,14 @@ public class DraggableNode extends AnchorPane {
     // list of IDs of currently connected links to this node
     private final List mLinkIds = new ArrayList();
 
-    public DraggableNode(RootLayout lay) {
+    public DraggableNode() {
         // dragging has to be handled in root Anchor - referenced by 'this'
         self = this;
         FXMLLoader fxmlLoader = setResource();
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-        layout = lay;
+
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
@@ -156,7 +154,6 @@ public class DraggableNode extends AnchorPane {
         //close button click
         close_button.setOnMouseClicked(event -> {
             AnchorPane parent  = (AnchorPane) self.getParent();
-            layout.blocks.remove(getId());
             parent.getChildren().remove(self);
 
             //iterate each link id connected to this node

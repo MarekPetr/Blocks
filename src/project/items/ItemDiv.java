@@ -7,11 +7,9 @@ import java.util.Map;
  * Created by petr on 3/28/18.
  */
 public class ItemDiv extends AbstractItem {
-    public ItemDiv(String name, double operand) {
-        super(name, operand);
+    public ItemDiv(String name, int numberOfPorts, double operand) {
+        super(name, numberOfPorts, operand);
     }
-
-    public ItemDiv(String name) { super(name); }
 
     public void execute() {
         if (super.operand != 0.0)

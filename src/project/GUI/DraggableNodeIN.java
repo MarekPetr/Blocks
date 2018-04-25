@@ -18,17 +18,9 @@ public class DraggableNodeIN extends DraggableNode {
     @FXML private TextField value2;
     @FXML private TextField value3;
 
-<<<<<<< HEAD
 
     public DraggableNodeIN(DragContainer container) {
         super();
-=======
-    private String current_key;
-
-
-    public DraggableNodeIN(DragContainer container, RootLayout layout) {
-        super(layout);
->>>>>>> Jakub-BlockArray
         this.container = container;
     }
 
@@ -54,10 +46,6 @@ public class DraggableNodeIN extends DraggableNode {
         text_field.setOnKeyPressed(ke -> {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
-<<<<<<< HEAD
-=======
-                current_key = text_field.getText();
->>>>>>> Jakub-BlockArray
                 System.out.printf("%d. saved\n", index);
                 this.requestFocus();
             }
@@ -73,10 +61,6 @@ public class DraggableNodeIN extends DraggableNode {
         text_field.setOnKeyPressed(ke -> {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
-<<<<<<< HEAD
-=======
-                layout.blocks.get(getId()).item.setInValue(current_key, Double.parseDouble(text_field.getText()));
->>>>>>> Jakub-BlockArray
                 System.out.printf("%d. saved\n", index);
                 this.requestFocus();
             }

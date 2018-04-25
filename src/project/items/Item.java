@@ -9,5 +9,7 @@ import java.util.Map;
 public interface Item {
     String getName();
 
+    int numberOfPorts();
+
     void execute();
 }
