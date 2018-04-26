@@ -29,7 +29,7 @@ public class DraggableNodeOUT extends DraggableNode {
     public void buildInputHandlers() {
         body_handle.setOnMouseClicked(event -> {
             //print values here
-            //layout.blocks.get(getId()).item.outValue
+            System.out.println(layout.blocks.get(getId()).item.outValue);
         });
 
     }
