@@ -34,7 +34,7 @@ public class DraggableNode extends AnchorPane {
 
     @FXML private Label title_bar;
     @FXML private Label close_button;
-    @FXML private AnchorPane body_handle;
+    @FXML public AnchorPane body_handle;
     @FXML private VBox input_table;
 
     private final DraggableNode self;

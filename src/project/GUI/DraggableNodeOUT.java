@@ -27,7 +27,11 @@ public class DraggableNodeOUT extends DraggableNode {
 
     @Override
     public void buildInputHandlers() {
-        //layout.blocks.get(getId()).item.outValue//
+        body_handle.setOnMouseClicked(event -> {
+            //print values here
+            //layout.blocks.get(getId()).item.outValue
+        });
+
     }
 }
 
