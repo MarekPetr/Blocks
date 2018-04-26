@@ -43,20 +43,20 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="key1" prefHeight="26.0" prefWidth="100.0" text="Label" />
-                  <Label fx:id="value1" prefHeight="26.0" prefWidth="100.0" text="Label" />
+                  <Label fx:id="key1" prefHeight="26.0" prefWidth="100.0" text="Empty" />
+                  <Label fx:id="value1" prefHeight="26.0" prefWidth="100.0" text="Empty" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="key2" prefHeight="26.0" prefWidth="100.0" text="Label" />
-                  <Label fx:id="value2" prefHeight="26.0" prefWidth="100.0" text="Label" />
+                  <Label fx:id="key2" prefHeight="26.0" prefWidth="100.0" text="Empty" />
+                  <Label fx:id="value2" prefHeight="26.0" prefWidth="100.0" text="Empty" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="key3" prefHeight="26.0" prefWidth="100.0" text="Label" />
-                  <Label fx:id="value3" prefHeight="26.0" prefWidth="100.0" text="Label" />
+                  <Label fx:id="key3" prefHeight="26.0" prefWidth="100.0" text="Empty" />
+                  <Label fx:id="value3" prefHeight="26.0" prefWidth="100.0" text="Empty" />
                </children>
             </HBox>
          </children>
