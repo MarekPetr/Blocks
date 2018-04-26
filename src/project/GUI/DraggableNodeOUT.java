@@ -27,6 +27,7 @@ public class DraggableNodeOUT extends DraggableNode {
 
     @Override
     public void buildInputHandlers() {
+        //layout.blocks.get(getId()).item.outValue
     }
 }
 

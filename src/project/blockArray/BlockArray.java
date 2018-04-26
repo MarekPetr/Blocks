@@ -25,6 +25,15 @@ public class BlockArray{
         this.connections = new ArrayList<>();
     }
 
+    public void cleanVals() {
+        for (int i = 0; i < size(); i++) {
+            get(i).item.outValue.clear();
+            if (!(get(i).item instanceof ItemFirst)) {
+                get(i).item.inValue.clear();
+            }
+        }
+    }
+
     public int size() { return this.size; }
 
     public void addToList(BlockArrayItem e) {

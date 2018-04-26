@@ -67,13 +67,12 @@ public class RootLayout extends AnchorPane {
 
         run_button.setOnMouseClicked(event -> {
             System.out.println("Kliknul RUN");
+            blocks.cleanVals();
             blocks.run();
         });
 
         step_button.setOnMouseClicked(event -> {
             System.out.println("Kliknul STEP");
-            //blocks.runStep();
-            //blocks.runStep();
         });
 
 

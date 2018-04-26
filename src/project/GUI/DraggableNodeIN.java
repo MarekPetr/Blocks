@@ -49,8 +49,8 @@ public class DraggableNodeIN extends DraggableNode {
         text_field.setOnKeyPressed(ke -> {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
-                if (keys.size() >= index && keys.get(index - 1) != null) {
-                    layout.blocks.get(getId()).item.inValue.remove(keys.get(index));
+                if (keys.size() > index && keys.get(index - 1) != null) {
+                    layout.blocks.get(getId()).item.inValue.remove(current_key, layout.blocks.get(getId()).item.inValue.get(current_key));
                     System.out.println("Removing key " + current_key);
                 }
                 keys.add(index - 1, text_field.getText());
