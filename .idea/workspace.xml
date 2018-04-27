@@ -79,6 +79,8 @@
       <find>toFront</find>
       <find>org</find>
       <find>input_table</find>
+      <find>Node</find>
+      <find>NodeLink</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -97,11 +99,11 @@
         <option value="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java" />
         <option value="$PROJECT_DIR$/resources/RootLayout.fxml" />
-        <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeOUT.java" />
         <option value="$PROJECT_DIR$/resources/DraggableNodeOUT.fxml" />
         <option value="$PROJECT_DIR$/resources/DraggableNodeOP.fxml" />
         <option value="$PROJECT_DIR$/resources/DraggableNodeIN.fxml" />
         <option value="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
+        <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeOUT.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/NodeLink.java" />
         <option value="$PROJECT_DIR$/resources/NodeLink.fxml" />

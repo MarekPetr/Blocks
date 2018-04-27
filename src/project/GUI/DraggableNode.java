@@ -95,7 +95,6 @@ public class DraggableNode extends AnchorPane {
 
         parentProperty().addListener((observable, oldValue, newValue)
                 -> right_pane = (AnchorPane) getParent());
-
     }
 
     public void buildInputHandlers() {

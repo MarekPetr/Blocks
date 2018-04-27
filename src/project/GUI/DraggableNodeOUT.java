@@ -59,7 +59,6 @@ public class DraggableNodeOUT extends DraggableNode {
                 table.setVisible(true);
             }
         });
-
     }
 }
 
