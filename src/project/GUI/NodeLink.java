@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
+import com.sun.javafx.geom.Rectangle;
+import com.sun.org.apache.regexp.internal.RE;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.When;
 import javafx.beans.property.DoubleProperty;
@@ -16,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.CubicCurve;
 
@@ -28,6 +31,7 @@ public class NodeLink extends AnchorPane {
     @FXML private Label value2;
     @FXML private Label key3;
     @FXML private Label value3;
+    @FXML private Pane table_pane;
 
     private RootLayout layout;
     private String sourceID;
@@ -100,7 +104,7 @@ public class NodeLink extends AnchorPane {
                 )
         );
 
-        table.setVisible(false);
+        table_pane.setVisible(false);
         node_link.setOnMouseEntered(event ->  {
             //
             Map<String, Double> map = layout.blocks.get(sourceID).item.getOutValue();
@@ -121,10 +125,10 @@ public class NodeLink extends AnchorPane {
                 }
                 i++;
             }
-            table.setVisible(true);
+            table_pane.setVisible(true);
         });
         node_link.setOnMouseExited(event -> {
-            table.setVisible(false);
+            table_pane.setVisible(false);
         });
     }
 

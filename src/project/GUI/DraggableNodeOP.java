@@ -4,9 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
+import javafx.scene.layout.VBox;
 
 public class DraggableNodeOP extends DraggableNode {
     @FXML private TextField value;
+    @FXML private VBox table;
 
 
     public DraggableNodeOP(RootLayout layout) {
@@ -39,5 +41,15 @@ public class DraggableNodeOP extends DraggableNode {
                 this.requestFocus();
             }
         });
+    }
+
+    @Override
+    public void buildBodyHandler() {
+        table.setVisible(false);
+        if (table.isVisible()) {
+            table.setVisible(false);
+        } else {
+            table.setVisible(true);
+        }
     }
 }

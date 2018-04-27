@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import javax.xml.soap.Text;
@@ -36,6 +37,8 @@ public class DraggableNode extends AnchorPane {
     @FXML private Label close_button;
     @FXML public AnchorPane body_handle;
     @FXML private VBox table;
+    @FXML private Pane table_pane;
+
 
     private final DraggableNode self;
 
@@ -101,12 +104,12 @@ public class DraggableNode extends AnchorPane {
     }
 
     public void buildBodyHandler() {
-        table.setVisible(false);
+        table_pane.setVisible(false);
         body_handle.setOnMouseClicked(event -> {
-            if (table.isVisible()) {
-                table.setVisible(false);
+            if (table_pane.isVisible()) {
+                table_pane.setVisible(false);
             } else {
-                table.setVisible(true);
+                table_pane.setVisible(true);
             }
         });
     }

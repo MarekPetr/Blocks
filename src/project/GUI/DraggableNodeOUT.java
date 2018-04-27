@@ -2,6 +2,7 @@ package project.GUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.lang.reflect.Field;
@@ -17,6 +18,7 @@ public class DraggableNodeOUT extends DraggableNode {
     @FXML private Label value2;
     @FXML private Label key3;
     @FXML private Label value3;
+    @FXML private Pane table_pane;
     @FXML private VBox table;
 
 
@@ -32,6 +34,7 @@ public class DraggableNodeOUT extends DraggableNode {
 
     @Override
     public void buildInputHandlers() {
+        table_pane.setVisible(false);
         table.setVisible(false);
         body_handle.setOnMouseClicked(event -> {
             //print values here
@@ -53,9 +56,11 @@ public class DraggableNodeOUT extends DraggableNode {
                 }
                 i++;
             }
-            if (table.isVisible()) {
+            if (table_pane.isVisible()) {
+                table_pane.setVisible(false);
                 table.setVisible(false);
             } else {
+                table_pane.setVisible(true);
                 table.setVisible(true);
             }
         });
