@@ -18,7 +18,8 @@ import project.blockArray.BlockArrayItem;
 import project.connection.Connection;
 import project.items.*;
 
-import java.io.IOException;
+import javax.annotation.processing.FilerException;
+import java.io.*;
 
 import static project.GUI.DragIconType.*;
 
@@ -78,11 +79,26 @@ public class RootLayout extends AnchorPane {
         });
 
         save_button.setOnMouseClicked(event -> {
-            //save
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream("save.txt");
+                ObjectOutput oos = new ObjectOutputStream(fos);
+                oos.writeObject(blocks);
+                oos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         load_button.setOnMouseClicked(event ->{
-            //load
+            try {
+                FileInputStream fis = new FileInputStream("save.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                blocks = (BlockArray) ois.readObject();
+                ois.close();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         });
 
 
