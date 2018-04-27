@@ -14,8 +14,10 @@
         <items>
             <HBox maxHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" spacing="10.0">
                <children>
-                  <Button fx:id="run_button" mnemonicParsing="false" styleClass="lion-button" stylesheets="@application.css" text="Run" />
-                  <Button fx:id="step_button" mnemonicParsing="false" styleClass="lion-button" stylesheets="@application.css" text="Step" />
+                   <Button fx:id="run_button" mnemonicParsing="false" styleClass="lion-button" stylesheets="@application.css" text="Run" />
+                   <Button fx:id="step_button" mnemonicParsing="false" styleClass="lion-button" stylesheets="@application.css" text="Step" />
+                   <Button fx:id="save_button" mnemonicParsing="false" styleClass="lion-button" stylesheets="@application.css" text="Save" />
+                   <Button fx:id="load_button" mnemonicParsing="false" styleClass="lion-button" stylesheets="@application.css" text="Load" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

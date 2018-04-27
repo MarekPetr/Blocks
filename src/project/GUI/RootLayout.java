@@ -33,6 +33,8 @@ public class RootLayout extends AnchorPane {
     private @FXML SplitPane base_pane;
     private @FXML Button run_button;
     private @FXML Button step_button;
+    private @FXML Button load_button;
+    private @FXML Button save_button;
 
     private @FXML AnchorPane right_pane;
     private @FXML VBox left_pane;
@@ -73,6 +75,14 @@ public class RootLayout extends AnchorPane {
 
         step_button.setOnMouseClicked(event -> {
             System.out.println("Kliknul STEP");
+        });
+
+        save_button.setOnMouseClicked(event -> {
+            //save
+        });
+
+        load_button.setOnMouseClicked(event ->{
+            //load
         });
 
 
