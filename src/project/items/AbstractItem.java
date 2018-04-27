@@ -1,5 +1,7 @@
 package project.items;
 
+import javafx.geometry.Point2D;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ import java.util.Map;
  */
 public abstract class AbstractItem implements Item, Serializable {
     String name;
+    Point2D coordinations;
     double operand;
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
@@ -23,6 +26,11 @@ public abstract class AbstractItem implements Item, Serializable {
     public AbstractItem(String name, double operand) {
         this.name = name;
         this.operand = operand;
+    }
+
+    public void setCoordinations(Point2D coords) {
+        System.out.println("Coords set to x: " + coords.getX() + ", y:" + coords.getY());
+        this.coordinations = coords;
     }
 
     public void setOperand(double val) {
