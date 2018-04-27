@@ -35,7 +35,7 @@ public class DraggableNode extends AnchorPane {
     @FXML private Label title_bar;
     @FXML private Label close_button;
     @FXML public AnchorPane body_handle;
-    @FXML private VBox input_table;
+    @FXML private VBox table;
 
     private final DraggableNode self;
 
@@ -102,12 +102,12 @@ public class DraggableNode extends AnchorPane {
     }
 
     public void buildBodyHandler() {
-        input_table.setVisible(false);
+        table.setVisible(false);
         body_handle.setOnMouseClicked(event -> {
-            if (input_table.isVisible()) {
-                input_table.setVisible(false);
+            if (table.isVisible()) {
+                table.setVisible(false);
             } else {
-                input_table.setVisible(true);
+                table.setVisible(true);
             }
         });
     }

@@ -17,7 +17,7 @@ public class DraggableNodeOUT extends DraggableNode {
     @FXML private Label value2;
     @FXML private Label key3;
     @FXML private Label value3;
-    @FXML private VBox input_table;
+    @FXML private VBox table;
 
 
     public DraggableNodeOUT(RootLayout layout) {
@@ -32,12 +32,7 @@ public class DraggableNodeOUT extends DraggableNode {
 
     @Override
     public void buildInputHandlers() {
-        Class currentClass = getClass();
-        Field[] fields = currentClass.getFields();
-        for (Field f : fields) {
-            System.out.println(f.getName());
-        }
-        input_table.setVisible(false);
+        table.setVisible(false);
         body_handle.setOnMouseClicked(event -> {
             //print values here
             Map<String, Double> map = layout.blocks.get(getId()).item.outValue;
@@ -58,10 +53,10 @@ public class DraggableNodeOUT extends DraggableNode {
                 }
                 i++;
             }
-            if (input_table.isVisible()) {
-                input_table.setVisible(false);
+            if (table.isVisible()) {
+                table.setVisible(false);
             } else {
-                input_table.setVisible(true);
+                table.setVisible(true);
             }
         });
 

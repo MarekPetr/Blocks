@@ -4,6 +4,7 @@ package project.GUI;
  * Created by petr on 4/21/18.
  */
 import java.io.IOException;
+import java.util.Map;
 import java.util.UUID;
 
 import javafx.beans.binding.Bindings;
@@ -13,11 +14,20 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.CubicCurve;
 
 public class NodeLink extends AnchorPane {
-    private @FXML CubicCurve node_link;
+    @FXML private CubicCurve node_link;
+    @FXML private VBox table;
+    @FXML private Label key1;
+    @FXML private Label value1;
+    @FXML private Label key2;
+    @FXML private Label value2;
+    @FXML private Label key3;
+    @FXML private Label value3;
 
     // these controls distance of the control points of curve from its end points
     private final DoubleProperty mControlOffsetX = new SimpleDoubleProperty();
@@ -51,7 +61,7 @@ public class NodeLink extends AnchorPane {
         mControlOffsetX.set(100.0);
         mControlOffsetY.set(50.0);
 
-        // change direction of the curve - mutliply the offset by -1 or 1
+        // change direction of the curve - multiply the offset by -1 or 1
         // depending whether its drawn left-to-right or right-to-left
         mControlDirectionX1.bind(new When (
                 node_link.startXProperty().greaterThan(node_link.endXProperty()))
@@ -86,7 +96,13 @@ public class NodeLink extends AnchorPane {
                 )
         );
 
-        node_link.setOnMouseEntered(event -> System.out.println("Mouse Over link"));
+        table.setVisible(false);
+        node_link.setOnMouseEntered(event ->  {
+                table.setVisible(true);
+        });
+        node_link.setOnMouseExited(event -> {
+            table.setVisible(false);
+        });
     }
 
     // set starting point of the curve
