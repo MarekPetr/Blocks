@@ -14,6 +14,7 @@ public class DraggableNodeOP extends DraggableNode {
     public DraggableNodeOP(RootLayout layout) {
         super(layout);
     }
+
     @Override
     public FXMLLoader setResource() {
         return new FXMLLoader(
@@ -46,10 +47,12 @@ public class DraggableNodeOP extends DraggableNode {
     @Override
     public void buildBodyHandler() {
         table.setVisible(false);
-        if (table.isVisible()) {
-            table.setVisible(false);
-        } else {
-            table.setVisible(true);
-        }
+        body_handle.setOnMouseClicked(event -> {
+            if (table.isVisible()) {
+                table.setVisible(false);
+            } else {
+                table.setVisible(true);
+            }
+        });
     }
 }

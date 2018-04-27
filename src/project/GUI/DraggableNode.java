@@ -75,6 +75,7 @@ public class DraggableNode extends AnchorPane {
         setId(UUID.randomUUID().toString());
     }
 
+
     public FXMLLoader setResource() {
         return new FXMLLoader(
                 getClass().getResource("/DraggableNode.fxml"));
@@ -282,6 +283,7 @@ public class DraggableNode extends AnchorPane {
         //relocates the object to a point that has been converted to
         //scene coordinates
         Point2D localCoords = getParent().sceneToLocal(p);
+        System.out.printf("X: %f, Y:%f\n", localCoords.getX(), localCoords.getY());
 
         // mDragOffset - offsets the mouse coordinates,
         // so that user can drag the item with label
