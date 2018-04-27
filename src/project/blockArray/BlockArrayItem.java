@@ -2,7 +2,9 @@ package project.blockArray;
 import project.connection.Connection;
 import project.items.*;
 
-public class BlockArrayItem {
+import java.io.Serializable;
+
+public class BlockArrayItem implements Serializable {
     public AbstractItem item;
     public Connection con;
 

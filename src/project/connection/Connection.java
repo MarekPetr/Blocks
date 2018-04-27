@@ -1,11 +1,12 @@
 package project.connection;
 import project.items.AbstractItem;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class Connection {
+public class Connection implements Serializable {
 	private final String id;
 	private AbstractItem inBlock;
 	private AbstractItem outBlock;

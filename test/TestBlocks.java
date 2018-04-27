@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.Assert;
 import project.items.*;
 
+import java.io.*;
+
 
 public class TestBlocks {
     private AbstractItem itFirst, itPlus, itMinus, itMul, itDiv, itLast;
@@ -64,6 +66,7 @@ public class TestBlocks {
     // Tests adding items to list in the order from first to last
     @Test
     public void test02() {
+        itFirst.setInValue("value", 0.0);
         Blocks.addToList(new BlockArrayItem(itFirst));
         Blocks.addToList(new BlockArrayItem(conFirstPlus));
         Blocks.addToList(new BlockArrayItem(itPlus));
@@ -77,6 +80,7 @@ public class TestBlocks {
 
     @Test
     public void test03() {
+        itFirst.setInValue("value", 0.0);
         Blocks.addToList(new BlockArrayItem(conFirstPlus));
         Blocks.addToList(new BlockArrayItem(itFirst));
         Blocks.addToList(new BlockArrayItem(itLast));
@@ -87,5 +91,28 @@ public class TestBlocks {
         Assert.assertEquals("Test Last in value", 100.0, itLast.inValue.get("value"), 1.0);
         Blocks.clear();
     }
+    @Test
+    public void test04() throws IOException {
+        itFirst.setInValue("value", 0.0);
+        Blocks.addToList(new BlockArrayItem(itFirst));
+        Blocks.addToList(new BlockArrayItem(conFirstPlus));
+        Blocks.addToList(new BlockArrayItem(itPlus));
+        Blocks.addToList(new BlockArrayItem(conPlusLast));
+        Blocks.addToList(new BlockArrayItem(itLast));
+        FileOutputStream fos = new FileOutputStream("save.txt");
+        ObjectOutput oos = new ObjectOutputStream(fos);
+        oos.writeObject(Blocks);
+        oos.close();
+    }
 
+    @Test
+    public void test05() throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream("save.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        BlockArray bb = (BlockArray) ois.readObject();
+        ois.close();
+        Assert.assertEquals("Test First in value", 0.0, bb.get(0).item.inValue.get("value"), 1.0);
+        bb.run();
+        Assert.assertEquals("Test Last in value", 100.0, bb.get(bb.size() - 1).item.inValue.get("value"), 1.0);
+    }
 }

@@ -1,5 +1,6 @@
 package project.items;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Map;
 /**
  * Created by petr on 3/28/18.
  */
-public abstract class AbstractItem implements Item {
+public abstract class AbstractItem implements Item, Serializable {
     String name;
     double operand;
     public Map<String, Double> inValue = new HashMap<>();

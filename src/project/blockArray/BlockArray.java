@@ -1,5 +1,6 @@
 package project.blockArray;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,7 @@ import project.connection.Connection;
 import project.items.*;
 
 //TODO
-public class BlockArray{
+public class BlockArray implements Serializable {
     private boolean first = true;
     private boolean found = false;
     private int size;
@@ -17,7 +18,7 @@ public class BlockArray{
     public List<Connection> connections;
     private static BlockArrayItem current_state;
 
-    private transient Object[] blockArray;
+    private  Object[] blockArray;
 
     public BlockArray() {
         super();
@@ -156,7 +157,7 @@ public class BlockArray{
     }
 
     private int index(String name) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size(); i++) {
             if (get(i).item.getName().equals(name)) {
                 return i;
             }
