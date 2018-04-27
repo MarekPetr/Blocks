@@ -8,7 +8,7 @@
 
 <fx:root fx:id="root_pane" stylesheets="@application.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <CubicCurve fx:id="node_link" controlX1="-50.0" controlX2="50.0" controlY1="-100.0" controlY2="100.0" endX="150.0" fill="#40a3ff00" startX="-150.0" stroke="BLACK" strokeWidth="3.0" />
+      <CubicCurve fx:id="node_link" controlX1="-50.0" controlX2="50.0" controlY1="-100.0" controlY2="100.0" endX="150.0" fill="#40a3ff00" startX="-150.0" stroke="BLACK" strokeWidth="5.0" />
       <VBox fx:id="table" layoutX="14.0" layoutY="14.0" prefHeight="96.0" prefWidth="140.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">

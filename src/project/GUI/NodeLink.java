@@ -29,6 +29,9 @@ public class NodeLink extends AnchorPane {
     @FXML private Label key3;
     @FXML private Label value3;
 
+    private RootLayout layout;
+    private String sourceID;
+
     // these controls distance of the control points of curve from its end points
     private final DoubleProperty mControlOffsetX = new SimpleDoubleProperty();
     private final DoubleProperty mControlOffsetY = new SimpleDoubleProperty();
@@ -39,7 +42,7 @@ public class NodeLink extends AnchorPane {
     private final DoubleProperty mControlDirectionX2 = new SimpleDoubleProperty();
     private final DoubleProperty mControlDirectionY2 = new SimpleDoubleProperty();
 
-    public NodeLink() {
+    public NodeLink(RootLayout lay, String id) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("/NodeLink.fxml")
@@ -47,7 +50,8 @@ public class NodeLink extends AnchorPane {
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
+        layout = lay;
+        sourceID = id;
         try {
             fxmlLoader.load();
 
@@ -98,7 +102,26 @@ public class NodeLink extends AnchorPane {
 
         table.setVisible(false);
         node_link.setOnMouseEntered(event ->  {
-                table.setVisible(true);
+            //
+            Map<String, Double> map = layout.blocks.get(sourceID).item.getOutValue();
+            int i = 1;
+            for (Map.Entry<String, Double> entry : map.entrySet())
+            {
+                System.out.println(entry.getKey() + "/" + entry.getValue());
+                String value = String.valueOf(entry.getValue());
+                if (i == 1) {
+                    key1.setText(entry.getKey());
+                    value1.setText(value);
+                } else if (i == 2) {
+                    key2.setText(entry.getKey());
+                    value2.setText(value);
+                } else if (i == 3) {
+                    key3.setText(entry.getKey());
+                    value3.setText(value);
+                }
+                i++;
+            }
+            table.setVisible(true);
         });
         node_link.setOnMouseExited(event -> {
             table.setVisible(false);
