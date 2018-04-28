@@ -11,8 +11,8 @@ public class Connection implements Serializable {
 	private AbstractItem inBlock;
 	private AbstractItem outBlock;
 
-	public Connection(AbstractItem input, AbstractItem output) {
-		this.id = UUID.randomUUID().toString();
+	public Connection(String id, AbstractItem input, AbstractItem output) {
+		this.id = id;
 		setInBlock(input);
 		setOutBlock(output);
 	}

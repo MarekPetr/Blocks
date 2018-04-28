@@ -27,15 +27,15 @@ public class TestBlocks {
         itMul = new ItemMul("Mul", 2);
         itDiv = new ItemDiv("Div", 10);
         itLast = new ItemLast("Last");
-        conFirstPlus = new Connection(itFirst, itPlus);
-        conPlusLast = new Connection(itPlus, itLast);
+        conFirstPlus = new Connection("conFirstPlus", itFirst, itPlus);
+        conPlusLast = new Connection("conPlusLast", itPlus, itLast);
     }
 
     // Vypracoval Petr Marek
     // Tests item connections
     @Test
     public void test01() {
-        con1 = new Connection(itPlus, itMinus);
+        con1 = new Connection("con1", itPlus, itMinus);
         itPlus.setInValue("value", 0.0);
         itPlus.execute();
         Assert.assertEquals("Test Plus out value",100.0, itPlus.outValue.get("value"), 1.0);
@@ -43,13 +43,13 @@ public class TestBlocks {
         Assert.assertEquals("Test Minus in value",100.0, itMinus.inValue.get("value"), 1.0);
 
         itMinus.execute();
-        con2 = new Connection(itMinus, itMul);
+        con2 = new Connection("con2", itMinus, itMul);
         Assert.assertEquals("Test Minus out value",20.0, itMinus.outValue.get("value"), 1.0);
         con2.transferValue();
         Assert.assertEquals("Test Mul in value",20.0, itMul.inValue.get("value"), 1.0);
 
         itMul.execute();
-        con3 = new Connection(itMul, itDiv);
+        con3 = new Connection("con3", itMul, itDiv);
         Assert.assertEquals("Test Mul out value",40.0, itMul.outValue.get("value"), 1.0);
         con3.transferValue();
         Assert.assertEquals("Test Div in value",40.0, itDiv.inValue.get("value"), 1.0);

@@ -26,14 +26,14 @@ public class TryConnection {
 
         item3 = new ItemPlus("third", 1);
         item4 = new ItemPlus("Fourth", 2);
-        con1 = new Connection(item3, item4);
+        con1 = new Connection("con1", item3, item4);
         item3.execute();
         con1.transferValue();
         item4.execute();
         System.out.printf("%f\n", item4.outValue);
 
         it5 = new ItemDiv("Fourth", 3);
-        con2 = new Connection(item4, it5);
+        con2 = new Connection("con2", item4, it5);
         con2.transferValue();
         it5.execute();
 
