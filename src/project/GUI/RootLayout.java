@@ -233,7 +233,6 @@ public class RootLayout extends AnchorPane {
                         link.bindEnds(source, target);
                     }
                 }
-
             }
             event.consume();
         });

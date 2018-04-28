@@ -149,17 +149,20 @@ public class NodeLink extends AnchorPane {
     }
     public void bindEnds (DraggableNode source, DraggableNode target) {
         node_link.startXProperty().bind(
-                Bindings.add(source.layoutXProperty(), (source.getWidth() / 2.0)));
-                System.out.println("source width: " + source.getWidth());
+                Bindings.add(source.layoutXProperty(),(40)));
+        //Bindings.add(source.layoutXProperty(), (source.getWidth() / 2.0))
 
         node_link.startYProperty().bind(
-                Bindings.add(source.layoutYProperty(), (source.getWidth() / 2.0)));
+                Bindings.add(source.layoutYProperty(), (40)));
+        //Bindings.add(source.layoutYProperty(), (source.getWidth() / 2.0)));
 
         node_link.endXProperty().bind(
-                Bindings.add(target.layoutXProperty(), (target.getWidth() / 2.0)));
+                Bindings.add(target.layoutXProperty(), (40)));
+                //Bindings.add(target.layoutXProperty(), (target.getWidth() / 2.0)));
 
         node_link.endYProperty().bind(
-                Bindings.add(target.layoutYProperty(), (target.getWidth() / 2.0)));
+                Bindings.add(target.layoutYProperty(), (40)));
+                //Bindings.add(target.layoutYProperty(), (target.getWidth() / 2.0)));
 
         source.registerLink (getId());
         target.registerLink (getId());
