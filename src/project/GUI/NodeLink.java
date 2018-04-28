@@ -46,7 +46,7 @@ public class NodeLink extends AnchorPane {
     private final DoubleProperty mControlDirectionX2 = new SimpleDoubleProperty();
     private final DoubleProperty mControlDirectionY2 = new SimpleDoubleProperty();
 
-    public NodeLink(RootLayout lay, String sourceId) {
+    public NodeLink(RootLayout lay, String sourceId, String id) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("/NodeLink.fxml")
@@ -62,7 +62,8 @@ public class NodeLink extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        setId(UUID.randomUUID().toString());
+        setId(id);
+        //setId(UUID.randomUUID().toString());
     }
     @FXML
     private void initialize() {

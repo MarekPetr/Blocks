@@ -8,6 +8,7 @@ import project.blockArray.BlockArray;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by petr on 4/27/18.
@@ -50,13 +51,15 @@ public class LoadScheme {
         System.out.println("loading");
         String sourceId;
         String targetId;
+        String connectId;
+
 
         for (int i = 0; i < toLoad.connections.size(); i++) {
             sourceId = toLoad.connections.get(i).getInBlock().getName();
             targetId = toLoad.connections.get(i).getOutBlock().getName();
-            System.out.println("id: " + toLoad.connections.get(i).getId());
+            connectId = toLoad.connections.get(i).getId();
 
-            NodeLink link = new NodeLink(rootLayout, sourceId);
+            NodeLink link = new NodeLink(rootLayout, sourceId, connectId);
 
             DraggableNode source = null;
             DraggableNode target = null;
