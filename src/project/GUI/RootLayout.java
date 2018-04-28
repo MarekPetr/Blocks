@@ -20,6 +20,7 @@ import project.items.*;
 
 import javax.annotation.processing.FilerException;
 import java.io.*;
+import java.util.UUID;
 
 import static project.GUI.DragIconType.*;
 
@@ -89,6 +90,7 @@ public class RootLayout extends AnchorPane {
         });
 
         load_button.setOnMouseClicked(event ->{
+            BlockArray current_state = blocks;
             try {
                 FileInputStream fis = new FileInputStream("save.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);
@@ -97,8 +99,8 @@ public class RootLayout extends AnchorPane {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            LoadScheme loadScheme = new LoadScheme(blocks, this);
-                loadScheme.printBlocks();
+            LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
+            loadScheme.load();
         });
 
 
@@ -181,43 +183,7 @@ public class RootLayout extends AnchorPane {
                     // add Node operation
                     DraggableNode node;
                     DragIconType type = DragIconType.valueOf(container.getValue("type"));
-                    if (type == in) {
-                        node = new DraggableNodeIN(this);
-                    } else if (type == out) {
-                        node = new DraggableNodeOUT(this);
-                    } else {
-                        node = new DraggableNodeOP(this);
-                    }
-                    node.setType(type);
-                    right_pane.getChildren().add(node);
-
-                    switch (node.getType()) {
-                        case in:
-                            blocks.addToList(new BlockArrayItem(new ItemFirst(node.getId())));
-                            System.out.println("ItemFist added.");
-                            break;
-                        case out:
-                            blocks.addToList(new BlockArrayItem(new ItemLast(node.getId())));
-                            System.out.println("ItemLast added.");
-                            break;
-                        case plus:
-                            blocks.addToList(new BlockArrayItem(new ItemPlus(node.getId())));
-                            System.out.println("ItemPlus added.");
-                            break;
-                        case minus:
-                            blocks.addToList(new BlockArrayItem(new ItemMinus(node.getId())));
-                            System.out.println("ItemMinus added.");
-                            break;
-                        case mul:
-                            blocks.addToList(new BlockArrayItem(new ItemMul(node.getId())));
-                            System.out.println("ItemMul added.");
-                            break;
-                        case div:
-                            blocks.addToList(new BlockArrayItem(new ItemDiv(node.getId())));
-                            System.out.println("ItemDiv added.");
-                            break;
-                    }
-                    blocks.get(node.getId()).item.setType(node.getType());
+                    node = addNode(type, UUID.randomUUID().toString(), true);
 
                     Point2D cursorPoint = container.getValue("scene_coords");
 
@@ -268,9 +234,52 @@ public class RootLayout extends AnchorPane {
                 }
 
             }
-
             event.consume();
         });
+    }
+
+    public DraggableNode addNode(DragIconType type, String id, boolean toList) {
+        DraggableNode node;
+        if (type == in) {
+            node = new DraggableNodeIN(this, id);
+        } else if (type == out) {
+            node = new DraggableNodeOUT(this, id);
+        } else {
+            node = new DraggableNodeOP(this, id);
+        }
+        node.setType(type);
+        right_pane.getChildren().add(node);
+
+        if (toList) {
+            switch (node.getType()) {
+                case in:
+                    blocks.addToList(new BlockArrayItem(new ItemFirst(node.getId())));
+                    System.out.println("ItemFirst added.");
+                    break;
+                case out:
+                    blocks.addToList(new BlockArrayItem(new ItemLast(node.getId())));
+                    System.out.println("ItemLast added.");
+                    break;
+                case plus:
+                    blocks.addToList(new BlockArrayItem(new ItemPlus(node.getId())));
+                    System.out.println("ItemPlus added.");
+                    break;
+                case minus:
+                    blocks.addToList(new BlockArrayItem(new ItemMinus(node.getId())));
+                    System.out.println("ItemMinus added.");
+                    break;
+                case mul:
+                    blocks.addToList(new BlockArrayItem(new ItemMul(node.getId())));
+                    System.out.println("ItemMul added.");
+                    break;
+                case div:
+                    blocks.addToList(new BlockArrayItem(new ItemDiv(node.getId())));
+                    System.out.println("ItemDiv added.");
+                    break;
+            }
+            blocks.get(node.getId()).item.setType(node.getType());
+        }
+        return node;
     }
 
     private void addDragDetection(DragIcon dragIcon) {

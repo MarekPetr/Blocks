@@ -1,10 +1,7 @@
 package project.GUI;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.UUID;
+import java.util.*;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,9 +32,8 @@ public class DraggableNode extends AnchorPane {
 
     @FXML private Label title_bar;
     @FXML private Label close_button;
-    @FXML public AnchorPane body_handle;
+
     @FXML private VBox table;
-    @FXML private Pane table_pane;
 
     private final DraggableNode self;
 
@@ -58,7 +54,7 @@ public class DraggableNode extends AnchorPane {
     // list of IDs of currently connected links to this node
     private final List mLinkIds = new ArrayList();
 
-    public DraggableNode(RootLayout lay) {
+    public DraggableNode(RootLayout lay, String id) {
         // dragging has to be handled in root Anchor - referenced by 'this'
         self = this;
         FXMLLoader fxmlLoader = setResource();
@@ -71,7 +67,8 @@ public class DraggableNode extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        setId(UUID.randomUUID().toString());
+        setId(id);
+        //setId(UUID.randomUUID().toString());
     }
 
 
@@ -104,14 +101,6 @@ public class DraggableNode extends AnchorPane {
     }
 
     public void buildBodyHandler() {
-        table_pane.setVisible(false);
-        body_handle.setOnMouseClicked(event -> {
-            if (table_pane.isVisible()) {
-                table_pane.setVisible(false);
-            } else {
-                table_pane.setVisible(true);
-            }
-        });
     }
 
     public void buildNodeDragHandlers() {
@@ -275,22 +264,22 @@ public class DraggableNode extends AnchorPane {
     }
 
     public void registerLink(String linkId) {
-        mLinkIds.add(linkId);
+            mLinkIds.add(linkId);
     }
 
     public void relocateToPoint (Point2D p) {
         //relocates the object to a point that has been converted to
         //scene coordinates
         Point2D localCoords = getParent().sceneToLocal(p);
-        layout.blocks.get(getId()).item.setCoords(localCoords.getX(), localCoords.getY());
+        double newX = localCoords.getX()- mDragOffset.getX();
+        double newY = localCoords.getY() - mDragOffset.getY();
+
+        layout.blocks.get(getId()).item.setCoords(newX, newY);
 
         // mDragOffset - offsets the mouse coordinates,
         // so that user can drag the item with label
         // and item wont center to mouse cursor
-        relocate (
-                (int) (localCoords.getX() - mDragOffset.getX()),
-                (int) (localCoords.getY() - mDragOffset.getY())
-        );
+        relocate ((int) (newX), (int) (newY));
     }
 
     public DragIconType getType () { return mType; }

@@ -46,7 +46,7 @@ public class NodeLink extends AnchorPane {
     private final DoubleProperty mControlDirectionX2 = new SimpleDoubleProperty();
     private final DoubleProperty mControlDirectionY2 = new SimpleDoubleProperty();
 
-    public NodeLink(RootLayout lay, String id) {
+    public NodeLink(RootLayout lay, String sourceId) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("/NodeLink.fxml")
@@ -55,7 +55,7 @@ public class NodeLink extends AnchorPane {
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         layout = lay;
-        sourceID = id;
+        sourceID = sourceId;
         try {
             fxmlLoader.load();
 
@@ -133,12 +133,14 @@ public class NodeLink extends AnchorPane {
     }
 
     // set starting point of the curve
+    // - has impact on its shape, nothing else
     public void setStart(Point2D startPoint) {
 
         node_link.setStartX(startPoint.getX());
         node_link.setStartY(startPoint.getY());
     }
     // set ending point of the curve
+    // - has impact on its shape, nothing else
     public void setEnd(Point2D endPoint) {
 
         node_link.setEndX(endPoint.getX());
@@ -147,6 +149,7 @@ public class NodeLink extends AnchorPane {
     public void bindEnds (DraggableNode source, DraggableNode target) {
         node_link.startXProperty().bind(
                 Bindings.add(source.layoutXProperty(), (source.getWidth() / 2.0)));
+                System.out.println("source width: " + source.getWidth());
 
         node_link.startYProperty().bind(
                 Bindings.add(source.layoutYProperty(), (source.getWidth() / 2.0)));
@@ -159,6 +162,5 @@ public class NodeLink extends AnchorPane {
 
         source.registerLink (getId());
         target.registerLink (getId());
-
     }
 }

@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +20,16 @@ public class DraggableNodeIN extends DraggableNode {
     @FXML private TextField value1;
     @FXML private TextField value2;
     @FXML private TextField value3;
+    @FXML private AnchorPane body_handle;
 
     private String current_key;
     private int current_index;
     private List<String> keys = new ArrayList<>(5);
 
-    public DraggableNodeIN(RootLayout layout) {
-        super(layout);
+    @FXML private Pane table_pane;
+
+    public DraggableNodeIN(RootLayout layout, String id) {
+        super(layout, id);
     }
 
     @Override
@@ -43,6 +48,18 @@ public class DraggableNodeIN extends DraggableNode {
 
         setKeyField(key3, 5);
         setValueField(value3, 6);
+    }
+
+    @Override
+    public void buildBodyHandler() {
+        table_pane.setVisible(false);
+        body_handle.setOnMouseClicked(event -> {
+            if (table_pane.isVisible()) {
+                table_pane.setVisible(false);
+            } else {
+                table_pane.setVisible(true);
+            }
+        });
     }
 
     private void setKeyField(TextField text_field, int index) {

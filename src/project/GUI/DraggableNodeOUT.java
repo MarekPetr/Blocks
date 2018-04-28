@@ -2,6 +2,7 @@ package project.GUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -20,10 +21,11 @@ public class DraggableNodeOUT extends DraggableNode {
     @FXML private Label value3;
     @FXML private Pane table_pane;
     @FXML private VBox table;
+    @FXML private AnchorPane body_handle;
 
 
-    public DraggableNodeOUT(RootLayout layout) {
-        super(layout);
+    public DraggableNodeOUT(RootLayout layout, String id) {
+        super(layout, id);
     }
 
     @Override

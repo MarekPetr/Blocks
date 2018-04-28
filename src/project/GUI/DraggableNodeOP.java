@@ -4,15 +4,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class DraggableNodeOP extends DraggableNode {
     @FXML private TextField value;
     @FXML private VBox table;
+    @FXML private AnchorPane body_handle;
 
 
-    public DraggableNodeOP(RootLayout layout) {
-        super(layout);
+    public DraggableNodeOP(RootLayout layout, String id) {
+        super(layout, id);
     }
 
     @Override

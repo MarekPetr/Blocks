@@ -36,9 +36,17 @@ public abstract class AbstractItem implements Item, Serializable {
     public DragIconType getType() { return this.type; }
 
     public void setCoords(double x, double y) {
-        System.out.println("Coords set to x: " + coordsX + ", y:" + coordsY);
+        //System.out.println("Coords set to x: " + coordsX + ", y:" + coordsY);
         this.coordsX = x;
         this.coordsY = y;
+    }
+
+    public double getX() {
+        return this.coordsX;
+    }
+
+    public double getY() {
+        return this.coordsY;
     }
 
     public Point2D getCoords(Point2D coords) {
