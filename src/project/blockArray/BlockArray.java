@@ -193,11 +193,11 @@ public class BlockArray implements Serializable {
             for (int j = 0; j < index(name); j++) {
                 if (connections.get(i).getOutBlock().equals(get(j).item)) {
                     System.out.println("ERROR: Cycle found.");
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     private void checkIfMissing() {
