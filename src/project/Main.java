@@ -7,9 +7,11 @@ import project.GUI.RootLayout;
 
 
 public class Main extends Application {
-
+    public Stage primaryStage;
     @Override
     public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+
         BorderPane root = new BorderPane();
 
         try {
@@ -22,7 +24,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
-        root.setCenter(new RootLayout());
+        root.setCenter(new RootLayout(primaryStage));
     }
 
     public static void main(String[] args) {

@@ -13,6 +13,9 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import project.blockArray.BlockArray;
 import project.blockArray.BlockArrayItem;
 import project.connection.Connection;
@@ -43,11 +46,13 @@ public class RootLayout extends AnchorPane {
 
     //
     BlockArray blocks;
+    Stage primaryStage;
 
     // semi transparent icon drawn on drag and drop
     private DragIcon mDragOverIcon = null;
 
-    public RootLayout() {
+    public RootLayout(Stage primaryStage) {
+        this.primaryStage = primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("/RootLayout.fxml")
         );
@@ -79,9 +84,12 @@ public class RootLayout extends AnchorPane {
         });
 
         save_button.setOnMouseClicked(event -> {
-            FileOutputStream fos = null;
+            FileOutputStream fos;
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Scheme");
+            File file = fileChooser.showSaveDialog(primaryStage);
             try {
-                fos = new FileOutputStream("save.txt");
+                fos = new FileOutputStream(file);
                 ObjectOutput oos = new ObjectOutputStream(fos);
                 oos.writeObject(blocks);
                 oos.close();
@@ -93,7 +101,9 @@ public class RootLayout extends AnchorPane {
         load_button.setOnMouseClicked(event ->{
             BlockArray current_state = blocks;
             try {
-                FileInputStream fis = new FileInputStream("save.txt");
+                FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(primaryStage);
+                FileInputStream fis = new FileInputStream(file);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 blocks = (BlockArray) ois.readObject();
                 ois.close();
