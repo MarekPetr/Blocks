@@ -92,6 +92,7 @@ public class LoadScheme {
             if (node.getId() == null)
                 continue;
             iterNode.remove();
+            node.setVisible(false);
         }
 
     }
