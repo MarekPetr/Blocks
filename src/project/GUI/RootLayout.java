@@ -98,7 +98,7 @@ public class RootLayout extends AnchorPane {
                 e.printStackTrace();
             }
             LoadScheme loadScheme = new LoadScheme(blocks, this);
-            // loadScheme.printBlocks();
+                loadScheme.printBlocks();
         });
 
 
@@ -217,6 +217,7 @@ public class RootLayout extends AnchorPane {
                             System.out.println("ItemDiv added.");
                             break;
                     }
+                    blocks.get(node.getId()).item.setType(node.getType());
 
                     Point2D cursorPoint = container.getValue("scene_coords");
 

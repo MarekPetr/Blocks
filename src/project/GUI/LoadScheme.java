@@ -17,7 +17,10 @@ public class LoadScheme {
         this.rootLayout = root;
     }
 
-    public void print_blocks() {
+    public void printBlocks() {
         // print IDs ant types of all blocks
+        for (int i = 0; i < blockArr.size(); i++) {
+            System.out.println("Name: " + blockArr.get(i).item.getName() + ", type: " + blockArr.get(i).item.getType());
+        }
     }
 }

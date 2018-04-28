@@ -1,6 +1,7 @@
 package project.items;
 
 import javafx.geometry.Point2D;
+import project.GUI.DragIconType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public abstract class AbstractItem implements Item, Serializable {
     public double coordsX;
     public double coordsY;
     double operand;
+    public DragIconType type = null;
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
     public List<String> links = new ArrayList<>();
@@ -29,10 +31,14 @@ public abstract class AbstractItem implements Item, Serializable {
         this.operand = operand;
     }
 
-    public void setCoords(double _x, double _y) {
+    public void setType(DragIconType itemType) { this.type = itemType; }
+
+    public DragIconType getType() { return this.type; }
+
+    public void setCoords(double x, double y) {
         System.out.println("Coords set to x: " + coordsX + ", y:" + coordsY);
-        this.coordsX = _x;
-        this.coordsY = _y;
+        this.coordsX = x;
+        this.coordsY = y;
     }
 
     public Point2D getCoords(Point2D coords) {
