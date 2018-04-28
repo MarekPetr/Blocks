@@ -97,7 +97,8 @@ public class RootLayout extends AnchorPane {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            // LoadScheme here
+            LoadScheme loadScheme = new LoadScheme(blocks, this);
+            // loadScheme.printBlocks();
         });
 
 
