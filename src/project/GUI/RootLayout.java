@@ -54,12 +54,10 @@ public class RootLayout extends AnchorPane {
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
-        //
         blocks = new BlockArray();
 
         try {
             fxmlLoader.load();
-
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -99,6 +97,7 @@ public class RootLayout extends AnchorPane {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            // LoadScheme here
         });
 
 

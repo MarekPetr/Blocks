@@ -39,8 +39,6 @@ public class DraggableNode extends AnchorPane {
     @FXML private VBox table;
     @FXML private Pane table_pane;
 
-    public Point2D curr;
-
     private final DraggableNode self;
 
     @FXML private AnchorPane left_link_handle;
@@ -155,7 +153,6 @@ public class DraggableNode extends AnchorPane {
         mContextDragDropped = (EventHandler<DragEvent>) event -> {
             getParent().setOnDragOver(null);
             getParent().setOnDragDropped(null);
-            layout.blocks.get(getId()).item.setCoordinations(new Point2D(event.getSceneX(), event.getSceneY()));
             event.setDropCompleted(true);
             event.consume();
         };
@@ -285,8 +282,7 @@ public class DraggableNode extends AnchorPane {
         //relocates the object to a point that has been converted to
         //scene coordinates
         Point2D localCoords = getParent().sceneToLocal(p);
-        System.out.printf("X: %f, Y:%f\n", localCoords.getX(), localCoords.getY());
-        //layout.blocks.get(getId()).item.setCoordinations(localCoords);
+        layout.blocks.get(getId()).item.setCoords(localCoords);
 
         // mDragOffset - offsets the mouse coordinates,
         // so that user can drag the item with label

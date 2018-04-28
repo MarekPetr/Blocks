@@ -12,34 +12,38 @@ import java.util.Map;
  * Created by petr on 3/28/18.
  */
 public abstract class AbstractItem implements Item, Serializable {
-    String name;
-    Point2D coordinations;
+    public String id;
+    public Point2D coordinations;
     double operand;
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
     public List<String> links = new ArrayList<>();
 
-    public AbstractItem(String name) {
-        this.name = name;
+    public AbstractItem(String id) {
+        this.id = id;
     }
 
-    public AbstractItem(String name, double operand) {
-        this.name = name;
+    public AbstractItem(String id, double operand) {
+        this.id = id;
         this.operand = operand;
     }
 
-    public void setCoordinations(Point2D coords) {
-        System.out.println("Coords set to x: " + coords.getX() + ", y:" + coords.getY());
+    public void setCoords(Point2D coords) {
+        //System.out.println("Coords set to x: " + coords.getX() + ", y:" + coords.getY());
         this.coordinations = coords;
+    }
+
+    public Point2D getCoords(Point2D coords) {
+        return this.coordinations;
     }
 
     public void setOperand(double val) {
         this.operand = val;
-        System.out.println("Operand for " + name + " was set to " + val);
+        System.out.println("Operand for " + id + " was set to " + val);
     }
 
     public String getName() {
-        return name;
+        return id;
     }
 
     public Map<String, Double> getInValue() {
@@ -62,14 +66,14 @@ public abstract class AbstractItem implements Item, Serializable {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return id.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
         AbstractItem item = (AbstractItem) obj;
 
-        if (!item.name.equals(this.name)) {
+        if (!item.id.equals(this.id)) {
             return false;
         }
 
@@ -77,7 +81,7 @@ public abstract class AbstractItem implements Item, Serializable {
     }
 
     public void setInValue(String _key, double _value) {
-        System.out.println("To item " + name + " inValue with key " + _key + " and value " + _value);
+        System.out.println("To item " + id + " inValue with key " + _key + " and value " + _value);
         if (_key == null) {
             System.out.println("WARNING: Key is null.");
         }

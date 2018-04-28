@@ -165,17 +165,18 @@ public class BlockArray implements Serializable {
         return -1;
     }
 
-    public void checkForCycles() {
+    public boolean cyclesExists() {
         for (int i = 0; i < connections.size(); i++) {
             AbstractItem in = connections.get(i).getInBlock();
             String name = in.getName();
             for (int j = 0; j < index(name); j++) {
                 if (connections.get(i).getOutBlock().equals(get(j).item)) {
-                    System.out.println("ERROR: Cycle found. Exiting...");
-                    System.exit(-1);
+                    System.out.println("ERROR: Cycle found.");
+                    return false;
                 }
             }
         }
+        return true;
     }
 
     private void checkIfMissing() {
@@ -187,7 +188,7 @@ public class BlockArray implements Serializable {
                     }
                 }
                 if (!found) {
-                    System.out.println("Missing connection between blocks. Exiting...");
+                    System.out.println("Missing connection between blocks.");
                     System.exit(-1);
                 }
                 found = false;
@@ -195,21 +196,24 @@ public class BlockArray implements Serializable {
     }
 
     public void run() {
-        checkForCycles();
+        if (cyclesExists()) {
+            return;
+        }
+        
         //checkIfMissing();
         if (!contains(ItemFirst.class)) {
-            System.out.println("ERROR: System does not contain block of type ItemFist. Exiting...");
-            //System.exit(-1);
+            System.out.println("ERROR: System does not contain block of type ItemFist.");
+            return;
         }
 
         if (!contains(ItemLast.class)) {
-            System.out.println("ERROR: System does not contain block of type ItemLast. Exiting...");
-            //System.exit(-1);
+            System.out.println("ERROR: System does not contain block of type ItemLast.");
+            return;
         }
 
         if (get(0).item.inValue.isEmpty()) {
-            System.out.println("ERROR: In value is null. Exiting...");
-            //System.exit(-1);
+            System.out.println("ERROR: In value is null.");
+            return;
         }
 
         for (int i = 0; i < size; i++) {
