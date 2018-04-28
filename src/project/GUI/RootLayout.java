@@ -89,10 +89,12 @@ public class RootLayout extends AnchorPane {
             fileChooser.setTitle("Save Scheme");
             File file = fileChooser.showSaveDialog(primaryStage);
             try {
-                fos = new FileOutputStream(file);
-                ObjectOutput oos = new ObjectOutputStream(fos);
-                oos.writeObject(blocks);
-                oos.close();
+                if (file != null) {
+                    fos = new FileOutputStream(file);
+                    ObjectOutput oos = new ObjectOutputStream(fos);
+                    oos.writeObject(blocks);
+                    oos.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -100,18 +102,25 @@ public class RootLayout extends AnchorPane {
 
         load_button.setOnMouseClicked(event ->{
             BlockArray current_state = blocks;
+            boolean load = false;
             try {
                 FileChooser fileChooser = new FileChooser();
                 File file = fileChooser.showOpenDialog(primaryStage);
-                FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                blocks = (BlockArray) ois.readObject();
-                ois.close();
+                if (file != null) {
+                    FileInputStream fis = new FileInputStream(file);
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    blocks = (BlockArray) ois.readObject();
+                    ois.close();
+                    load = true;
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
-            loadScheme.load();
+            if (load){
+                LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
+                loadScheme.load();
+            }
+
         });
 
 

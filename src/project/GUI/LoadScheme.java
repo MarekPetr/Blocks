@@ -37,6 +37,8 @@ public class LoadScheme {
             String id = toLoad.get(i).item.getName();
 
             System.out.println("Name: " + toLoad.get(i).item.getName() + ", type: " + toLoad.get(i).item.getType());
+
+
             node = rootLayout.addNode(type, id, false);
 
             double coordsX = toLoad.get(i).item.getX();
@@ -80,6 +82,8 @@ public class LoadScheme {
             if (source != null && target != null && source != target) {
                 System.out.println("Binding");
                 link.bindEnds(source, target);
+            } else {
+                link.setVisible(false);
             }
         }
     }

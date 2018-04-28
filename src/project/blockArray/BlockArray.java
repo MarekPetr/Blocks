@@ -17,6 +17,7 @@ public class BlockArray implements Serializable {
     private static final Object[] empty_element_data = {};
 
     public List<Connection> connections;
+    private static final long serialVersionUID = 3787098173998467225L;
 
     private static BlockArrayItem current_state;
 
