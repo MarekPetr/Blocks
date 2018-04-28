@@ -15,7 +15,9 @@ public class BlockArray implements Serializable {
     private int size;
     private static final int DEFAULT_CAPACITY = 5;
     private static final Object[] empty_element_data = {};
+
     public List<Connection> connections;
+
     private static BlockArrayItem current_state;
 
     private  Object[] blockArray;
@@ -24,6 +26,7 @@ public class BlockArray implements Serializable {
         super();
         this.blockArray = empty_element_data;
         this.connections = new ArrayList<>();
+        current_state = null;
     }
 
     public void cleanVals() {
@@ -229,20 +232,26 @@ public class BlockArray implements Serializable {
     }
 
     public void runStep() {
-        if (current_state.item instanceof ItemLast) {
-            current_state = null;
+        if (current_state == null) {
+        } else if (current_state.con != null) {
+            System.out.println("Current state is connection: " + current_state.con.getId());
+        } else if (current_state.item != null) {
+            System.out.println("Current state is item: " + current_state.item.getName());
+        }
+        if (current_state == null) {
+            current_state = get(0);
+            current_state.item.execute();
+        } else if (current_state.item instanceof ItemLast) {
+            System.out.println("DONE");
+            current_state =  null;
+        } else if (current_state.con != null) {
+            current_state = get(current_state.con.getOutBlock().getName());
+            current_state.item.execute();
         } else if (current_state.item != null) {
             String link = current_state.item.links.get(0);
             int index = indexC(link);
             current_state = new BlockArrayItem(connections.get(index));
             current_state.con.transferValue();
-        } else if (current_state.con != null) {
-            current_state = get(current_state.con.getOutBlock().getName());
-            current_state.item.execute();
-        } else {
-            System.out.println("Sem tu");
-                current_state = get(0);
-                current_state.item.execute();
         }
     }
 }

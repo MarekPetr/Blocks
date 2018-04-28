@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1cc8367-db88-4da1-a82d-d81a2762c5e7" name="Default" comment="workspace fix">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/save.txt" afterPath="$PROJECT_DIR$/save.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" afterPath="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" />
@@ -12,6 +13,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/NodeLink.java" afterPath="$PROJECT_DIR$/src/project/GUI/NodeLink.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/RootLayout.java" afterPath="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/items/AbstractItem.java" afterPath="$PROJECT_DIR$/src/project/items/AbstractItem.java" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/project/GUI/RootLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/GUI/RootLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" afterDir="false" />
+>>>>>>> Jakub-BlockArray
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +32,13 @@
       <file leaf-file-name="RootLayout.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/RootLayout.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="317">
               <caret line="298" column="0" lean-forward="true" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+=======
+            <state relative-caret-position="287">
+              <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+>>>>>>> Jakub-BlockArray
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -36,6 +46,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="LoadScheme.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/LoadScheme.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -139,6 +150,13 @@
             <state relative-caret-position="523">
               <caret line="163" column="38" lean-forward="true" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
               <folding />
+=======
+      <file leaf-file-name="BlockArray.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="247" column="40" lean-forward="true" selection-start-line="247" selection-start-column="40" selection-end-line="247" selection-end-column="40" />
+>>>>>>> Jakub-BlockArray
             </state>
           </provider>
         </entry>
@@ -185,6 +203,10 @@
         <option value="$PROJECT_DIR$/src/project/GUI/UserInterface.java" />
         <option value="$PROJECT_DIR$/resources/application.css" />
         <option value="$PROJECT_DIR$/src/project/Main.java" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java" />
+>>>>>>> Jakub-BlockArray
         <option value="$PROJECT_DIR$/resources/DraggableNodeOP.fxml" />
         <option value="$PROJECT_DIR$/resources/DraggableNodeOUT.fxml" />
         <option value="$PROJECT_DIR$/resources/DraggableNodeIN.fxml" />
@@ -192,6 +214,7 @@
         <option value="$PROJECT_DIR$/resources/RootLayout.fxml" />
         <option value="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
         <option value="$PROJECT_DIR$/src/project/items/AbstractItem.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/NodeLink.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeOUT.java" />
@@ -199,6 +222,11 @@
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/LoadScheme.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" />
+=======
+        <option value="$PROJECT_DIR$/src/project/GUI/LoadScheme.java" />
+        <option value="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
+        <option value="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
+>>>>>>> Jakub-BlockArray
       </list>
     </option>
   </component>
@@ -237,6 +265,7 @@
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
+<<<<<<< HEAD
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Blocks" />
@@ -341,6 +370,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+=======
+          <expand>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="blockArray" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="items" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+>>>>>>> Jakub-BlockArray
         </subPane>
       </pane>
       <pane id="AndroidView" />
@@ -830,7 +900,11 @@
       <workItem from="1524818037577" duration="2782000" />
       <workItem from="1524851609912" duration="1515000" />
       <workItem from="1524861601316" duration="1639000" />
+<<<<<<< HEAD
       <workItem from="1524904263333" duration="16156000" />
+=======
+      <workItem from="1524907778724" duration="3157000" />
+>>>>>>> Jakub-BlockArray
     </task>
     <task id="LOCAL-00001" summary="workspace fix">
       <created>1524678382426</created>
@@ -843,6 +917,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="42466000" />
   </component>
   <component name="ToolWindowManager">
@@ -878,6 +953,44 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+=======
+    <option name="totallyTimeSpent" value="33147000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="825" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3288948" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29560587" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14652778" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info id="Nl-Palette" order="2" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Properties" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+>>>>>>> Jakub-BlockArray
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -982,6 +1095,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/project/GUI/DragIconType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -991,6 +1105,9 @@
       </provider>
     </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/com/sun/javafx/collections/VetoableListDecorator.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/project/Main.java">
+>>>>>>> Jakub-BlockArray
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="713" column="0" lean-forward="false" selection-start-line="713" selection-start-column="0" selection-end-line="713" selection-end-column="0" />
@@ -1006,6 +1123,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/project/connection/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1045,6 +1163,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Jakub-BlockArray
     <entry file="file://$PROJECT_DIR$/src/project/GUI/DragContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1064,6 +1184,7 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/resources/DraggableNode.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-152">
@@ -1097,6 +1218,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Jakub-BlockArray
     <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-720">
@@ -1108,6 +1231,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1296">
@@ -1117,6 +1241,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/GUI/NodeLink.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/project/items/AbstractItem.java">
+>>>>>>> Jakub-BlockArray
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="523">
           <caret line="163" column="38" lean-forward="true" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
@@ -1132,10 +1259,55 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3961">
           <caret line="266" column="33" lean-forward="true" selection-start-line="266" selection-start-column="33" selection-end-line="266" selection-end-column="33" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/LoadScheme.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="284" column="88" selection-start-line="284" selection-start-column="88" selection-end-line="284" selection-end-column="88" />
+          <folding>
+            <element signature="e#9376#9377#0" expanded="true" />
+            <element signature="e#9412#9413#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#375#376#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/project/items/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/RootLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+>>>>>>> Jakub-BlockArray
           <folding>
             <element signature="e#8981#8982#0" expanded="true" />
             <element signature="e#9021#9022#0" expanded="true" />
@@ -1143,8 +1315,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/project/GUI/LoadScheme.java">
+    <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="289">
           <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
           <folding>
@@ -1160,6 +1333,10 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="266">
+          <caret line="247" column="40" lean-forward="true" selection-start-line="247" selection-start-column="40" selection-end-line="247" selection-end-column="40" />
+>>>>>>> Jakub-BlockArray
         </state>
       </provider>
     </entry>

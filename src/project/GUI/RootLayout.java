@@ -75,6 +75,7 @@ public class RootLayout extends AnchorPane {
 
         step_button.setOnMouseClicked(event -> {
             System.out.println("Kliknul STEP");
+            blocks.runStep();
         });
 
         save_button.setOnMouseClicked(event -> {
