@@ -73,6 +73,15 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    public boolean containsConnection(AbstractItem in, AbstractItem out) {
+        for (Connection connection : connections) {
+            if (connection.getInBlock().equals(in) && connection.getOutBlock().equals(out)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean isEmpty() {
         return size == 0;
     }
