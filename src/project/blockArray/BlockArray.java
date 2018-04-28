@@ -82,6 +82,15 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    public boolean containsConnectionByID(String id) {
+        for (Connection connection : connections) {
+            if (connection.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean isEmpty() {
         return size == 0;
     }

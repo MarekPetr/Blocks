@@ -78,8 +78,8 @@
       <file leaf-file-name="BlockArray.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
-              <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+            <state relative-caret-position="545">
+              <caret line="86" column="44" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -637,7 +637,7 @@
       <workItem from="1524764495098" duration="5562000" />
       <workItem from="1524775639722" duration="14000" />
       <workItem from="1524924341226" duration="761000" />
-      <workItem from="1524925818857" duration="14000" />
+      <workItem from="1524925818857" duration="196000" />
     </task>
     <task id="LOCAL-00001" summary="workspace fix">
       <created>1524678382426</created>
@@ -650,7 +650,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28004000" />
+    <option name="totallyTimeSpent" value="28186000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
@@ -940,8 +940,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+        <state relative-caret-position="545">
+          <caret line="86" column="44" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
         </state>
       </provider>
     </entry>
