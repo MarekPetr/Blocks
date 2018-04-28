@@ -13,7 +13,8 @@ import java.util.Map;
  */
 public abstract class AbstractItem implements Item, Serializable {
     public String id;
-    public Point2D coordinations;
+    public double coordsX;
+    public double coordsY;
     double operand;
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
@@ -28,13 +29,14 @@ public abstract class AbstractItem implements Item, Serializable {
         this.operand = operand;
     }
 
-    public void setCoords(Point2D coords) {
-        //System.out.println("Coords set to x: " + coords.getX() + ", y:" + coords.getY());
-        this.coordinations = coords;
+    public void setCoords(double _x, double _y) {
+        System.out.println("Coords set to x: " + coordsX + ", y:" + coordsY);
+        this.coordsX = _x;
+        this.coordsY = _y;
     }
 
     public Point2D getCoords(Point2D coords) {
-        return this.coordinations;
+        return new Point2D(this.coordsX, this.coordsY);
     }
 
     public void setOperand(double val) {

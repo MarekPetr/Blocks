@@ -282,7 +282,7 @@ public class DraggableNode extends AnchorPane {
         //relocates the object to a point that has been converted to
         //scene coordinates
         Point2D localCoords = getParent().sceneToLocal(p);
-        layout.blocks.get(getId()).item.setCoords(localCoords);
+        layout.blocks.get(getId()).item.setCoords(localCoords.getX(), localCoords.getY());
 
         // mDragOffset - offsets the mouse coordinates,
         // so that user can drag the item with label
