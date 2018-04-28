@@ -228,7 +228,7 @@ public class RootLayout extends AnchorPane {
                     }
 
                     if (source != null && target != null && source != target) {
-                        blocks.addToList(new BlockArrayItem(new Connection(blocks.get(sourceId).item, blocks.get(targetId).item)));
+                        blocks.addToList(new BlockArrayItem(new Connection(link.getId(), blocks.get(sourceId).item, blocks.get(targetId).item)));
                         System.out.println("Connection between " + blocks.get(sourceId).item.getName() + " and " + blocks.get(targetId).item.getName() + " added.");
                         link.bindEnds(source, target);
                     }
