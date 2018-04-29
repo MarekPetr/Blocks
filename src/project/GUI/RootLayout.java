@@ -11,20 +11,16 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import project.blockArray.BlockArray;
 import project.blockArray.BlockArrayItem;
 import project.connection.Connection;
 import project.items.*;
-import sun.plugin.javascript.navig.Anchor;
 
-import javax.annotation.processing.FilerException;
 import java.io.*;
 import java.util.UUID;
 

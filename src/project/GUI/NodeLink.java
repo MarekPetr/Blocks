@@ -5,10 +5,6 @@ package project.GUI;
  */
 import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
-
-import com.sun.javafx.geom.Rectangle;
-import com.sun.org.apache.regexp.internal.RE;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.When;
 import javafx.beans.property.DoubleProperty;
@@ -63,7 +59,6 @@ public class NodeLink extends AnchorPane {
             throw new RuntimeException(exception);
         }
         setId(id);
-        //setId(UUID.randomUUID().toString());
     }
     public CubicCurve getLink() {
         return node_link;
@@ -116,7 +111,6 @@ public class NodeLink extends AnchorPane {
             int i = 1;
             for (Map.Entry<String, Double> entry : map.entrySet())
             {
-                //System.out.println(entry.getKey() + "/" + entry.getValue());
                 String value = String.valueOf(entry.getValue());
                 if (i == 1) {
                     key1.setText(entry.getKey());
@@ -154,19 +148,15 @@ public class NodeLink extends AnchorPane {
     public void bindEnds (DraggableNode source, DraggableNode target) {
         node_link.startXProperty().bind(
                 Bindings.add(source.layoutXProperty(),(40)));
-        //Bindings.add(source.layoutXProperty(), (source.getWidth() / 2.0))
 
         node_link.startYProperty().bind(
                 Bindings.add(source.layoutYProperty(), (40)));
-        //Bindings.add(source.layoutYProperty(), (source.getWidth() / 2.0)));
 
         node_link.endXProperty().bind(
                 Bindings.add(target.layoutXProperty(), (40)));
-                //Bindings.add(target.layoutXProperty(), (target.getWidth() / 2.0)));
 
         node_link.endYProperty().bind(
                 Bindings.add(target.layoutYProperty(), (40)));
-                //Bindings.add(target.layoutYProperty(), (target.getWidth() / 2.0)));
 
         source.registerLink (getId());
         target.registerLink (getId());

@@ -265,7 +265,6 @@ public class BlockArray implements Serializable {
         if (current_state == null) {
         } else if (current_state.con != null) {
             System.out.println("Current state is connection: " + current_state.con.getId());
-            //System.out.println("id: " + current_state.con.getId());
             colourLink(current_state.con.getId());
         } else if (current_state.item != null) {
             System.out.println("Current state is item: " + current_state.item.getName());
