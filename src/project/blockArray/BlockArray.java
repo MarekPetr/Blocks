@@ -1,10 +1,21 @@
 package project.blockArray;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.CubicCurve;
+import javafx.scene.shape.Line;
+import project.GUI.DraggableNode;
+import project.GUI.NodeLink;
+import project.GUI.RootLayout;
 import project.connection.Connection;
 import project.items.*;
 
@@ -17,11 +28,10 @@ public class BlockArray implements Serializable {
     private static final Object[] empty_element_data = {};
 
     public List<Connection> connections;
-    private static final long serialVersionUID = 3787098173998467225L;
-
     private static BlockArrayItem current_state;
-
     private  Object[] blockArray;
+
+    private static final long serialVersionUID = 3787098173998467225L;
 
     public BlockArray() {
         super();
@@ -254,6 +264,8 @@ public class BlockArray implements Serializable {
         if (current_state == null) {
         } else if (current_state.con != null) {
             System.out.println("Current state is connection: " + current_state.con.getId());
+            //System.out.println("id: " + current_state.con.getId());
+            //colourLink(current_state.con.getId());
         } else if (current_state.item != null) {
             System.out.println("Current state is item: " + current_state.item.getName());
         }

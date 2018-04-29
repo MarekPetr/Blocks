@@ -13,6 +13,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.CubicCurve;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -20,6 +22,7 @@ import project.blockArray.BlockArray;
 import project.blockArray.BlockArrayItem;
 import project.connection.Connection;
 import project.items.*;
+import sun.plugin.javascript.navig.Anchor;
 
 import javax.annotation.processing.FilerException;
 import java.io.*;
@@ -41,7 +44,7 @@ public class RootLayout extends AnchorPane {
     private @FXML Button load_button;
     private @FXML Button save_button;
 
-    private @FXML AnchorPane right_pane;
+    public @FXML AnchorPane right_pane;
     private @FXML VBox left_pane;
 
     //
@@ -71,7 +74,6 @@ public class RootLayout extends AnchorPane {
 
     @FXML
     private void initialize() {
-
         run_button.setOnMouseClicked(event -> {
             System.out.println("Kliknul RUN");
             blocks.cleanVals();
@@ -143,6 +145,27 @@ public class RootLayout extends AnchorPane {
             left_pane.getChildren().add(icn);
         }
         buildDragHandlers();
+    }
+
+    // TODO COLORLINK IN BLOCKARRAY ON LINE 268
+    public static void colourLink(String id, AnchorPane right_pane) {
+        CubicCurve link;
+        if (right_pane == null)
+            return;
+
+        for (Node n: right_pane.getChildren()) {
+
+            if (n.getId() == null)
+                continue;
+
+            if (n instanceof NodeLink) {
+                if (n.getId().equals(id)) {
+                    link = ((NodeLink) n).getLink();
+                    System.out.println("nasel");
+                    link.setStroke(Color.GREEN);
+                }
+            }
+        }
     }
 
     private void buildDragHandlers() {

@@ -65,6 +65,10 @@ public class NodeLink extends AnchorPane {
         setId(id);
         //setId(UUID.randomUUID().toString());
     }
+    public CubicCurve getLink() {
+        return node_link;
+    }
+
     @FXML
     private void initialize() {
         mControlOffsetX.set(100.0);
@@ -112,7 +116,7 @@ public class NodeLink extends AnchorPane {
             int i = 1;
             for (Map.Entry<String, Double> entry : map.entrySet())
             {
-                System.out.println(entry.getKey() + "/" + entry.getValue());
+                //System.out.println(entry.getKey() + "/" + entry.getValue());
                 String value = String.valueOf(entry.getValue());
                 if (i == 1) {
                     key1.setText(entry.getKey());
