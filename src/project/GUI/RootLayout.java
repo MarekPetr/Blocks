@@ -83,19 +83,18 @@ public class RootLayout extends AnchorPane {
         });
 
         run_button.setOnMouseClicked(event -> {
-            System.out.println("Kliknul RUN");
             blocks.cleanVals();
             blocks.run();
         });
 
         step_button.setOnMouseClicked(event -> {
-            System.out.println("Kliknul STEP");
             blocks.runStep();
         });
 
         reset_step_button.setOnMouseClicked(event -> {
             BlockArray.current_state = null;
             blocks.cleanVals();
+            setLinksBlack();
         });
 
         save_button.setOnMouseClicked(event -> {
@@ -158,6 +157,20 @@ public class RootLayout extends AnchorPane {
             left_pane.getChildren().add(icn);
         }
         buildDragHandlers();
+    }
+
+    private void setLinksBlack() {
+        CubicCurve link;
+        for (Node n : right_pane.getChildren()) {
+
+            if (n.getId() == null)
+                continue;
+
+            if (n instanceof NodeLink) {
+                link = ((NodeLink) n).getLink();
+                link.setStroke(Color.BLACK);
+            }
+        }
     }
 
     private void buildDragHandlers() {

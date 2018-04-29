@@ -22,12 +22,13 @@ public class BlockArray implements Serializable {
     private int size;
     private static final int DEFAULT_CAPACITY = 5;
     private static final Object[] empty_element_data = {};
+
     private @FXML transient AnchorPane right_pane;
-    private @FXML transient Button step_button;
 
     public List<Connection> connections;
     public static BlockArrayItem current_state;
     private  Object[] blockArray;
+
 
     private static final long serialVersionUID = 3787098173998467225L;
 
@@ -36,6 +37,8 @@ public class BlockArray implements Serializable {
         this.blockArray = empty_element_data;
         this.connections = new ArrayList<>();
         current_state = null;
+
+
     }
 
     public void cleanVals() {
@@ -272,6 +275,7 @@ public class BlockArray implements Serializable {
             current_state.item.execute();
         } else if (current_state.item instanceof ItemLast) {
             System.out.println("DONE");
+            setLinksBlack();
             current_state =  null;
         } else if (current_state.con != null) {
             current_state = get(current_state.con.getOutBlock().getName());
@@ -301,9 +305,22 @@ public class BlockArray implements Serializable {
             if (n instanceof NodeLink) {
                 if (n.getId().equals(id)) {
                     link = ((NodeLink) n).getLink();
-                    System.out.println("nasel");
                     link.setStroke(Color.GREEN);
                 }
+            }
+        }
+    }
+
+    private void setLinksBlack() {
+        CubicCurve link;
+        for (Node n : right_pane.getChildren()) {
+
+            if (n.getId() == null)
+                continue;
+
+            if (n instanceof NodeLink) {
+                link = ((NodeLink) n).getLink();
+                link.setStroke(Color.BLACK);
             }
         }
     }
