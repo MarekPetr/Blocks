@@ -8,10 +8,10 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
-import project.GUI.NodeLink;
+import project.GUI.*;
 import project.connection.Connection;
 import project.items.*;
 
@@ -268,9 +268,9 @@ public class BlockArray implements Serializable {
             current_step_items.clear();
             cleanVals();
             get(0).item.execute();
+            colourBlock(get(0).item.getName(), false);
             for (Connection connection : connections) {
                 if (connection.getInBlock().equals(get(0).item)) {
-                    colourLink(connection.getId());
                     connection.transferValue();
                     next_step_items.add(connection.getOutBlock());
                 }
@@ -280,7 +280,7 @@ public class BlockArray implements Serializable {
             current_step_items = new ArrayList<>(next_step_items);
             next_step_items.clear();
             if (current_step_items.isEmpty()) {
-                setLinksBlack();
+                colourBlock("0", true);
                 current_step_items.clear();
                 next_step_items.clear();
                 current_step_index = 0;
@@ -289,9 +289,10 @@ public class BlockArray implements Serializable {
             int items_size = current_step_items.size();
             for (int i = 0; i < items_size; i++) {
                 current_step_items.get(i).execute();
+                colourBlock(current_step_items.get(i).getName(), false);
                 for (Connection connection : connections) {
                     if (connection.getInBlock().equals(current_step_items.get(i))) {
-                        colourLink(connection.getId());
+                        colourBlock(current_step_items.get(i).getName(), false);
                         connection.transferValue();
                         next_step_items.add(connection.getOutBlock());
                     }
@@ -304,35 +305,25 @@ public class BlockArray implements Serializable {
         this.right_pane = right_pane;
     }
 
-    public void colourLink(String id) {
-        CubicCurve link;
+    public void colourBlock(String id, boolean all) {
+        System.out.println("id " + id);
+        VBox block;
         if (right_pane == null)
             return;
 
         for (Node n: right_pane.getChildren()) {
-
             if (n.getId() == null)
                 continue;
+            if (n instanceof DraggableNodeIN || n instanceof DraggableNodeOP ||
+                    n instanceof DraggableNodeOUT) {
 
-            if (n instanceof NodeLink) {
-                if (n.getId().equals(id)) {
-                    link = ((NodeLink) n).getLink();
-                    link.setStroke(Color.GREEN);
+                block = ((DraggableNode) n).getBlock();
+                if (all) {
+                    block.setBorder(null);
+                } else if (n.getId().equals(id)) {
+                    block.setBorder(new Border(
+                            new BorderStroke(Color.DARKGOLDENROD, BorderStrokeStyle.SOLID, null, new BorderWidths(3))));
                 }
-            }
-        }
-    }
-
-    private void setLinksBlack() {
-        CubicCurve link;
-        for (Node n : right_pane.getChildren()) {
-
-            if (n.getId() == null)
-                continue;
-
-            if (n instanceof NodeLink) {
-                link = ((NodeLink) n).getLink();
-                link.setStroke(Color.BLACK);
             }
         }
     }

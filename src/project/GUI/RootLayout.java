@@ -10,8 +10,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 import javafx.stage.FileChooser;
@@ -88,11 +87,12 @@ public class RootLayout extends AnchorPane {
         });
 
         reset_step_button.setOnMouseClicked(event -> {
+
             BlockArray.next_step_items.clear();
             BlockArray.current_step_index = 0;
             BlockArray.current_step_items.clear();
             blocks.cleanVals();
-            setLinksBlack();
+            colourBlock("0", true);
         });
 
         save_button.setOnMouseClicked(event -> {
@@ -157,16 +157,25 @@ public class RootLayout extends AnchorPane {
         buildDragHandlers();
     }
 
-    private void setLinksBlack() {
-        CubicCurve link;
-        for (Node n : right_pane.getChildren()) {
+    public void colourBlock(String id, boolean all) {
+        System.out.println("id " + id);
+        VBox block;
+        if (right_pane == null)
+            return;
 
+        for (Node n: right_pane.getChildren()) {
             if (n.getId() == null)
                 continue;
+            if (n instanceof DraggableNodeIN || n instanceof DraggableNodeOP ||
+                    n instanceof DraggableNodeOUT) {
 
-            if (n instanceof NodeLink) {
-                link = ((NodeLink) n).getLink();
-                link.setStroke(Color.BLACK);
+                block = ((DraggableNode) n).getBlock();
+                if (all) {
+                    block.setBorder(null);
+                } else if (n.getId().equals(id)) {
+                    block.setBorder(new Border(
+                            new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, null, new BorderWidths(3))));
+                }
             }
         }
     }

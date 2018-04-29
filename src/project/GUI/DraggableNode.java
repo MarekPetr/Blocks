@@ -21,6 +21,7 @@ public class DraggableNode extends AnchorPane {
 
     RootLayout layout = null;
 
+    @FXML private VBox block;
     @FXML AnchorPane root_pane;
 
     private EventHandler mContextDragOver;
@@ -71,7 +72,6 @@ public class DraggableNode extends AnchorPane {
         //setId(UUID.randomUUID().toString());
     }
 
-
     public FXMLLoader setResource() {
         return new FXMLLoader(
                 getClass().getResource("/DraggableNode.fxml"));
@@ -101,6 +101,10 @@ public class DraggableNode extends AnchorPane {
     }
 
     public void buildBodyHandler() {
+    }
+
+    public VBox getBlock() {
+        return this.block;
     }
 
     public void buildNodeDragHandlers() {
