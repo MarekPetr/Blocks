@@ -163,6 +163,12 @@ public class BlockArray implements Serializable {
         System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
         this.size--;
         removeConnections(name);
+        for (Connection connection : connections) {
+            if (connection.getOutBlock().getName().equals(name)) {
+                connection.getInBlock().links.remove(connection.getId());
+                connections.remove(connection);
+            }
+        }
     }
 
     private void removeConnections(String input_name) {
