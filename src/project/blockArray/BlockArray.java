@@ -26,7 +26,7 @@ public class BlockArray implements Serializable {
     private @FXML transient Button step_button;
 
     public List<Connection> connections;
-    private static BlockArrayItem current_state;
+    public static BlockArrayItem current_state;
     private  Object[] blockArray;
 
     private static final long serialVersionUID = 3787098173998467225L;
