@@ -269,6 +269,7 @@ public class BlockArray implements Serializable {
             System.out.println("Current state is item: " + current_state.item.getName());
         }
         if (current_state == null) {
+            cleanVals();
             current_state = get(0);
             current_state.item.execute();
             String link = current_state.item.links.get(0);
