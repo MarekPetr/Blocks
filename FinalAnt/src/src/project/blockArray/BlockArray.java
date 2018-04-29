@@ -265,24 +265,30 @@ public class BlockArray implements Serializable {
         if (current_state == null) {
         } else if (current_state.con != null) {
             System.out.println("Current state is connection: " + current_state.con.getId());
-            colourLink(current_state.con.getId());
         } else if (current_state.item != null) {
             System.out.println("Current state is item: " + current_state.item.getName());
         }
         if (current_state == null) {
+            cleanVals();
             current_state = get(0);
             current_state.item.execute();
-        } else if (current_state.item instanceof ItemLast) {
-            System.out.println("DONE");
-            setLinksBlack();
-            current_state =  null;
-        } else if (current_state.con != null) {
-            current_state = get(current_state.con.getOutBlock().getName());
-            current_state.item.execute();
-        } else if (current_state.item != null) {
             String link = current_state.item.links.get(0);
             int index = indexC(link);
             current_state = new BlockArrayItem(connections.get(index));
+            colourLink(current_state.con.getId());
+            current_state.con.transferValue();
+        } else if (current_state.con != null) {
+            current_state = get(current_state.con.getOutBlock().getName());
+            current_state.item.execute();
+            if (current_state.item instanceof ItemLast) {
+                setLinksBlack();
+                current_state =  null;
+                return;
+            }
+            String link = current_state.item.links.get(0);
+            int index = indexC(link);
+            current_state = new BlockArrayItem(connections.get(index));
+            colourLink(current_state.con.getId());
             current_state.con.transferValue();
         }
     }

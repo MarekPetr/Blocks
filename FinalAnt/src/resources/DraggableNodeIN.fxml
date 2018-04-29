@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.scene.shape.Line?>
 <fx:root fx:id="root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="80.0" styleClass="dragicon" stylesheets="@application.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -47,6 +48,12 @@
             <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="116.0" layoutX="14.0" layoutY="4.0" stroke="#8d8d8d" strokeType="INSIDE" width="163.0" />
             <VBox fx:id="table" layoutX="22.0" layoutY="15.0" prefHeight="96.0" prefWidth="140.0">
              <children>
+                 <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                         <Label prefHeight="26.0" prefWidth="100.0" text="Name"/>
+                         <Label prefHeight="26.0" prefWidth="100.0" text="Value"/>
+                     </children>
+                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0">
                    <children>
                       <TextField fx:id="key1" prefHeight="26.0" prefWidth="170.0" />

@@ -1,58 +1,58 @@
-<project name="proj2" basedir=".">
-    <description>
-        run build file
-    </description>
-    <!-- set global properties for this build -->
-    <property name="main.src.dir" location="src"/>
-    <property name="main.build.dir" location="build/main"/>
-    <property name="test.src.dir" location="test"/>
-    <property name="test.build.dir" location="build/test"/>
-
-	<path id="classpath.test">
-        <pathelement location="lib/junit-4.12.jar"/>
-        <pathelement location="lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${main.build.dir}"/>
-    </path>
-
-    <target name="compile">
-        <mkdir dir="${main.build.dir}"/>
-        <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false"/>
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<project name="JavaFX Hello World Example" default="default" basedir="."
+  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+ 
+  <property name="JAVA_HOME" value="/usr/lib/jvm/java-8-oracle"/>
+  <property name="build.src.dir" value="src/src"/>
+  <property name="build.classes.dir" value="build"/>
+  <property name="build.dist.dir" value="dest_client"/>
+  <property name="build.resources.dir" value="src/resources"/>
+ 
+  <target name="compile" depends="clean,build">
+ 
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+      uri="javafx:com.sun.javafx.tools.ant"
+      classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
+ 	  
+      <fx:application id="BlocksID"
+        name="JavaFXBlocksApp"
+        mainClass="project.Main"/>
         
-        <mkdir dir="dest_client"/>
-        <jar destfile="dest_client/blocks.jar" basedir="${main.build.dir}">
-            <manifest>
-                <attribute name="Main-Class" value="project.Main"/>
-            </manifest>
-        </jar>
-        
-        <mkdir dir="${test.build.dir}"/>
-        <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
-            <classpath refid="classpath.test"/>
-        </javac>
-    </target>
-    
-    <target name="test" depends="compile">
-    	<junit printsummary="on" haltonfailure="yes" fork="true">
-        	<classpath>
-                <path refid="classpath.test"/>
-                <pathelement location="${test.build.dir}"/>
-            </classpath>
-            <formatter type="brief" usefile="false" />
-            <batchtest>
-                <fileset dir="${test.src.dir}" includes="**/*TestBlocks.java" />
-            </batchtest>
-        </junit>
-    </target>
-    
-    <target name="run" depends="compile">
-    	<java jar="dest_client/blocks.jar" fork="true"/>
-    </target>
-    	 
-
-    <target name="clean"
-            description="clean up">
-        <!-- Delete the ${main.build.dir} and ${dist} directory trees -->
-        <delete dir="${test.build.dir}"/>
-        <delete dir="${main.build.dir}"/>
-    </target>
+      <fx:resources id="appRes">
+        <fx:fileset dir="${build.dist.dir}" includes="Blocks.jar"/>
+      </fx:resources>
+ 
+      <fx:jar destfile="${build.dist.dir}/Blocks.jar">
+        <fx:application refid="BlocksID"/>
+        <fx:resources refid="appRes"/>
+        <fileset dir="${build.classes.dir}"/>
+        <fileset dir="${build.resources.dir}"/>
+      </fx:jar>
+  </target>
+ 
+  <target name="clean">
+    <mkdir dir="${build.classes.dir}"/>
+    <mkdir dir="${build.dist.dir}"/>    
+     <delete>
+      <fileset dir="${build.classes.dir}" includes="**/*"/>
+      <fileset dir="${build.dist.dir}" includes="**/*"/>
+    </delete>
+  </target>
+  
+  <target name="build" depends="clean"> 
+    <javac includeantruntime="false"
+      srcdir="${build.src.dir}"
+      destdir="${build.classes.dir}"
+      fork="yes"
+      executable="${JAVA_HOME}/bin/javac"
+      source="8"
+      debug="on">
+    </javac>
+  </target>
+  
+  <target name="run">
+        <java jar="${build.dist.dir}/Blocks.jar" fork="true"/>
+  </target>  
+ 
 </project>
