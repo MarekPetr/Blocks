@@ -38,7 +38,6 @@ public class LoadScheme {
 
             System.out.println("Name: " + toLoad.get(i).item.getName() + ", type: " + toLoad.get(i).item.getType());
 
-
             node = rootLayout.addNode(type, id, false);
 
             double coordsX = toLoad.get(i).item.getX();
@@ -88,7 +87,7 @@ public class LoadScheme {
         }
     }
 
-    private void deleteNodes() {
+    public void deleteNodes() {
         for (ListIterator<Node> iterNode = right_pane.getChildren().listIterator();
              iterNode.hasNext();)
         {

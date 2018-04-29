@@ -1,6 +1,5 @@
 package project.blockArray;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,14 +7,11 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
-import javafx.scene.shape.Line;
-import project.GUI.DraggableNode;
 import project.GUI.NodeLink;
-import project.GUI.RootLayout;
 import project.connection.Connection;
 import project.items.*;
 
@@ -26,6 +22,8 @@ public class BlockArray implements Serializable {
     private int size;
     private static final int DEFAULT_CAPACITY = 5;
     private static final Object[] empty_element_data = {};
+    private @FXML transient AnchorPane right_pane;
+    private @FXML transient Button step_button;
 
     public List<Connection> connections;
     private static BlockArrayItem current_state;
@@ -265,7 +263,7 @@ public class BlockArray implements Serializable {
         } else if (current_state.con != null) {
             System.out.println("Current state is connection: " + current_state.con.getId());
             //System.out.println("id: " + current_state.con.getId());
-            //colourLink(current_state.con.getId());
+            colourLink(current_state.con.getId());
         } else if (current_state.item != null) {
             System.out.println("Current state is item: " + current_state.item.getName());
         }
@@ -283,6 +281,30 @@ public class BlockArray implements Serializable {
             int index = indexC(link);
             current_state = new BlockArrayItem(connections.get(index));
             current_state.con.transferValue();
+        }
+    }
+
+    public void setRightPane(AnchorPane right_pane) {
+        this.right_pane = right_pane;
+    }
+
+    public void colourLink(String id) {
+        CubicCurve link;
+        if (right_pane == null)
+            return;
+
+        for (Node n: right_pane.getChildren()) {
+
+            if (n.getId() == null)
+                continue;
+
+            if (n instanceof NodeLink) {
+                if (n.getId().equals(id)) {
+                    link = ((NodeLink) n).getLink();
+                    System.out.println("nasel");
+                    link.setStroke(Color.GREEN);
+                }
+            }
         }
     }
 }

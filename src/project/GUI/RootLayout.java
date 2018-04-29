@@ -41,8 +41,10 @@ public class RootLayout extends AnchorPane {
     private @FXML SplitPane base_pane;
     private @FXML Button run_button;
     private @FXML Button step_button;
+    private @FXML Button reset_step_button;
     private @FXML Button load_button;
     private @FXML Button save_button;
+    private @FXML Button clear_button;
 
     public @FXML AnchorPane right_pane;
     private @FXML VBox left_pane;
@@ -74,6 +76,12 @@ public class RootLayout extends AnchorPane {
 
     @FXML
     private void initialize() {
+        clear_button.setOnMouseClicked(event -> {
+            LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
+            loadScheme.deleteNodes();
+            blocks = new BlockArray();
+        });
+
         run_button.setOnMouseClicked(event -> {
             System.out.println("Kliknul RUN");
             blocks.cleanVals();
@@ -83,6 +91,10 @@ public class RootLayout extends AnchorPane {
         step_button.setOnMouseClicked(event -> {
             System.out.println("Kliknul STEP");
             blocks.runStep();
+        });
+
+        reset_step_button.setOnMouseClicked(event -> {
+            //reset
         });
 
         save_button.setOnMouseClicked(event -> {
@@ -145,27 +157,6 @@ public class RootLayout extends AnchorPane {
             left_pane.getChildren().add(icn);
         }
         buildDragHandlers();
-    }
-
-    // TODO COLORLINK IN BLOCKARRAY ON LINE 268
-    public static void colourLink(String id, AnchorPane right_pane) {
-        CubicCurve link;
-        if (right_pane == null)
-            return;
-
-        for (Node n: right_pane.getChildren()) {
-
-            if (n.getId() == null)
-                continue;
-
-            if (n instanceof NodeLink) {
-                if (n.getId().equals(id)) {
-                    link = ((NodeLink) n).getLink();
-                    System.out.println("nasel");
-                    link.setStroke(Color.GREEN);
-                }
-            }
-        }
     }
 
     private void buildDragHandlers() {
@@ -252,6 +243,7 @@ public class RootLayout extends AnchorPane {
 
                     //add our link at the top of the rendering order so it's rendered first
                     right_pane.getChildren().add(0,link);
+                    blocks.setRightPane(right_pane);
 
                     DraggableNode source = null;
                     DraggableNode target = null;
@@ -291,6 +283,7 @@ public class RootLayout extends AnchorPane {
         }
         node.setType(type);
         right_pane.getChildren().add(node);
+        blocks.setRightPane(right_pane);
 
         if (toList) {
             switch (node.getType()) {
