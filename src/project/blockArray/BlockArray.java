@@ -26,7 +26,9 @@ public class BlockArray implements Serializable {
     private @FXML transient AnchorPane right_pane;
 
     public List<Connection> connections;
-    public static BlockArrayItem current_state;
+    public static int current_step_index;
+    public static List<AbstractItem> current_step_items;
+    public static List<AbstractItem> next_step_items;
     private  Object[] blockArray;
 
 
@@ -36,9 +38,9 @@ public class BlockArray implements Serializable {
         super();
         this.blockArray = empty_element_data;
         this.connections = new ArrayList<>();
-        current_state = null;
-
-
+        current_step_index = 0;
+        current_step_items = new ArrayList<>();
+        next_step_items = new ArrayList<>();
     }
 
     public void cleanVals() {
@@ -262,34 +264,39 @@ public class BlockArray implements Serializable {
     }
 
     public void runStep() {
-        if (current_state == null) {
-        } else if (current_state.con != null) {
-            System.out.println("Current state is connection: " + current_state.con.getId());
-        } else if (current_state.item != null) {
-            System.out.println("Current state is item: " + current_state.item.getName());
-        }
-        if (current_state == null) {
+        if (current_step_index == 0) {
+            current_step_items.clear();
             cleanVals();
-            current_state = get(0);
-            current_state.item.execute();
-            String link = current_state.item.links.get(0);
-            int index = indexC(link);
-            current_state = new BlockArrayItem(connections.get(index));
-            colourLink(current_state.con.getId());
-            current_state.con.transferValue();
-        } else if (current_state.con != null) {
-            current_state = get(current_state.con.getOutBlock().getName());
-            current_state.item.execute();
-            if (current_state.item instanceof ItemLast) {
+            get(0).item.execute();
+            for (Connection connection : connections) {
+                if (connection.getInBlock().equals(get(0).item)) {
+                    colourLink(connection.getId());
+                    connection.transferValue();
+                    next_step_items.add(connection.getOutBlock());
+                }
+            }
+            current_step_index++;
+        } else {
+            current_step_items = new ArrayList<>(next_step_items);
+            next_step_items.clear();
+            if (current_step_items.isEmpty()) {
                 setLinksBlack();
-                current_state =  null;
+                current_step_items.clear();
+                next_step_items.clear();
+                current_step_index = 0;
                 return;
             }
-            String link = current_state.item.links.get(0);
-            int index = indexC(link);
-            current_state = new BlockArrayItem(connections.get(index));
-            colourLink(current_state.con.getId());
-            current_state.con.transferValue();
+            int items_size = current_step_items.size();
+            for (int i = 0; i < items_size; i++) {
+                current_step_items.get(i).execute();
+                for (Connection connection : connections) {
+                    if (connection.getInBlock().equals(current_step_items.get(i))) {
+                        colourLink(connection.getId());
+                        connection.transferValue();
+                        next_step_items.add(connection.getOutBlock());
+                    }
+                }
+            }
         }
     }
 
