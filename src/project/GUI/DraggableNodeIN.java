@@ -25,9 +25,9 @@ public class DraggableNodeIN extends DraggableNode {
     @FXML private TextField value3;
     @FXML private AnchorPane body_handle;
 
-    private String current_key;
-    private int current_index;
-    private List<String> keys = new ArrayList<>(5);
+    public String current_key;
+    public int current_index;
+    public List<String> keys = new ArrayList<>(5);
 
     @FXML private Pane table_pane;
 
@@ -90,8 +90,8 @@ public class DraggableNodeIN extends DraggableNode {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
                 TextField input_field = (TextField) ke.getSource();
-                if (keys.size() > index && keys.get(index - 1) != null) {
-                    layout.blocks.get(getId()).item.inValue.remove(current_key, layout.blocks.get(getId()).item.inValue.get(current_key));
+                if (keys.size() >= index && keys.get(index - 1) != null) {
+                    layout.blocks.get(getId()).item.inValue.remove(current_key);
                     System.out.println("Removing key " + current_key);
                 }
                 keys.add(index - 1, input_field.getText());

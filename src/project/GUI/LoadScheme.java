@@ -10,6 +10,8 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.UUID;
 
+import static project.GUI.DragIconType.in;
+
 /**
  * Created by petr on 4/27/18.
  */
@@ -36,7 +38,6 @@ public class LoadScheme {
         for (int i = 0; i < toLoad.size(); i++) {
             DragIconType type = toLoad.get(i).item.getType();
             String id = toLoad.get(i).item.getName();
-
             System.out.println("Name: " + toLoad.get(i).item.getName() + ", type: " + toLoad.get(i).item.getType());
 
             node = rootLayout.addNode(type, id, false);

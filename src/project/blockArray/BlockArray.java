@@ -160,13 +160,6 @@ public class BlockArray implements Serializable {
     }
 
     public void remove(String name) {
-        System.out.println("Item " + name + " is being removed.");
-        int index = index(name);
-        if (get(index).item instanceof ItemFirst) {
-            this.first = true;
-        }
-        System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
-        this.size--;
         removeConnections(name);
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getOutBlock().getName().equals(name)) {
@@ -175,6 +168,13 @@ public class BlockArray implements Serializable {
                 System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
             }
         }
+        System.out.println("Item " + name + " is being removed.");
+        int index = index(name);
+        if (get(index).item instanceof ItemFirst) {
+            this.first = true;
+        }
+        System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
+        this.size--;
     }
 
     private void removeConnections(String input_name) {
