@@ -169,13 +169,11 @@ public class BlockArray implements Serializable {
         System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
         this.size--;
         removeConnections(name);
-        if (!connections.isEmpty()) {
-            for (Connection connection : connections) {
-                if (connection.getOutBlock().getName().equals(name)) {
-                    System.out.println("Removing connection " + connection.getId() + " with input: " + connection.getInBlock().getName() + " and output: " + name);
-                    connection.getInBlock().links.remove(connection.getId());
-                    connections.remove(connection);
-                }
+        for (int i = 0; i < connections.size(); i++) {
+            if (connections.get(i).getOutBlock().getName().equals(name)) {
+                System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + connections.get(i).getInBlock().getName() + " and output: " + name);
+                connections.get(i).getInBlock().links.remove(connections.get(i).getId());
+                System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
             }
         }
     }
