@@ -278,7 +278,7 @@ public class BlockArray implements Serializable {
                 highlightBlock(current_step_items.get(i).getName());
                 for (Connection connection : connections) {
                     if (connection.getInBlock().equals(current_step_items.get(i))) {
-                        //highlightBlock(current_step_items.get(i).getName());
+                        highlightBlock(current_step_items.get(i).getName());
                         connection.transferValue();
                         next_step_items.add(connection.getOutBlock());
                     }

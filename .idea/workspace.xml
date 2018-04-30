@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1cc8367-db88-4da1-a82d-d81a2762c5e7" name="Default" comment="workspace fix">
-<<<<<<< Updated upstream
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/DraggableNodeOUT.fxml" afterPath="$PROJECT_DIR$/resources/DraggableNodeOUT.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/NodeLink.fxml" afterPath="$PROJECT_DIR$/resources/NodeLink.fxml" />
-=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" afterDir="false" />
->>>>>>> Stashed changes
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +18,7 @@
       <file leaf-file-name="DraggableNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2070">
+            <state relative-caret-position="-2004">
               <caret line="106" column="26" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
             </state>
           </provider>
@@ -32,13 +27,8 @@
       <file leaf-file-name="RootLayout.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/RootLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-            <state relative-caret-position="1242">
-              <caret line="92" column="50" lean-forward="false" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
-=======
             <state relative-caret-position="324">
               <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
->>>>>>> Stashed changes
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,8 +36,6 @@
           </provider>
         </entry>
       </file>
-<<<<<<< Updated upstream
-=======
       <file leaf-file-name="DraggableNode.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/DraggableNode.fxml">
           <provider selected="true" editor-type-id="text-editor">
@@ -58,7 +46,16 @@
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
->>>>>>> Stashed changes
+      <file leaf-file-name="DraggableNodeOP.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOP.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
       <file leaf-file-name="DraggableNodeIN.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/DraggableNodeIN.fxml">
           <provider selected="true" editor-type-id="text-editor">
@@ -69,27 +66,11 @@
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file leaf-file-name="DraggableNodeOP.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOP.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
       <file leaf-file-name="DraggableNodeOUT.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOUT.fxml">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-            <state relative-caret-position="234">
-              <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="55" selection-end-column="43" />
-              <folding />
-=======
-            <state relative-caret-position="368">
+            <state relative-caret-position="288">
               <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
->>>>>>> Stashed changes
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -98,46 +79,11 @@
       <file leaf-file-name="BlockArray.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-            <state relative-caret-position="455">
-              <caret line="329" column="13" lean-forward="false" selection-start-line="329" selection-start-column="13" selection-end-line="329" selection-end-column="13" />
+            <state relative-caret-position="198">
+              <caret line="280" column="24" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NodeLink.fxml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/NodeLink.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="16" column="49" lean-forward="false" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Scene.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Scene.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63540">
-              <caret line="3765" column="0" lean-forward="false" selection-start-line="3765" selection-start-column="0" selection-end-line="3765" selection-end-column="0" />
-              <folding />
-=======
-            <state relative-caret-position="268">
-              <caret line="285" column="13" lean-forward="true" selection-start-line="285" selection-start-column="13" selection-end-line="285" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#9797#9798#0" expanded="true" />
-                <element signature="e#9841#9842#0" expanded="true" />
-                <element signature="e#11018#11019#0" expanded="true" />
-                <element signature="e#11056#11057#0" expanded="true" />
-              </folding>
->>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -145,14 +91,8 @@
       <file leaf-file-name="ItemDiv.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/items/ItemDiv.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-            <state relative-caret-position="324">
-              <caret line="21" column="63" lean-forward="false" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
-              <folding />
-=======
             <state relative-caret-position="414">
               <caret line="21" column="63" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
->>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -175,34 +115,6 @@
         <option value="FxmlFile" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>button</find>
-      <find>toFront</find>
-      <find>org</find>
-      <find>Bindings.add(target.layoutXProperty(), (40)));</find>
-      <find>BlockArray</find>
-      <find>name</find>
-      <find>/</find>
-      <find>right_pane.get</find>
-      <find>update</find>
-      <find>Children</find>
-      <find>step_button</find>
-      <find>setLinks</find>
-      <find>0</find>
-      <find>link</find>
-      <find>new</find>
-      <find>Link</find>
-      <find>clean</find>
-      <find>setBorderBlock</find>
-      <find>colourBlock</find>
-      <find>color</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>colourBlock</replace>
-      <replace>setBlockBorder</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -244,16 +156,12 @@
         <option value="$PROJECT_DIR$/resources/DraggableNode.fxml" />
         <option value="$PROJECT_DIR$/resources/DraggableNodeIN.fxml" />
         <option value="$PROJECT_DIR$/resources/DraggableNodeOP.fxml" />
+        <option value="$PROJECT_DIR$/resources/DraggableNodeOUT.fxml" />
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" />
         <option value="$PROJECT_DIR$/src/project/items/ItemDiv.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
-<<<<<<< Updated upstream
-        <option value="$PROJECT_DIR$/resources/DraggableNodeOUT.fxml" />
-        <option value="$PROJECT_DIR$/resources/NodeLink.fxml" />
-=======
         <option value="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
->>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -266,180 +174,50 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="23" />
-    <option name="width" value="1922" />
-    <option name="height" value="825" />
-  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-<<<<<<< Updated upstream
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="items" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GUI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blockArray" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blocks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Blocks" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="blockArray" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-=======
-      <pane id="PackagesPane" />
->>>>>>> Stashed changes
-      <pane id="AndroidView" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
-    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
-    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="blocks" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/project/GUI/tableview" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="project.GUI.tableview" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/project/GUI" />
-      <recent name="$PROJECT_DIR$/resources" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -853,13 +631,8 @@
       <workItem from="1525034992199" duration="3382000" />
       <workItem from="1525064127938" duration="1617000" />
       <workItem from="1525070725840" duration="27000" />
-<<<<<<< Updated upstream
-      <workItem from="1525072592283" duration="500000" />
-      <workItem from="1525074184446" duration="71000" />
-=======
       <workItem from="1525072592283" duration="423000" />
-      <workItem from="1525073131622" duration="1446000" />
->>>>>>> Stashed changes
+      <workItem from="1525073131622" duration="2148000" />
     </task>
     <task id="LOCAL-00001" summary="workspace fix">
       <created>1524678382426</created>
@@ -872,50 +645,15 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< Updated upstream
-    <option name="totallyTimeSpent" value="52915000" />
-=======
-    <option name="totallyTimeSpent" value="54213000" />
->>>>>>> Stashed changes
+    <option name="totallyTimeSpent" value="54915000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="1922" height="825" extended-state="0" />
     <editor active="true" />
     <layout>
-<<<<<<< Updated upstream
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24344176" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2984375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-=======
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3288948" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -943,7 +681,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
->>>>>>> Stashed changes
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -955,10 +692,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="workspace fix" />
     <option name="LAST_COMMIT_MESSAGE" value="workspace fix" />
-  </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/project/GUI/CircleItem.java" />
@@ -1018,13 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1133,13 +859,10 @@
         </state>
       </provider>
     </entry>
-<<<<<<< Updated upstream
-=======
     <entry file="file://$PROJECT_DIR$/resources/NodeLink.fxml">
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
->>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/resources/DraggableNode.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -1156,75 +879,55 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOP.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-<<<<<<< Updated upstream
-    <entry file="file://$PROJECT_DIR$/src/project/GUI/NodeLink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1854">
-          <caret line="118" column="44" lean-forward="false" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63540">
-          <caret line="3765" column="0" lean-forward="false" selection-start-line="3765" selection-start-column="0" selection-end-line="3765" selection-end-column="0" />
-          <folding />
-=======
-    <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOUT.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/project/GUI/NodeLink.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2369">
           <caret line="118" column="44" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
->>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Scene.java" />
     <entry file="file://$PROJECT_DIR$/src/project/items/ItemDiv.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state relative-caret-position="324">
-          <caret line="21" column="63" lean-forward="false" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
-          <folding />
-=======
         <state relative-caret-position="414">
           <caret line="21" column="63" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
->>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOP.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="106" lean-forward="true" selection-start-line="3" selection-start-column="106" selection-end-line="3" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOUT.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2070">
+        <state relative-caret-position="-2004">
           <caret line="106" column="26" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/GUI/RootLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state relative-caret-position="1242">
-          <caret line="92" column="50" lean-forward="false" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
-=======
         <state relative-caret-position="324">
           <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
->>>>>>> Stashed changes
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1233,120 +936,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state relative-caret-position="455">
-          <caret line="329" column="13" lean-forward="false" selection-start-line="329" selection-start-column="13" selection-end-line="329" selection-end-column="13" />
-=======
-        <state relative-caret-position="268">
-          <caret line="285" column="13" lean-forward="true" selection-start-line="285" selection-start-column="13" selection-end-line="285" selection-end-column="13" />
->>>>>>> Stashed changes
+        <state relative-caret-position="198">
+          <caret line="280" column="24" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9797#9798#0" expanded="true" />
-            <element signature="e#9841#9842#0" expanded="true" />
-            <element signature="e#11018#11019#0" expanded="true" />
-            <element signature="e#11056#11057#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/DraggableNodeOUT.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="55" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/NodeLink.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="16" column="49" lean-forward="false" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>Blocks</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Blocks</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
