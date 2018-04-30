@@ -85,6 +85,10 @@ public class RootLayout extends AnchorPane {
         });
 
         step_button.setOnMouseClicked(event -> {
+            if (blocks.cyclesExists()) {
+                System.out.println("ERROR: Cycle found.");
+                return;
+            }
             blocks.runStep();
         });
 
@@ -274,13 +278,15 @@ public class RootLayout extends AnchorPane {
         DraggableNode node;
         if (type == in) {
             node = new DraggableNodeIN(this, id);
-            Map<String, Double> map = blocks.get(id).item.getInValue();
-            for (Map.Entry<String, Double> entry : map.entrySet()) {
-                ((DraggableNodeIN) node).keys.add(entry.getKey());
-                ((DraggableNodeIN) node).keys.add(entry.getValue().toString());
+            if (!toList) {
+                Map<String, Double> map = blocks.get(id).item.getInValue();
+                for (Map.Entry<String, Double> entry : map.entrySet()) {
+                    ((DraggableNodeIN) node).keys.add(entry.getKey());
+                    ((DraggableNodeIN) node).keys.add(entry.getValue().toString());
+                }
+                ((DraggableNodeIN) node).current_index = 0;
+                ((DraggableNodeIN) node).current_key = ((DraggableNodeIN) node).keys.get(0);
             }
-            ((DraggableNodeIN) node).current_index = 0;
-            ((DraggableNodeIN) node).current_key = ((DraggableNodeIN) node).keys.get(0);
         } else if (type == out) {
             node = new DraggableNodeOUT(this, id);
         } else {

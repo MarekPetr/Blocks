@@ -3,6 +3,7 @@ package project.blockArray;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import javafx.fxml.FXML;
@@ -161,13 +162,15 @@ public class BlockArray implements Serializable {
 
     public void remove(String name) {
         removeConnections(name);
+        List<Connection> to_remove = new ArrayList<>();
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getOutBlock().getName().equals(name)) {
                 System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + connections.get(i).getInBlock().getName() + " and output: " + name);
                 connections.get(i).getInBlock().links.remove(connections.get(i).getId());
-                System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
+                to_remove.add(connections.get(i));
             }
         }
+        connections.removeAll(to_remove);
         System.out.println("Item " + name + " is being removed.");
         int index = index(name);
         if (get(index).item instanceof ItemFirst) {
@@ -178,12 +181,14 @@ public class BlockArray implements Serializable {
     }
 
     private void removeConnections(String input_name) {
+        List<Connection> to_remove = new ArrayList<>();
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getInBlock().getName().equals(input_name)) {
                 System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + input_name + " and output: " + connections.get(i).getOutBlock().getName());
-                System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
+                to_remove.add(connections.get(i));
             }
         }
+        connections.removeAll(to_remove);
     }
 
     public void removeConnection(String input_name, String output_name) {
@@ -212,10 +217,52 @@ public class BlockArray implements Serializable {
         return -1;
     }
 
+    public boolean cyclesExists() {
+        HashSet<Integer> whiteSet = new HashSet<>();
+        HashSet<Integer> graySet = new HashSet<>();
+        HashSet<Integer> blackSet = new HashSet<>();
+
+        for (int i = 0; i < blockArray.length ; i++) {
+            whiteSet.add(i);
+        }
+        for (int i = 0; i < size() ; i++) {
+            if(whiteSet.contains(i) &&
+                    isCycleUtil(i,whiteSet,graySet,blackSet)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isCycleUtil(int vertex, HashSet<Integer> whiteSet, HashSet<Integer> graySet, HashSet<Integer> blackSet){
+        whiteSet.remove(vertex);
+        graySet.add(vertex);
+
+        for (int i = 0; i < get(vertex).item.links.size() ; i++) {
+            String id = get(vertex).item.links.get(i);
+            int index = indexC(id);
+            String name = connections.get(index).getOutBlock().getName();
+            int adjVertex = index(name);
+
+            if (graySet.contains(adjVertex))
+                return true;
+
+            if (blackSet.contains(adjVertex))
+                continue;
+
+            if (isCycleUtil(adjVertex, whiteSet, graySet, blackSet))
+                return true;
+        }
+        graySet.remove(vertex);
+        blackSet.add(vertex);
+        return false;
+    }
+
     public void run() {
-        /*if (cyclesExists()) {
+        if (cyclesExists()) {
+            System.out.println("ERROR: Cycle found.");
             return;
-        }*/
+        }
         
         if (!contains(ItemFirst.class)) {
             System.out.println("ERROR: System does not contain block of type ItemFist.");
