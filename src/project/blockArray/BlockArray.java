@@ -30,6 +30,7 @@ public class BlockArray implements Serializable {
     public static int current_step_index;
     public static List<AbstractItem> current_step_items;
     public static List<AbstractItem> next_step_items;
+    private static List<AbstractItem> run_items;
     private  Object[] blockArray;
 
 
@@ -42,6 +43,7 @@ public class BlockArray implements Serializable {
         current_step_index = 0;
         current_step_items = new ArrayList<>();
         next_step_items = new ArrayList<>();
+        run_items = new ArrayList<>();
     }
 
     public void cleanVals() {
@@ -161,9 +163,21 @@ public class BlockArray implements Serializable {
     public void remove(String name) {
         System.out.println("Item " + name + " is being removed.");
         int index = index(name);
+        if (get(index).item instanceof ItemFirst) {
+            this.first = true;
+        }
         System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
         this.size--;
         removeConnections(name);
+        if (!connections.isEmpty()) {
+            for (Connection connection : connections) {
+                if (connection.getOutBlock().getName().equals(name)) {
+                    System.out.println("Removing connection " + connection.getId() + " with input: " + connection.getInBlock().getName() + " and output: " + name);
+                    connection.getInBlock().links.remove(connection.getId());
+                    connections.remove(connection);
+                }
+            }
+        }
     }
 
     private void removeConnections(String input_name) {
@@ -201,42 +215,11 @@ public class BlockArray implements Serializable {
         return -1;
     }
 
-    public boolean cyclesExists() {
-        for (int i = 0; i < connections.size(); i++) {
-            AbstractItem in = connections.get(i).getInBlock();
-            String name = in.getName();
-            for (int j = 0; j < index(name); j++) {
-                if (connections.get(i).getOutBlock().equals(get(j).item)) {
-                    System.out.println("ERROR: Cycle found.");
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private void checkIfMissing() {
-        for (int i = 0; i < size; i++)
-            if (!(get(i).item instanceof ItemFirst)) {
-                for (Connection connection : connections) {
-                    if (connection.getOutBlock().equals(get(i).item)) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    System.out.println("Missing connection between blocks.");
-                    System.exit(-1);
-                }
-                found = false;
-            }
-    }
-
     public void run() {
-        if (cyclesExists()) {
+        /*if (cyclesExists()) {
             return;
-        }
+        }*/
         
-        //checkIfMissing();
         if (!contains(ItemFirst.class)) {
             System.out.println("ERROR: System does not contain block of type ItemFist.");
             return;
@@ -252,16 +235,18 @@ public class BlockArray implements Serializable {
             return;
         }
 
-        for (int i = 0; i < size; i++) {
-            if (get(i).item.links != null) {
-                get(i).item.execute();
-                for (Connection connection : connections) {
-                    if (connection.getInBlock().equals(get(i).item)) {
-                        connection.transferValue();
-                    }
+        run_items.add(get(0).item);
+        while (!(run_items.isEmpty())) {
+            run_items.get(0).execute();
+            for (Connection connection : connections) {
+                if (connection.getInBlock().equals(run_items.get(0))) {
+                    connection.transferValue();
+                    run_items.add(connection.getOutBlock());
                 }
             }
+            run_items.remove(0);
         }
+        run_items.clear();
     }
 
     public void runStep() {
@@ -288,12 +273,12 @@ public class BlockArray implements Serializable {
                 return;
             }
             int items_size = current_step_items.size();
-            for (AbstractItem current_step_item : current_step_items) {
-                current_step_item.execute();
-                highlightBlock(current_step_item.getName());
+            for (int i = 0; i < items_size; i++) {
+                current_step_items.get(i).execute();
+                highlightBlock(current_step_items.get(i).getName());
                 for (Connection connection : connections) {
-                    if (connection.getInBlock().equals(current_step_item)) {
-                        highlightBlock(current_step_item.getName());
+                    if (connection.getInBlock().equals(current_step_items.get(i))) {
+                        //highlightBlock(current_step_items.get(i).getName());
                         connection.transferValue();
                         next_step_items.add(connection.getOutBlock());
                     }
@@ -309,7 +294,7 @@ public class BlockArray implements Serializable {
     private void highlightBlock(String id) {
 
         if (lastStepID != null) {
-            System.out.println("lastStep" + lastStepID);
+            //System.out.println("lastStep" + lastStepID);
             setBlockBorder(lastStepID, true);
         }
         setBlockBorder(id, false);
@@ -317,7 +302,7 @@ public class BlockArray implements Serializable {
 
     public void setBlockBorder(String id, boolean deleteBorder) {
 
-        System.out.println("id " + id);
+        //System.out.println("id " + id);
         VBox block;
         if (right_pane == null)
             return;
