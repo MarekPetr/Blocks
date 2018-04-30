@@ -308,6 +308,10 @@ public class RootLayout extends AnchorPane {
                     blocks.addToList(new BlockArrayItem(new ItemDiv(node.getId())));
                     System.out.println("ItemDiv added.");
                     break;
+                case pow:
+                    blocks.addToList(new BlockArrayItem(new ItemPow(node.getId())));
+                    System.out.println("ItemPow added.");
+                    break;
             }
             blocks.get(node.getId()).item.setType(node.getType());
         }
