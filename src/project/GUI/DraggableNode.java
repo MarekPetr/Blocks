@@ -54,10 +54,11 @@ public class DraggableNode extends AnchorPane {
 
     // list of IDs of currently connected links to this node
     private final List mLinkIds = new ArrayList();
-    public String id;
+    private String id;
 
     public DraggableNode(RootLayout lay, String id) {
         // dragging has to be handled in root Anchor - referenced by 'this'
+        this.id = id;
         self = this;
         FXMLLoader fxmlLoader = setResource();
 
@@ -69,14 +70,10 @@ public class DraggableNode extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-        this.id = id;
-        System.out.println("id NODE init: " + this.id);
         setId(id);
     }
 
     public String getNodeId() {
-        System.out.println("id NODE fce: " + this.id);
         return this.id;
     }
 

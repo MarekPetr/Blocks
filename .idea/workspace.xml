@@ -4,21 +4,12 @@
     <list default="true" id="a1cc8367-db88-4da1-a82d-d81a2762c5e7" name="Default" comment="workspace fix">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNode$1.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNode$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNode.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNodeIN.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNodeIN.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNodeOP.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/GUI/DraggableNodeOP.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/GUI/LoadScheme.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/GUI/LoadScheme.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/GUI/RootLayout$1.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/GUI/RootLayout$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/GUI/RootLayout.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/GUI/RootLayout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/blockArray/BlockArray.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/blockArray/BlockArray.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocks/project/items/AbstractItem.class" afterPath="$PROJECT_DIR$/out/production/Blocks/project/items/AbstractItem.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" afterPath="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java" afterPath="$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java" afterPath="$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/LoadScheme.java" afterPath="$PROJECT_DIR$/src/project/GUI/LoadScheme.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/GUI/RootLayout.java" afterPath="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" afterPath="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/project/items/AbstractItem.java" afterPath="$PROJECT_DIR$/src/project/items/AbstractItem.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +26,11 @@
         <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="388">
-              <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
-              <folding />
+              <caret line="75" column="13" lean-forward="false" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+              <folding>
+                <element signature="e#2168#2169#0" expanded="true" />
+                <element signature="e#2198#2199#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,8 +38,8 @@
       <file leaf-file-name="RootLayout.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/RootLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="277" column="47" lean-forward="false" selection-start-line="277" selection-start-column="47" selection-end-line="277" selection-end-column="47" />
+            <state relative-caret-position="975">
+              <caret line="114" column="46" lean-forward="true" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoadScheme.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LoadScheme.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/LoadScheme.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1458">
-              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state relative-caret-position="342">
+              <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -73,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DraggableNodeOP.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DraggableNodeOP.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="334">
-              <caret line="29" column="42" lean-forward="true" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+              <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#465#466#0" expanded="true" />
@@ -90,7 +84,7 @@
       <file leaf-file-name="DraggableNodeOUT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeOUT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-54">
+            <state relative-caret-position="108">
               <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding>
                 <element signature="e#719#720#0" expanded="true" />
@@ -103,8 +97,8 @@
       <file leaf-file-name="DraggableNodeIN.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+            <state relative-caret-position="198">
+              <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
               <folding>
                 <element signature="e#913#914#0" expanded="true" />
                 <element signature="e#946#947#0" expanded="true" />
@@ -116,7 +110,7 @@
       <file leaf-file-name="AbstractItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/items/AbstractItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-288">
+            <state relative-caret-position="-450">
               <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
               <folding>
                 <element signature="e#1612#1613#0" expanded="true" />
@@ -139,10 +133,17 @@
       <file leaf-file-name="BlockArray.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2664">
-              <caret line="23" column="50" lean-forward="true" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+            <state relative-caret-position="-188">
+              <caret line="46" column="23" lean-forward="true" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3127#3128#0" expanded="false" />
+                <element signature="e#3159#3160#0" expanded="false" />
+                <element signature="e#10206#10207#0" expanded="false" />
+                <element signature="e#10250#10251#0" expanded="false" />
+                <element signature="e#11431#11432#0" expanded="false" />
+                <element signature="e#11469#11470#0" expanded="false" />
+                <marker date="1525101087120" expanded="true" signature="2381:2554" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -166,6 +167,7 @@
       <find>outValue</find>
       <find>setRightPane</find>
       <find>right_pane</find>
+      <find>clean</find>
       <find>addNode</find>
     </findStrings>
   </component>
@@ -215,15 +217,15 @@
         <option value="$PROJECT_DIR$/resources/application.css" />
         <option value="$PROJECT_DIR$/src/project/GUI/DragIconType.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/DragIcon.java" />
-        <option value="$PROJECT_DIR$/src/project/GUI/LoadScheme.java" />
         <option value="$PROJECT_DIR$/src/project/items/AbstractItem.java" />
-        <option value="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeOUT.java" />
+        <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java" />
+        <option value="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" />
+        <option value="$PROJECT_DIR$/src/project/blockArray/BlockArray.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
         <option value="$PROJECT_DIR$/src/project/GUI/RootLayout.java" />
-        <option value="$PROJECT_DIR$/src/project/GUI/DraggableNode.java" />
-        <option value="$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java" />
+        <option value="$PROJECT_DIR$/src/project/GUI/LoadScheme.java" />
       </list>
     </option>
   </component>
@@ -837,7 +839,7 @@
       <workItem from="1525073131622" duration="2148000" />
       <workItem from="1525080548123" duration="12000" />
       <workItem from="1525085213331" duration="641000" />
-      <workItem from="1525096977057" duration="8138000" />
+      <workItem from="1525096977057" duration="8966000" />
     </task>
     <task id="LOCAL-00001" summary="workspace fix">
       <created>1524678382426</created>
@@ -850,10 +852,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67741000" />
+    <option name="totallyTimeSpent" value="68569000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1051" extended-state="7" />
+    <frame x="-1" y="0" width="1922" height="1051" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -920,6 +922,13 @@
           <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3127#3128#0" expanded="false" />
+            <element signature="e#3159#3160#0" expanded="false" />
+            <element signature="e#10206#10207#0" expanded="false" />
+            <element signature="e#10250#10251#0" expanded="false" />
+            <element signature="e#11431#11432#0" expanded="false" />
+            <element signature="e#11469#11470#0" expanded="false" />
+            <marker date="1525101087120" expanded="true" signature="2381:2554" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1127,25 +1136,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/project/GUI/NodeLink.java">
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1854">
-          <caret line="118" column="44" lean-forward="false" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="388">
+          <caret line="75" column="13" lean-forward="false" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+          <folding>
+            <element signature="e#2168#2169#0" expanded="true" />
+            <element signature="e#2198#2199#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/project/GUI/LoadScheme.java">
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="334">
+          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#465#466#0" expanded="true" />
+            <element signature="e#498#499#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+          <folding>
+            <element signature="e#913#914#0" expanded="true" />
+            <element signature="e#946#947#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-188">
+          <caret line="46" column="23" lean-forward="true" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3127#3128#0" expanded="false" />
+            <element signature="e#3159#3160#0" expanded="false" />
+            <element signature="e#10206#10207#0" expanded="false" />
+            <element signature="e#10250#10251#0" expanded="false" />
+            <element signature="e#11431#11432#0" expanded="false" />
+            <element signature="e#11469#11470#0" expanded="false" />
+            <marker date="1525101087120" expanded="true" signature="2381:2554" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/items/AbstractItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288">
+        <state relative-caret-position="-450">
           <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
           <folding>
             <element signature="e#1612#1613#0" expanded="true" />
@@ -1156,7 +1200,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeOUT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
+        <state relative-caret-position="108">
           <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding>
             <element signature="e#719#720#0" expanded="true" />
@@ -1165,54 +1209,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/project/blockArray/BlockArray.java">
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/NodeLink.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2664">
-          <caret line="23" column="50" lean-forward="true" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1854">
+          <caret line="118" column="44" lean-forward="false" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/project/GUI/RootLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="277" column="47" lean-forward="false" selection-start-line="277" selection-start-column="47" selection-end-line="277" selection-end-column="47" />
+        <state relative-caret-position="975">
+          <caret line="114" column="46" lean-forward="true" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeIN.java">
+    <entry file="file://$PROJECT_DIR$/src/project/GUI/LoadScheme.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-          <folding>
-            <element signature="e#913#914#0" expanded="true" />
-            <element signature="e#946#947#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
+        <state relative-caret-position="342">
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/project/GUI/DraggableNodeOP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="29" column="42" lean-forward="true" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#465#466#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

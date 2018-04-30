@@ -27,14 +27,12 @@ public class DraggableNodeOP extends DraggableNode {
 
     @Override
     public void buildInputHandlers() {
-        System.out.println("id fce: " + getNodeId());
-        /*String id = super.getNodeId();
-        System.out.println("OP ID:" + id);
+        String id = getNodeId();
         if (layout.blocks.itemExists(id)) {
             double val = layout.blocks.get(id).item.getOperand();
             System.out.println(val);
             value.setText(String.valueOf(val));
-        }*/
+        }
         setTextField(value);
     }
 
