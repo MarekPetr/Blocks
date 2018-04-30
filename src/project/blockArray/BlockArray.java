@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -14,12 +15,9 @@ import project.GUI.*;
 import project.connection.Connection;
 import project.items.*;
 
-//TODO
 public class BlockArray implements Serializable {
     private boolean first = true;
-    private boolean found = false;
     private int size;
-    private static final int DEFAULT_CAPACITY = 5;
     private static final Object[] empty_element_data = {};
 
     private @FXML transient AnchorPane right_pane;
@@ -47,42 +45,30 @@ public class BlockArray implements Serializable {
 
     public void cleanVals() {
         for (int i = 0; i < size(); i++) {
-            get(i).item.outValue.clear();
-            if (!(get(i).item instanceof ItemFirst)) {
-                get(i).item.inValue.clear();
+            get(i).outValue.clear();
+            if (!(get(i) instanceof ItemFirst)) {
+                get(i).inValue.clear();
             }
         }
     }
 
     public int size() { return this.size; }
 
-    public void addToList(BlockArrayItem e) {
+    public void addToList(AbstractItem e) {
         if (size == blockArray.length) {
             ensureCapacity(size + 1);
         }
-        if (e.con != null) {
-            connections.add(e.con);
+        if (e instanceof ItemFirst && this.first) {
+            this.first = false;
+            add(0, e);
         } else {
-            if (e.item instanceof ItemFirst && this.first) {
-                this.first = false;
-                add(0, e);
-            } else if (e.item instanceof ItemLast) {
-                add(e);
-            } else {
-                if (isEmpty()) {
-                    add(e);
-                } else if (contains(ItemLast.class)) {
-                    add(this.size - 1, e);
-                } else {
-                    add(this.size, e);
-                }
-            }
+            add(e);
         }
     }
 
     public boolean contains(Class C) {
         for (int i = 0; i < size; i++) {
-            if (get(i).item.getClass().equals(C)) {
+            if (get(i).getClass().equals(C)) {
                 return true;
             }
         }
@@ -111,30 +97,30 @@ public class BlockArray implements Serializable {
         return size == 0;
     }
 
-    private void add(BlockArrayItem e) {
+    private void add(AbstractItem e) {
         ensureCapacity(size + 1);
         blockArray[size++] = e;
     }
 
-    private void add(int index, BlockArrayItem e) {
+    private void add(int index, AbstractItem e) {
         ensureCapacity(size + 1);
         System.arraycopy(blockArray, index, blockArray, index + 1, size - index);
         blockArray[index] = e;
         size++;
     }
 
-    public BlockArrayItem get(int index) {
+    public AbstractItem get(int index) {
         if (index >= size) {
             throw new ArrayIndexOutOfBoundsException("Index out of bound exception.");
         } else {
-            return (BlockArrayItem) blockArray[index];
+            return (AbstractItem) blockArray[index];
         }
     }
 
 
-    public BlockArrayItem get(String name) {
+    public AbstractItem get(String name) {
         for (int i = 0; i < size; i++) {
-            if (get(i).item.getName().equals(name)) {
+            if (get(i).getName().equals(name)) {
                 return get(i);
             }
         }
@@ -173,7 +159,7 @@ public class BlockArray implements Serializable {
         connections.removeAll(to_remove);
         System.out.println("Item " + name + " is being removed.");
         int index = index(name);
-        if (get(index).item instanceof ItemFirst) {
+        if (get(index) instanceof ItemFirst) {
             this.first = true;
         }
         System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
@@ -210,7 +196,7 @@ public class BlockArray implements Serializable {
 
     private int index(String name) {
         for (int i = 0; i < size(); i++) {
-            if (get(i).item.getName().equals(name)) {
+            if (get(i).getName().equals(name)) {
                 return i;
             }
         }
@@ -238,8 +224,8 @@ public class BlockArray implements Serializable {
         whiteSet.remove(vertex);
         graySet.add(vertex);
 
-        for (int i = 0; i < get(vertex).item.links.size() ; i++) {
-            String id = get(vertex).item.links.get(i);
+        for (int i = 0; i < get(vertex).links.size() ; i++) {
+            String id = get(vertex).links.get(i);
             int index = indexC(id);
             String name = connections.get(index).getOutBlock().getName();
             int adjVertex = index(name);
@@ -260,26 +246,35 @@ public class BlockArray implements Serializable {
 
     public void run() {
         if (cyclesExists()) {
-            System.out.println("ERROR: Cycle found.");
+            showCycleError(); 
             return;
         }
         
         if (!contains(ItemFirst.class)) {
-            System.out.println("ERROR: System does not contain block of type ItemFist.");
+            System.err.println("ERROR: System does not contain IN block."); 
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+            errorAlert.setHeaderText("System does not contain IN block."); 
+            errorAlert.showAndWait(); 
             return;
         }
 
         if (!contains(ItemLast.class)) {
-            System.out.println("ERROR: System does not contain block of type ItemLast.");
+            System.err.println("ERROR: System does not contain OUT block."); 
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+            errorAlert.setHeaderText("System does not contain OUT block."); 
+            errorAlert.showAndWait(); 
             return;
         }
 
-        if (get(0).item.inValue.isEmpty()) {
-            System.out.println("ERROR: In value is null.");
+        if (get(0).inValue.isEmpty()) {
+            System.err.println("ERROR: In value is null."); 
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+            errorAlert.setHeaderText("Input value in IN block is null."); 
+            errorAlert.showAndWait(); 
             return;
         }
 
-        run_items.add(get(0).item);
+        run_items.add(get(0));
         while (!(run_items.isEmpty())) {
             run_items.get(0).execute();
             for (Connection connection : connections) {
@@ -294,7 +289,7 @@ public class BlockArray implements Serializable {
     }
     public boolean itemExists(String name) {
         for (int i = 0; i < size; i++) {
-            String current = get(i).item.getName();
+            String current = get(i).getName();
             if (current.equals(name)) {
                 return true;
             }
@@ -306,17 +301,17 @@ public class BlockArray implements Serializable {
         if (current_step_index == 0) {
             current_step_items.clear();
             cleanVals();
-            get(0).item.execute();
-            highlightBlock(get(0).item.getName());
+            get(0).execute();
+            highlightBlock(get(0).getName());
             for (Connection connection : connections) {
-                if (connection.getInBlock().equals(get(0).item)) {
+                if (connection.getInBlock().equals(get(0))) {
                     connection.transferValue();
                     next_step_items.add(connection.getOutBlock());
                 }
             }
             current_step_index++;
         } else {
-            setBlockBorder(get(0).item.getName(), true);
+            setBlockBorder(get(0).getName(), true);
             for (AbstractItem current_step_item : current_step_items) {
                 setBlockBorder(current_step_item.getName(), true);
             }
@@ -346,6 +341,13 @@ public class BlockArray implements Serializable {
             }
         }
     }
+
+    public static void showCycleError() { 
+        System.err.println("ERROR: Cycle found."); 
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+        errorAlert.setHeaderText("Cycle found."); 
+        errorAlert.showAndWait(); 
+    } 
 
     public void setRightPane(AnchorPane right_pane) {
         this.right_pane = right_pane;

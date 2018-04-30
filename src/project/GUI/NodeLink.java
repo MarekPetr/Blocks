@@ -107,7 +107,7 @@ public class NodeLink extends AnchorPane {
         table_pane.setVisible(false);
         node_link.setOnMouseEntered(event ->  {
             //
-            Map<String, Double> map = layout.blocks.get(sourceID).item.getOutValue();
+            Map<String, Double> map = layout.blocks.get(sourceID).getOutValue();
             int i = 1;
             for (Map.Entry<String, Double> entry : map.entrySet())
             {

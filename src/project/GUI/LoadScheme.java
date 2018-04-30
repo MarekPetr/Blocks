@@ -36,14 +36,14 @@ public class LoadScheme {
         // print IDs ant types of all blocks
         DraggableNode node;
         for (int i = 0; i < toLoad.size(); i++) {
-            DragIconType type = toLoad.get(i).item.getType();
-            String id = toLoad.get(i).item.getName();
-            System.out.println("Name: " + toLoad.get(i).item.getName() + ", type: " + toLoad.get(i).item.getType());
+            DragIconType type = toLoad.get(i).getType();
+            String id = toLoad.get(i).getName();
+            System.out.println("Name: " + toLoad.get(i).getName() + ", type: " + toLoad.get(i).getType());
 
             node = rootLayout.addNode(type, id, false);
 
-            double coordsX = toLoad.get(i).item.getX();
-            double coordsY = toLoad.get(i).item.getY();
+            double coordsX = toLoad.get(i).getX();
+            double coordsY = toLoad.get(i).getY();
 
             node.setLayoutX(coordsX);
             node.setLayoutY(coordsY);

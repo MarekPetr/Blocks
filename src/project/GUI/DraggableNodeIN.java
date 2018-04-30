@@ -44,7 +44,7 @@ public class DraggableNodeIN extends DraggableNode {
     @Override
     public void buildInputHandlers() {
         if (layout.blocks.contains(ItemFirst.class)) {
-            Map<String, Double> map = layout.blocks.get(0).item.getOutValue();
+            Map<String, Double> map = layout.blocks.get(0).getInValue();
             int i = 1;
             for (Map.Entry<String, Double> entry : map.entrySet())
             {
@@ -91,7 +91,7 @@ public class DraggableNodeIN extends DraggableNode {
             {
                 TextField input_field = (TextField) ke.getSource();
                 if (keys.size() >= index && keys.get(index - 1) != null) {
-                    layout.blocks.get(getId()).item.inValue.remove(current_key);
+                    layout.blocks.get(getId()).inValue.remove(current_key);
                     System.out.println("Removing key " + current_key);
                 }
                 keys.add(index - 1, input_field.getText());
@@ -117,7 +117,7 @@ public class DraggableNodeIN extends DraggableNode {
                 if (!current_key.isEmpty()) {
                     if (current_index == index - 1) {
                         double value = get_double_input(input_field);
-                        layout.blocks.get(getId()).item.setInValue(current_key, value);
+                        layout.blocks.get(getId()).setInValue(current_key, value);
                     }
                 }
                 keys.add(index - 1, text_field.getText());

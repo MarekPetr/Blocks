@@ -282,7 +282,7 @@ public class DraggableNode extends AnchorPane {
         double newX = localCoords.getX()- mDragOffset.getX();
         double newY = localCoords.getY() - mDragOffset.getY();
 
-        layout.blocks.get(getId()).item.setCoords(newX, newY);
+        layout.blocks.get(getId()).setCoords(newX, newY);
 
         // mDragOffset - offsets the mouse coordinates,
         // so that user can drag the item with label
