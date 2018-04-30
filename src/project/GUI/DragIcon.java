@@ -53,6 +53,14 @@ public class DragIcon extends AnchorPane{
 
         switch (mType) {
 
+            case out:
+                getStyleClass().add("icon-out");
+                break;
+
+            case in:
+                getStyleClass().add("icon-in");
+                break;
+
             case plus:
                 getStyleClass().add("icon-plus");
                 break;
@@ -69,12 +77,8 @@ public class DragIcon extends AnchorPane{
                 getStyleClass().add("icon-mul");
                 break;
 
-            case out:
-                getStyleClass().add("icon-out");
-                break;
-
-            case in:
-                getStyleClass().add("icon-in");
+            case pow:
+                getStyleClass().add("icon-pow");
                 break;
 
             default:

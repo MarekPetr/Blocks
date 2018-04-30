@@ -177,7 +177,6 @@ public class DraggableNode extends AnchorPane {
                     if (node.getId().equals(id))
                         iterNode.remove();
                 }
-
                 iterId.remove();
             }
         });
@@ -311,6 +310,10 @@ public class DraggableNode extends AnchorPane {
 
             case mul:
                 getStyleClass().add("node-icon-mul");
+                break;
+
+            case pow:
+                getStyleClass().add("node-icon-pow");
                 break;
 
             case out:
