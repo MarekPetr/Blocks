@@ -263,7 +263,14 @@ public class BlockArray implements Serializable {
             }
             current_step_index++;
         } else {
+            setBlockBorder(get(0).item.getName(), true);
+            for (AbstractItem current_step_item : current_step_items) {
+                setBlockBorder(current_step_item.getName(), true);
+            }
             current_step_items = new ArrayList<>(next_step_items);
+            for (AbstractItem current_step_item : current_step_items) {
+                setBlockBorder(current_step_item.getName(), false);
+            }
             next_step_items.clear();
             if (current_step_items.isEmpty()) {
                 current_step_items.clear();
@@ -275,10 +282,10 @@ public class BlockArray implements Serializable {
             int items_size = current_step_items.size();
             for (int i = 0; i < items_size; i++) {
                 current_step_items.get(i).execute();
-                highlightBlock(current_step_items.get(i).getName());
+                //highlightBlock(current_step_items.get(i).getName());
                 for (Connection connection : connections) {
                     if (connection.getInBlock().equals(current_step_items.get(i))) {
-                        highlightBlock(current_step_items.get(i).getName());
+                        //highlightBlock(current_step_items.get(i).getName());
                         connection.transferValue();
                         next_step_items.add(connection.getOutBlock());
                     }
