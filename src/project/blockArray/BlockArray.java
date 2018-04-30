@@ -3,7 +3,6 @@ package project.blockArray;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import javafx.fxml.FXML;
@@ -31,7 +30,6 @@ public class BlockArray implements Serializable {
     public static int current_step_index;
     public static List<AbstractItem> current_step_items;
     public static List<AbstractItem> next_step_items;
-    private static List<AbstractItem> run_items;
     private  Object[] blockArray;
 
 
@@ -40,11 +38,10 @@ public class BlockArray implements Serializable {
     public BlockArray() {
         super();
         this.blockArray = empty_element_data;
-        connections = new ArrayList<>();
+        this.connections = new ArrayList<>();
         current_step_index = 0;
         current_step_items = new ArrayList<>();
         next_step_items = new ArrayList<>();
-        run_items = new ArrayList<>();
     }
 
     public void cleanVals() {
@@ -164,21 +161,9 @@ public class BlockArray implements Serializable {
     public void remove(String name) {
         System.out.println("Item " + name + " is being removed.");
         int index = index(name);
-        if (get(index).item instanceof ItemFirst) {
-            this.first = true;
-        }
         System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
         this.size--;
         removeConnections(name);
-        if (!connections.isEmpty()) {
-            for (Connection connection : connections) {
-                if (connection.getOutBlock().getName().equals(name)) {
-                    System.out.println("Removing connection " + connection.getId() + " with input: " + connection.getInBlock().getName() + " and output: " + name);
-                    connection.getInBlock().links.remove(connection.getId());
-                    connections.remove(connection);
-                }
-            }
-        }
     }
 
     private void removeConnections(String input_name) {
@@ -216,12 +201,42 @@ public class BlockArray implements Serializable {
         return -1;
     }
 
+    public boolean cyclesExists() {
+        for (int i = 0; i < connections.size(); i++) {
+            AbstractItem in = connections.get(i).getInBlock();
+            String name = in.getName();
+            for (int j = 0; j < index(name); j++) {
+                if (connections.get(i).getOutBlock().equals(get(j).item)) {
+                    System.out.println("ERROR: Cycle found.");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void checkIfMissing() {
+        for (int i = 0; i < size; i++)
+            if (!(get(i).item instanceof ItemFirst)) {
+                for (Connection connection : connections) {
+                    if (connection.getOutBlock().equals(get(i).item)) {
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    System.out.println("Missing connection between blocks.");
+                    System.exit(-1);
+                }
+                found = false;
+            }
+    }
+
     public void run() {
-        /*if (cyclesExists()) {
-            System.out.println("ERROR: Cycle found.");
+        if (cyclesExists()) {
             return;
-        }*/
+        }
         
+        //checkIfMissing();
         if (!contains(ItemFirst.class)) {
             System.out.println("ERROR: System does not contain block of type ItemFist.");
             return;
@@ -237,23 +252,16 @@ public class BlockArray implements Serializable {
             return;
         }
 
-        run_items.add(get(0).item);
-        while (!(run_items.isEmpty())) {
-            if (run_items.get(0).links.isEmpty()) {
-                System.out.println("EMPTY");
-            } else {
-                System.out.println(run_items.get(0).links);
-            }
-            run_items.get(0).execute();
-            for (Connection connection : connections) {
-                if (connection.getInBlock().equals(run_items.get(0))) {
-                    connection.transferValue();
-                    run_items.add(connection.getOutBlock());
+        for (int i = 0; i < size; i++) {
+            if (get(i).item.links != null) {
+                get(i).item.execute();
+                for (Connection connection : connections) {
+                    if (connection.getInBlock().equals(get(i).item)) {
+                        connection.transferValue();
+                    }
                 }
             }
-            run_items.remove(0);
         }
-        run_items.clear();
     }
 
     public void runStep() {
