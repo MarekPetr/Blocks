@@ -87,7 +87,7 @@ public class RootLayout extends AnchorPane {
         });
 
         reset_step_button.setOnMouseClicked(event -> {
-
+            blocks.setBlockBorder(blocks.getLastStepID(), true);
             BlockArray.next_step_items.clear();
             BlockArray.current_step_index = 0;
             BlockArray.current_step_items.clear();

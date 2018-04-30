@@ -315,7 +315,7 @@ public class BlockArray implements Serializable {
         setBlockBorder(id, false);
     }
 
-    private void setBlockBorder(String id, boolean deleteBorder) {
+    public void setBlockBorder(String id, boolean deleteBorder) {
 
         System.out.println("id " + id);
         VBox block;
@@ -326,10 +326,9 @@ public class BlockArray implements Serializable {
             if (n.getId() == null)
                 continue;
             if (n instanceof DraggableNodeIN || n instanceof DraggableNodeOP ||
-                    n instanceof DraggableNodeOUT) {
-
+                    n instanceof DraggableNodeOUT)
+            {
                 block = ((DraggableNode) n).getBlock();
-
                 if (n.getId().equals(id)) {
                     block.setBorder(null);
                     if (!deleteBorder) {
@@ -340,5 +339,9 @@ public class BlockArray implements Serializable {
                 }
             }
         }
+    }
+
+    public String getLastStepID() {
+        return this.lastStepID;
     }
 }
