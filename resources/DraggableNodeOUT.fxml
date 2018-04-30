@@ -53,7 +53,7 @@
                               <Label prefHeight="26.0" prefWidth="100.0" text="Value" />
                           </children>
                       </HBox>
-                  <Line endX="121.0" />
+                      <Line endX="121.0" />
                       <HBox prefHeight="100.0" prefWidth="200.0">
                           <children>
                               <Label fx:id="key1" prefHeight="26.0" prefWidth="100.0" />
