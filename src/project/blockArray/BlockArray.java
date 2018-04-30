@@ -24,6 +24,7 @@ public class BlockArray implements Serializable {
     private static final Object[] empty_element_data = {};
 
     private @FXML transient AnchorPane right_pane;
+    private String lastStepID = null;
 
     public List<Connection> connections;
     public static int current_step_index;
@@ -268,7 +269,7 @@ public class BlockArray implements Serializable {
             current_step_items.clear();
             cleanVals();
             get(0).item.execute();
-            colourBlock(get(0).item.getName(), false);
+            highlightBlock(get(0).item.getName());
             for (Connection connection : connections) {
                 if (connection.getInBlock().equals(get(0).item)) {
                     connection.transferValue();
@@ -280,19 +281,19 @@ public class BlockArray implements Serializable {
             current_step_items = new ArrayList<>(next_step_items);
             next_step_items.clear();
             if (current_step_items.isEmpty()) {
-                colourBlock("0", true);
                 current_step_items.clear();
+                setBlockBorder(lastStepID, true);
                 next_step_items.clear();
                 current_step_index = 0;
                 return;
             }
             int items_size = current_step_items.size();
-            for (int i = 0; i < items_size; i++) {
-                current_step_items.get(i).execute();
-                colourBlock(current_step_items.get(i).getName(), false);
+            for (AbstractItem current_step_item : current_step_items) {
+                current_step_item.execute();
+                highlightBlock(current_step_item.getName());
                 for (Connection connection : connections) {
-                    if (connection.getInBlock().equals(current_step_items.get(i))) {
-                        colourBlock(current_step_items.get(i).getName(), false);
+                    if (connection.getInBlock().equals(current_step_item)) {
+                        highlightBlock(current_step_item.getName());
                         connection.transferValue();
                         next_step_items.add(connection.getOutBlock());
                     }
@@ -305,7 +306,17 @@ public class BlockArray implements Serializable {
         this.right_pane = right_pane;
     }
 
-    public void colourBlock(String id, boolean all) {
+    private void highlightBlock(String id) {
+
+        if (lastStepID != null) {
+            System.out.println("lastStep" + lastStepID);
+            setBlockBorder(lastStepID, true);
+        }
+        setBlockBorder(id, false);
+    }
+
+    private void setBlockBorder(String id, boolean deleteBorder) {
+
         System.out.println("id " + id);
         VBox block;
         if (right_pane == null)
@@ -318,11 +329,14 @@ public class BlockArray implements Serializable {
                     n instanceof DraggableNodeOUT) {
 
                 block = ((DraggableNode) n).getBlock();
-                if (all) {
+
+                if (n.getId().equals(id)) {
                     block.setBorder(null);
-                } else if (n.getId().equals(id)) {
-                    block.setBorder(new Border(
-                            new BorderStroke(Color.DARKGOLDENROD, BorderStrokeStyle.SOLID, null, new BorderWidths(3))));
+                    if (!deleteBorder) {
+                        lastStepID = id;
+                        block.setBorder(new Border(
+                                new BorderStroke(Color.CHARTREUSE, BorderStrokeStyle.SOLID, null, new BorderWidths(4))));
+                    }
                 }
             }
         }

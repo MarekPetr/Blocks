@@ -92,7 +92,6 @@ public class RootLayout extends AnchorPane {
             BlockArray.current_step_index = 0;
             BlockArray.current_step_items.clear();
             blocks.cleanVals();
-            colourBlock("0", true);
         });
 
         save_button.setOnMouseClicked(event -> {
@@ -155,29 +154,6 @@ public class RootLayout extends AnchorPane {
             left_pane.getChildren().add(icn);
         }
         buildDragHandlers();
-    }
-
-    public void colourBlock(String id, boolean all) {
-        System.out.println("id " + id);
-        VBox block;
-        if (right_pane == null)
-            return;
-
-        for (Node n: right_pane.getChildren()) {
-            if (n.getId() == null)
-                continue;
-            if (n instanceof DraggableNodeIN || n instanceof DraggableNodeOP ||
-                    n instanceof DraggableNodeOUT) {
-
-                block = ((DraggableNode) n).getBlock();
-                if (all) {
-                    block.setBorder(null);
-                } else if (n.getId().equals(id)) {
-                    block.setBorder(new Border(
-                            new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, null, new BorderWidths(3))));
-                }
-            }
-        }
     }
 
     private void buildDragHandlers() {
