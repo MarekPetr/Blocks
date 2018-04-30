@@ -24,7 +24,7 @@ public class LoadScheme {
         this.rootLayout = rootLayout;
     }
     public void load(){
-        toLoad.cleanVals();
+        //toLoad.cleanVals();
         deleteNodes();
         spawnBlocks();
         connectNodes();

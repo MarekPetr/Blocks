@@ -131,7 +131,6 @@ public class RootLayout extends AnchorPane {
                 LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
                 loadScheme.load();
             }
-
         });
 
 

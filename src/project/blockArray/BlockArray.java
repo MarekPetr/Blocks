@@ -7,10 +7,8 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurve;
 import project.GUI.*;
 import project.connection.Connection;
 import project.items.*;
@@ -81,7 +79,7 @@ public class BlockArray implements Serializable {
         }
     }
 
-    private boolean contains(Class C) {
+    public boolean contains(Class C) {
         for (int i = 0; i < size; i++) {
             if (get(i).item.getClass().equals(C)) {
                 return true;
@@ -131,6 +129,7 @@ public class BlockArray implements Serializable {
             return (BlockArrayItem) blockArray[index];
         }
     }
+
 
     public BlockArrayItem get(String name) {
         for (int i = 0; i < size; i++) {
@@ -245,6 +244,15 @@ public class BlockArray implements Serializable {
             run_items.remove(0);
         }
         run_items.clear();
+    }
+    public boolean itemExists(String name) {
+        for (int i = 0; i < size; i++) {
+            String current = get(i).item.getName();
+            if (current.equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void runStep() {

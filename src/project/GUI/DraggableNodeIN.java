@@ -6,9 +6,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import project.items.ItemFirst;
 
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by petr on 4/24/18.
@@ -40,6 +43,26 @@ public class DraggableNodeIN extends DraggableNode {
 
     @Override
     public void buildInputHandlers() {
+        if (layout.blocks.contains(ItemFirst.class)) {
+            Map<String, Double> map = layout.blocks.get(0).item.getOutValue();
+            int i = 1;
+            for (Map.Entry<String, Double> entry : map.entrySet())
+            {
+                String value = String.valueOf(entry.getValue());
+                if (i == 1) {
+                    key1.setText(entry.getKey());
+                    value1.setText(value);
+                } else if (i == 2) {
+                    key2.setText(entry.getKey());
+                    value2.setText(value);
+                } else if (i == 3) {
+                    key3.setText(entry.getKey());
+                    value3.setText(value);
+                }
+                i++;
+            }
+        }
+
         setKeyField(key1, 1);
         setValueField(value1, 2);
 
@@ -66,12 +89,13 @@ public class DraggableNodeIN extends DraggableNode {
         text_field.setOnKeyPressed(ke -> {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
+                TextField input_field = (TextField) ke.getSource();
                 if (keys.size() > index && keys.get(index - 1) != null) {
                     layout.blocks.get(getId()).item.inValue.remove(current_key, layout.blocks.get(getId()).item.inValue.get(current_key));
                     System.out.println("Removing key " + current_key);
                 }
-                keys.add(index - 1, text_field.getText());
-                current_key = text_field.getText();
+                keys.add(index - 1, input_field.getText());
+                current_key = input_field.getText();
                 current_index = index;
 
                 System.out.printf("%d. saved\n", index);
@@ -81,6 +105,7 @@ public class DraggableNodeIN extends DraggableNode {
     }
 
     private void setValueField(TextField text_field, int index) {
+
         text_field.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d\\.*")) {
                 text_field.setText(newValue.replaceAll("[^\\d.]", ""));
