@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Alert; 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -12,8 +11,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurve;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.blockArray.BlockArray;
@@ -22,7 +19,6 @@ import project.items.*;
 
 import java.io.*;
 import java.util.Map;
-import java.util.SimpleTimeZone;
 import java.util.UUID;
 
 import static project.GUI.DragIconType.*;
@@ -74,6 +70,29 @@ public class RootLayout extends AnchorPane {
 
     @FXML
     private void initialize() {
+        //Add one icon that will be used for the drag-drop processblue
+        //This is added as a child to the root AnchorPane so it can begreen
+        //visible on both sides of the split pane.green
+        mDragOverIcon = new DragIcon();
+
+        mDragOverIcon.setVisible(false);
+        mDragOverIcon.setOpacity(0.65);
+        getChildren().add(mDragOverIcon);
+
+        //populate left pane with multiple colored icons for testing
+        for (int i = 0; i < DragIconType.values().length; i++) {
+
+            DragIcon icn = new DragIcon();
+            addDragDetection(icn);
+
+            icn.setType(DragIconType.values()[i]);
+            left_pane.getChildren().add(icn);
+        }
+        buildDragHandlers();
+        setMenuButtons();
+    }
+
+    private void setMenuButtons() {
         clear_button.setOnMouseClicked(event -> {
             LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
             loadScheme.deleteNodes();
@@ -87,7 +106,7 @@ public class RootLayout extends AnchorPane {
 
         step_button.setOnMouseClicked(event -> {
             if (blocks.cyclesExists()) {
-                showCycleError(); 
+                showCycleError();
                 return;
             }
             blocks.runStep();
@@ -139,27 +158,6 @@ public class RootLayout extends AnchorPane {
                 loadScheme.load();
             }
         });
-
-
-        //Add one icon that will be used for the drag-drop processblue
-        //This is added as a child to the root AnchorPane so it can begreen
-        //visible on both sides of the split pane.green
-        mDragOverIcon = new DragIcon();
-
-        mDragOverIcon.setVisible(false);
-        mDragOverIcon.setOpacity(0.65);
-        getChildren().add(mDragOverIcon);
-
-        //populate left pane with multiple colored icons for testing
-        for (int i = 0; i < DragIconType.values().length; i++) {
-
-            DragIcon icn = new DragIcon();
-            addDragDetection(icn);
-
-            icn.setType(DragIconType.values()[i]);
-            left_pane.getChildren().add(icn);
-        }
-        buildDragHandlers();
     }
 
     private void buildDragHandlers() {
