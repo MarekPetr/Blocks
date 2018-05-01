@@ -30,7 +30,7 @@ import static project.Errors.printErr;
 import static project.GUI.DragIconType.*;
 
 /**
- * This represents the root layout of root AnchorPane.
+ * This class represents the root layout of root AnchorPane.
  * Every node in this application belongs to this layout.
  */
 public class RootLayout extends AnchorPane {

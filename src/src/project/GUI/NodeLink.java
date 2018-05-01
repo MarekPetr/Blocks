@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.CubicCurve;
 
 /**
- * This represents the link between draggable nodes.
+ * This class represents the link between draggable nodes.
  */
 public class NodeLink extends AnchorPane {
     @FXML private CubicCurve node_link;

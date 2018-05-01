@@ -39,7 +39,7 @@
 			classpathref="fxant"/>
   </target>
   
-  <target name="build" depends="clean, doc"> 
+  <target name="build" depends="clean, doc">
     <javac includeantruntime="false"
       srcdir="${src.dir}"
       destdir="${classes.dir}"
@@ -50,6 +50,9 @@
   </target>
   
   <target name="doc">
+    <delete>
+      <fileset dir="${doc.dir}" includes="**/*"/>
+    </delete>
     <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
   </target>   
  
