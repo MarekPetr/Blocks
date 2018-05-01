@@ -117,3 +117,12 @@
     -fx-background-image: url('images/mulSign.jpg');
     -fx-background-size: stretch;
 }
+
+.icon-pow {
+    -fx-background-image: url('images/powSignIcon.jpg');
+    -fx-background-size: stretch;
+}
+.node-icon-pow {
+    -fx-background-image: url('images/powSign.jpg');
+    -fx-background-size: stretch;
+}
