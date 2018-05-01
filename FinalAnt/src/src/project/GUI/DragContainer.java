@@ -1,3 +1,12 @@
+/**
+* DragContainer class represents container for storing
+* IDs of drag and drop objects
+* of right pane.
+*
+* @author  Petr Marek
+* @author  Jakub Štefanišin
+*/
+
 package project.GUI;
 
 import java.io.Serializable;

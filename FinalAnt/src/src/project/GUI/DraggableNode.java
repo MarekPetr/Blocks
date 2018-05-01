@@ -1,3 +1,11 @@
+/**
+* DraggableNode class represents draggable blocks
+* of right pane.
+*
+* @author  Petr Marek
+* @author  Jakub Štefanišin
+*/
+
 package project.GUI;
 
 import java.io.IOException;

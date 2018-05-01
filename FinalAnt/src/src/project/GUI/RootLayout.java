@@ -1,3 +1,11 @@
+/**
+* RootLayout is the core layout of AnchorPane.
+* Every node in this application belongs to this AnchorPane.
+*
+* @author  Petr Marek
+* @author  Jakub Štefanišin
+*/
+
 package project.GUI;
 
 import javafx.event.EventHandler;
