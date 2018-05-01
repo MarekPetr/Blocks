@@ -10,21 +10,19 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurve;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.blockArray.BlockArray;
-import project.blockArray.BlockArrayItem;
 import project.connection.Connection;
 import project.items.*;
 
 import java.io.*;
+import java.util.Map;
 import java.util.UUID;
 
 import static project.GUI.DragIconType.*;
+import static project.blockArray.BlockArray.showCycleError; 
 
 /**
  * Created by petr on 4/21/18.
@@ -72,6 +70,29 @@ public class RootLayout extends AnchorPane {
 
     @FXML
     private void initialize() {
+        //Add one icon that will be used for the drag-drop processblue
+        //This is added as a child to the root AnchorPane so it can begreen
+        //visible on both sides of the split pane.green
+        mDragOverIcon = new DragIcon();
+
+        mDragOverIcon.setVisible(false);
+        mDragOverIcon.setOpacity(0.65);
+        getChildren().add(mDragOverIcon);
+
+        //populate left pane with multiple colored icons for testing
+        for (int i = 0; i < DragIconType.values().length; i++) {
+
+            DragIcon icn = new DragIcon();
+            addDragDetection(icn);
+
+            icn.setType(DragIconType.values()[i]);
+            left_pane.getChildren().add(icn);
+        }
+        buildDragHandlers();
+        setMenuButtons();
+    }
+
+    private void setMenuButtons() {
         clear_button.setOnMouseClicked(event -> {
             LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
             loadScheme.deleteNodes();
@@ -84,13 +105,19 @@ public class RootLayout extends AnchorPane {
         });
 
         step_button.setOnMouseClicked(event -> {
+            if (blocks.cyclesExists()) {
+                showCycleError();
+                return;
+            }
             blocks.runStep();
         });
 
         reset_step_button.setOnMouseClicked(event -> {
-            BlockArray.current_state = null;
+            blocks.setBlockBorder(blocks.getLastStepID(), true);
+            BlockArray.next_step_items.clear();
+            BlockArray.current_step_index = 0;
+            BlockArray.current_step_items.clear();
             blocks.cleanVals();
-            setLinksBlack();
         });
 
         save_button.setOnMouseClicked(event -> {
@@ -130,43 +157,7 @@ public class RootLayout extends AnchorPane {
                 LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
                 loadScheme.load();
             }
-
         });
-
-
-        //Add one icon that will be used for the drag-drop processblue
-        //This is added as a child to the root AnchorPane so it can begreen
-        //visible on both sides of the split pane.green
-        mDragOverIcon = new DragIcon();
-
-        mDragOverIcon.setVisible(false);
-        mDragOverIcon.setOpacity(0.65);
-        getChildren().add(mDragOverIcon);
-
-        //populate left pane with multiple colored icons for testing
-        for (int i = 0; i < 6; i++) {
-
-            DragIcon icn = new DragIcon();
-            addDragDetection(icn);
-
-            icn.setType(DragIconType.values()[i]);
-            left_pane.getChildren().add(icn);
-        }
-        buildDragHandlers();
-    }
-
-    private void setLinksBlack() {
-        CubicCurve link;
-        for (Node n : right_pane.getChildren()) {
-
-            if (n.getId() == null)
-                continue;
-
-            if (n instanceof NodeLink) {
-                link = ((NodeLink) n).getLink();
-                link.setStroke(Color.BLACK);
-            }
-        }
     }
 
     private void buildDragHandlers() {
@@ -272,8 +263,8 @@ public class RootLayout extends AnchorPane {
                     }
 
                     if (source != null && target != null && source != target) {
-                        blocks.addToList(new BlockArrayItem(new Connection(link.getId(), blocks.get(sourceId).item, blocks.get(targetId).item)));
-                        System.out.println("Connection between " + blocks.get(sourceId).item.getName() + " and " + blocks.get(targetId).item.getName() + " added.");
+                        blocks.connections.add(new Connection(link.getId(), blocks.get(sourceId), blocks.get(targetId)));
+                        System.out.println("Connection between " + blocks.get(sourceId).getName() + " and " + blocks.get(targetId).getName() + " added.");
                         link.bindEnds(source, target);
                     }
                 }
@@ -286,6 +277,15 @@ public class RootLayout extends AnchorPane {
         DraggableNode node;
         if (type == in) {
             node = new DraggableNodeIN(this, id);
+            if (!toList) {
+                Map<String, Double> map = blocks.get(id).getInValue();
+                for (Map.Entry<String, Double> entry : map.entrySet()) {
+                    ((DraggableNodeIN) node).keys.add(entry.getKey());
+                    ((DraggableNodeIN) node).keys.add(entry.getValue().toString());
+                }
+                ((DraggableNodeIN) node).current_index = 0;
+                ((DraggableNodeIN) node).current_key = ((DraggableNodeIN) node).keys.get(0);
+            }
         } else if (type == out) {
             node = new DraggableNodeOUT(this, id);
         } else {
@@ -298,31 +298,35 @@ public class RootLayout extends AnchorPane {
         if (toList) {
             switch (node.getType()) {
                 case in:
-                    blocks.addToList(new BlockArrayItem(new ItemFirst(node.getId())));
+                    blocks.addToList(new ItemFirst(node.getId()));
                     System.out.println("ItemFirst added.");
                     break;
                 case out:
-                    blocks.addToList(new BlockArrayItem(new ItemLast(node.getId())));
+                    blocks.addToList(new ItemLast(node.getId()));
                     System.out.println("ItemLast added.");
                     break;
                 case plus:
-                    blocks.addToList(new BlockArrayItem(new ItemPlus(node.getId())));
+                    blocks.addToList(new ItemPlus(node.getId()));
                     System.out.println("ItemPlus added.");
                     break;
                 case minus:
-                    blocks.addToList(new BlockArrayItem(new ItemMinus(node.getId())));
+                    blocks.addToList(new ItemMinus(node.getId()));
                     System.out.println("ItemMinus added.");
                     break;
                 case mul:
-                    blocks.addToList(new BlockArrayItem(new ItemMul(node.getId())));
+                    blocks.addToList(new ItemMul(node.getId()));
                     System.out.println("ItemMul added.");
                     break;
                 case div:
-                    blocks.addToList(new BlockArrayItem(new ItemDiv(node.getId())));
+                    blocks.addToList(new ItemDiv(node.getId()));
                     System.out.println("ItemDiv added.");
                     break;
+                case pow:
+                    blocks.addToList(new ItemPow(node.getId()));
+                    System.out.println("ItemPow added.");
+                    break;
             }
-            blocks.get(node.getId()).item.setType(node.getType());
+            blocks.get(node.getId()).setType(node.getType());
         }
         return node;
     }

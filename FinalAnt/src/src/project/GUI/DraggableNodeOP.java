@@ -2,10 +2,12 @@ package project.GUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 
 public class DraggableNodeOP extends DraggableNode {
     @FXML private TextField value;
@@ -25,6 +27,12 @@ public class DraggableNodeOP extends DraggableNode {
 
     @Override
     public void buildInputHandlers() {
+        String id = getNodeId();
+        if (layout.blocks.itemExists(id)) {
+            double val = layout.blocks.get(id).getOperand();
+            System.out.println(val);
+            value.setText(String.valueOf(val));
+        }
         setTextField(value);
     }
 
@@ -40,7 +48,7 @@ public class DraggableNodeOP extends DraggableNode {
                 TextField input_field = (TextField) ke.getSource();
                 double value = get_double_input(input_field);
                 System.out.printf("operand value saved\n");
-                layout.blocks.get(getId()).item.setOperand(value);
+                layout.blocks.get(getId()).setOperand(value);
                 this.requestFocus();
             }
         });

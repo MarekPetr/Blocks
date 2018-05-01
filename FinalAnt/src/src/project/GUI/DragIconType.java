@@ -8,6 +8,7 @@ public enum DragIconType {
     div,
     plus,
     mul,
+    pow,
     in,
     out,
 }

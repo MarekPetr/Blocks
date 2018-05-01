@@ -40,7 +40,7 @@ public class DraggableNodeOUT extends DraggableNode {
         table.setVisible(false);
         body_handle.setOnMouseClicked(event -> {
             //print values here
-            Map<String, Double> map = layout.blocks.get(getId()).item.outValue;
+            Map<String, Double> map = layout.blocks.get(getId()).outValue;
             int i = 1;
             for (Map.Entry<String, Double> entry : map.entrySet())
             {

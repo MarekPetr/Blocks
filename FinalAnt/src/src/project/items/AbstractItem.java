@@ -21,6 +21,7 @@ public abstract class AbstractItem implements Item, Serializable {
     public Map<String, Double> inValue = new HashMap<>();
     public Map<String, Double> outValue = new HashMap<>();
     public List<String> links = new ArrayList<>();
+    private static final long serialVersionUID = 946567827079246598L;
 
     public AbstractItem(String id) {
         this.id = id;
@@ -34,6 +35,8 @@ public abstract class AbstractItem implements Item, Serializable {
     public void setType(DragIconType itemType) { this.type = itemType; }
 
     public DragIconType getType() { return this.type; }
+
+
 
     public void setCoords(double x, double y) {
         //System.out.println("Coords set to x: " + coordsX + ", y:" + coordsY);
@@ -56,6 +59,10 @@ public abstract class AbstractItem implements Item, Serializable {
     public void setOperand(double val) {
         this.operand = val;
         System.out.println("Operand for " + id + " was set to " + val);
+    }
+
+    public double getOperand() {
+        return this.operand;
     }
 
     public String getName() {

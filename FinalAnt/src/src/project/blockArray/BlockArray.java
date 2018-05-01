@@ -3,30 +3,31 @@ package project.blockArray;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurve;
-import project.GUI.NodeLink;
+import project.GUI.*;
 import project.connection.Connection;
 import project.items.*;
 
-//TODO
 public class BlockArray implements Serializable {
     private boolean first = true;
-    private boolean found = false;
     private int size;
-    private static final int DEFAULT_CAPACITY = 5;
     private static final Object[] empty_element_data = {};
 
     private @FXML transient AnchorPane right_pane;
+    private String lastStepID = null;
 
     public List<Connection> connections;
-    public static BlockArrayItem current_state;
+    public static int current_step_index;
+    public static List<AbstractItem> current_step_items;
+    public static List<AbstractItem> next_step_items;
+    private static List<AbstractItem> run_items;
     private  Object[] blockArray;
 
 
@@ -36,49 +37,38 @@ public class BlockArray implements Serializable {
         super();
         this.blockArray = empty_element_data;
         this.connections = new ArrayList<>();
-        current_state = null;
-
-
+        current_step_index = 0;
+        current_step_items = new ArrayList<>();
+        next_step_items = new ArrayList<>();
+        run_items = new ArrayList<>();
     }
 
     public void cleanVals() {
         for (int i = 0; i < size(); i++) {
-            get(i).item.outValue.clear();
-            if (!(get(i).item instanceof ItemFirst)) {
-                get(i).item.inValue.clear();
+            get(i).outValue.clear();
+            if (!(get(i) instanceof ItemFirst)) {
+                get(i).inValue.clear();
             }
         }
     }
 
     public int size() { return this.size; }
 
-    public void addToList(BlockArrayItem e) {
+    public void addToList(AbstractItem e) {
         if (size == blockArray.length) {
             ensureCapacity(size + 1);
         }
-        if (e.con != null) {
-            connections.add(e.con);
+        if (e instanceof ItemFirst && this.first) {
+            this.first = false;
+            add(0, e);
         } else {
-            if (e.item instanceof ItemFirst && this.first) {
-                this.first = false;
-                add(0, e);
-            } else if (e.item instanceof ItemLast) {
-                add(e);
-            } else {
-                if (isEmpty()) {
-                    add(e);
-                } else if (contains(ItemLast.class)) {
-                    add(this.size - 1, e);
-                } else {
-                    add(this.size, e);
-                }
-            }
+            add(e);
         }
     }
 
-    private boolean contains(Class C) {
+    public boolean contains(Class C) {
         for (int i = 0; i < size; i++) {
-            if (get(i).item.getClass().equals(C)) {
+            if (get(i).getClass().equals(C)) {
                 return true;
             }
         }
@@ -107,29 +97,30 @@ public class BlockArray implements Serializable {
         return size == 0;
     }
 
-    private void add(BlockArrayItem e) {
+    private void add(AbstractItem e) {
         ensureCapacity(size + 1);
         blockArray[size++] = e;
     }
 
-    private void add(int index, BlockArrayItem e) {
+    private void add(int index, AbstractItem e) {
         ensureCapacity(size + 1);
         System.arraycopy(blockArray, index, blockArray, index + 1, size - index);
         blockArray[index] = e;
         size++;
     }
 
-    public BlockArrayItem get(int index) {
+    public AbstractItem get(int index) {
         if (index >= size) {
             throw new ArrayIndexOutOfBoundsException("Index out of bound exception.");
         } else {
-            return (BlockArrayItem) blockArray[index];
+            return (AbstractItem) blockArray[index];
         }
     }
 
-    public BlockArrayItem get(String name) {
+
+    public AbstractItem get(String name) {
         for (int i = 0; i < size; i++) {
-            if (get(i).item.getName().equals(name)) {
+            if (get(i).getName().equals(name)) {
                 return get(i);
             }
         }
@@ -156,20 +147,34 @@ public class BlockArray implements Serializable {
     }
 
     public void remove(String name) {
+        removeConnections(name);
+        List<Connection> to_remove = new ArrayList<>();
+        for (int i = 0; i < connections.size(); i++) {
+            if (connections.get(i).getOutBlock().getName().equals(name)) {
+                System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + connections.get(i).getInBlock().getName() + " and output: " + name);
+                connections.get(i).getInBlock().links.remove(connections.get(i).getId());
+                to_remove.add(connections.get(i));
+            }
+        }
+        connections.removeAll(to_remove);
         System.out.println("Item " + name + " is being removed.");
         int index = index(name);
+        if (get(index) instanceof ItemFirst) {
+            this.first = true;
+        }
         System.arraycopy(blockArray, index + 1, blockArray, index, size - index - 1);
         this.size--;
-        removeConnections(name);
     }
 
     private void removeConnections(String input_name) {
+        List<Connection> to_remove = new ArrayList<>();
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getInBlock().getName().equals(input_name)) {
                 System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + input_name + " and output: " + connections.get(i).getOutBlock().getName());
-                System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
+                to_remove.add(connections.get(i));
             }
         }
+        connections.removeAll(to_remove);
     }
 
     public void removeConnection(String input_name, String output_name) {
@@ -191,7 +196,7 @@ public class BlockArray implements Serializable {
 
     private int index(String name) {
         for (int i = 0; i < size(); i++) {
-            if (get(i).item.getName().equals(name)) {
+            if (get(i).getName().equals(name)) {
                 return i;
             }
         }
@@ -199,134 +204,191 @@ public class BlockArray implements Serializable {
     }
 
     public boolean cyclesExists() {
-        for (int i = 0; i < connections.size(); i++) {
-            AbstractItem in = connections.get(i).getInBlock();
-            String name = in.getName();
-            for (int j = 0; j < index(name); j++) {
-                if (connections.get(i).getOutBlock().equals(get(j).item)) {
-                    System.out.println("ERROR: Cycle found.");
-                    return true;
-                }
+        HashSet<Integer> whiteSet = new HashSet<>();
+        HashSet<Integer> graySet = new HashSet<>();
+        HashSet<Integer> blackSet = new HashSet<>();
+
+        for (int i = 0; i < blockArray.length ; i++) {
+            whiteSet.add(i);
+        }
+        for (int i = 0; i < size() ; i++) {
+            if(whiteSet.contains(i) &&
+                    isCycleUtil(i,whiteSet,graySet,blackSet)){
+                return true;
             }
         }
         return false;
     }
 
-    private void checkIfMissing() {
-        for (int i = 0; i < size; i++)
-            if (!(get(i).item instanceof ItemFirst)) {
-                for (Connection connection : connections) {
-                    if (connection.getOutBlock().equals(get(i).item)) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    System.out.println("Missing connection between blocks.");
-                    System.exit(-1);
-                }
-                found = false;
-            }
+    private boolean isCycleUtil(int vertex, HashSet<Integer> whiteSet, HashSet<Integer> graySet, HashSet<Integer> blackSet){
+        whiteSet.remove(vertex);
+        graySet.add(vertex);
+
+        for (int i = 0; i < get(vertex).links.size() ; i++) {
+            String id = get(vertex).links.get(i);
+            int index = indexC(id);
+            String name = connections.get(index).getOutBlock().getName();
+            int adjVertex = index(name);
+
+            if (graySet.contains(adjVertex))
+                return true;
+
+            if (blackSet.contains(adjVertex))
+                continue;
+
+            if (isCycleUtil(adjVertex, whiteSet, graySet, blackSet))
+                return true;
+        }
+        graySet.remove(vertex);
+        blackSet.add(vertex);
+        return false;
     }
 
     public void run() {
         if (cyclesExists()) {
+            showCycleError(); 
             return;
         }
         
-        //checkIfMissing();
         if (!contains(ItemFirst.class)) {
-            System.out.println("ERROR: System does not contain block of type ItemFist.");
+            System.err.println("ERROR: System does not contain IN block."); 
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+            errorAlert.setHeaderText("System does not contain IN block."); 
+            errorAlert.showAndWait(); 
             return;
         }
 
         if (!contains(ItemLast.class)) {
-            System.out.println("ERROR: System does not contain block of type ItemLast.");
+            System.err.println("ERROR: System does not contain OUT block."); 
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+            errorAlert.setHeaderText("System does not contain OUT block."); 
+            errorAlert.showAndWait(); 
             return;
         }
 
-        if (get(0).item.inValue.isEmpty()) {
-            System.out.println("ERROR: In value is null.");
+        if (get(0).inValue.isEmpty()) {
+            System.err.println("ERROR: In value is null."); 
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+            errorAlert.setHeaderText("Input value in IN block is null."); 
+            errorAlert.showAndWait(); 
             return;
         }
 
+        run_items.add(get(0));
+        while (!(run_items.isEmpty())) {
+            run_items.get(0).execute();
+            for (Connection connection : connections) {
+                if (connection.getInBlock().equals(run_items.get(0))) {
+                    connection.transferValue();
+                    run_items.add(connection.getOutBlock());
+                }
+            }
+            run_items.remove(0);
+        }
+        run_items.clear();
+    }
+    public boolean itemExists(String name) {
         for (int i = 0; i < size; i++) {
-            if (get(i).item.links != null) {
-                get(i).item.execute();
+            String current = get(i).getName();
+            if (current.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void runStep() {
+        if (current_step_index == 0) {
+            current_step_items.clear();
+            cleanVals();
+            get(0).execute();
+            highlightBlock(get(0).getName());
+            for (Connection connection : connections) {
+                if (connection.getInBlock().equals(get(0))) {
+                    connection.transferValue();
+                    next_step_items.add(connection.getOutBlock());
+                }
+            }
+            current_step_index++;
+        } else {
+            setBlockBorder(get(0).getName(), true);
+            for (AbstractItem current_step_item : current_step_items) {
+                setBlockBorder(current_step_item.getName(), true);
+            }
+            current_step_items = new ArrayList<>(next_step_items);
+            for (AbstractItem current_step_item : current_step_items) {
+                setBlockBorder(current_step_item.getName(), false);
+            }
+            next_step_items.clear();
+            if (current_step_items.isEmpty()) {
+                current_step_items.clear();
+                setBlockBorder(lastStepID, true);
+                next_step_items.clear();
+                current_step_index = 0;
+                return;
+            }
+            int items_size = current_step_items.size();
+            for (int i = 0; i < items_size; i++) {
+                current_step_items.get(i).execute();
+                //highlightBlock(current_step_items.get(i).getName());
                 for (Connection connection : connections) {
-                    if (connection.getInBlock().equals(get(i).item)) {
+                    if (connection.getInBlock().equals(current_step_items.get(i))) {
+                        //highlightBlock(current_step_items.get(i).getName());
                         connection.transferValue();
+                        next_step_items.add(connection.getOutBlock());
                     }
                 }
             }
         }
     }
 
-    public void runStep() {
-        if (current_state == null) {
-        } else if (current_state.con != null) {
-            System.out.println("Current state is connection: " + current_state.con.getId());
-        } else if (current_state.item != null) {
-            System.out.println("Current state is item: " + current_state.item.getName());
-        }
-        if (current_state == null) {
-            cleanVals();
-            current_state = get(0);
-            current_state.item.execute();
-            String link = current_state.item.links.get(0);
-            int index = indexC(link);
-            current_state = new BlockArrayItem(connections.get(index));
-            colourLink(current_state.con.getId());
-            current_state.con.transferValue();
-        } else if (current_state.con != null) {
-            current_state = get(current_state.con.getOutBlock().getName());
-            current_state.item.execute();
-            if (current_state.item instanceof ItemLast) {
-                setLinksBlack();
-                current_state =  null;
-                return;
-            }
-            String link = current_state.item.links.get(0);
-            int index = indexC(link);
-            current_state = new BlockArrayItem(connections.get(index));
-            colourLink(current_state.con.getId());
-            current_state.con.transferValue();
-        }
-    }
+    public static void showCycleError() { 
+        System.err.println("ERROR: Cycle found."); 
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
+        errorAlert.setHeaderText("Cycle found."); 
+        errorAlert.showAndWait(); 
+    } 
 
     public void setRightPane(AnchorPane right_pane) {
         this.right_pane = right_pane;
     }
 
-    public void colourLink(String id) {
-        CubicCurve link;
+    private void highlightBlock(String id) {
+
+        if (lastStepID != null) {
+            //System.out.println("lastStep" + lastStepID);
+            setBlockBorder(lastStepID, true);
+        }
+        setBlockBorder(id, false);
+    }
+
+    public void setBlockBorder(String id, boolean deleteBorder) {
+
+        //System.out.println("id " + id);
+        VBox block;
         if (right_pane == null)
             return;
 
         for (Node n: right_pane.getChildren()) {
-
             if (n.getId() == null)
                 continue;
-
-            if (n instanceof NodeLink) {
+            if (n instanceof DraggableNodeIN || n instanceof DraggableNodeOP ||
+                    n instanceof DraggableNodeOUT)
+            {
+                block = ((DraggableNode) n).getBlock();
                 if (n.getId().equals(id)) {
-                    link = ((NodeLink) n).getLink();
-                    link.setStroke(Color.GREEN);
+                    block.setBorder(null);
+                    if (!deleteBorder) {
+                        lastStepID = id;
+                        block.setBorder(new Border(
+                                new BorderStroke(Color.CHARTREUSE, BorderStrokeStyle.SOLID, null, new BorderWidths(4))));
+                    }
                 }
             }
         }
     }
 
-    private void setLinksBlack() {
-        CubicCurve link;
-        for (Node n : right_pane.getChildren()) {
-
-            if (n.getId() == null)
-                continue;
-
-            if (n instanceof NodeLink) {
-                link = ((NodeLink) n).getLink();
-                link.setStroke(Color.BLACK);
-            }
-        }
+    public String getLastStepID() {
+        return this.lastStepID;
     }
 }

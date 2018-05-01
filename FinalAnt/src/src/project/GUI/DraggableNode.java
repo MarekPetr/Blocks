@@ -1,11 +1,3 @@
-/**
-* DraggableNode class represents draggable blocks
-* of right pane.
-*
-* @author  Petr Marek
-* @author  Jakub Štefanišin
-*/
-
 package project.GUI;
 
 import java.io.IOException;
@@ -29,6 +21,7 @@ public class DraggableNode extends AnchorPane {
 
     RootLayout layout = null;
 
+    @FXML private VBox block;
     @FXML AnchorPane root_pane;
 
     private EventHandler mContextDragOver;
@@ -61,9 +54,11 @@ public class DraggableNode extends AnchorPane {
 
     // list of IDs of currently connected links to this node
     private final List mLinkIds = new ArrayList();
+    private String id;
 
     public DraggableNode(RootLayout lay, String id) {
         // dragging has to be handled in root Anchor - referenced by 'this'
+        this.id = id;
         self = this;
         FXMLLoader fxmlLoader = setResource();
 
@@ -76,9 +71,11 @@ public class DraggableNode extends AnchorPane {
             throw new RuntimeException(exception);
         }
         setId(id);
-        //setId(UUID.randomUUID().toString());
     }
 
+    public String getNodeId() {
+        return this.id;
+    }
 
     public FXMLLoader setResource() {
         return new FXMLLoader(
@@ -109,6 +106,10 @@ public class DraggableNode extends AnchorPane {
     }
 
     public void buildBodyHandler() {
+    }
+
+    public VBox getBlock() {
+        return this.block;
     }
 
     public void buildNodeDragHandlers() {
@@ -181,7 +182,6 @@ public class DraggableNode extends AnchorPane {
                     if (node.getId().equals(id))
                         iterNode.remove();
                 }
-
                 iterId.remove();
             }
         });
@@ -282,7 +282,7 @@ public class DraggableNode extends AnchorPane {
         double newX = localCoords.getX()- mDragOffset.getX();
         double newY = localCoords.getY() - mDragOffset.getY();
 
-        layout.blocks.get(getId()).item.setCoords(newX, newY);
+        layout.blocks.get(getId()).setCoords(newX, newY);
 
         // mDragOffset - offsets the mouse coordinates,
         // so that user can drag the item with label
@@ -315,6 +315,10 @@ public class DraggableNode extends AnchorPane {
 
             case mul:
                 getStyleClass().add("node-icon-mul");
+                break;
+
+            case pow:
+                getStyleClass().add("node-icon-pow");
                 break;
 
             case out:
