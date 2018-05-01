@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static project.GUI.DragIconType.*;
-import static project.blockArray.BlockArray.showCycleError; 
+import static project.blockArray.BlockArray.printErr;
 
 /**
  * Created by petr on 4/21/18.
@@ -106,9 +106,11 @@ public class RootLayout extends AnchorPane {
 
         step_button.setOnMouseClicked(event -> {
             if (blocks.cyclesExists()) {
-                showCycleError();
+                System.err.println("ERROR: Cycle found.");
+                printErr("Cycle found.");
                 return;
             }
+            if (blocks.check()) { return; }
             blocks.runStep();
         });
 
