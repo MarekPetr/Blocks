@@ -1,8 +1,12 @@
+/**
+ * This represents the link between draggable nodes.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
-/**
- * Created by petr on 4/21/18.
- */
 import java.io.IOException;
 import java.util.Map;
 import javafx.beans.binding.Bindings;

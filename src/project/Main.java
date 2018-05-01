@@ -5,7 +5,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import project.GUI.RootLayout;
 
-
 public class Main extends Application {
     public Stage primaryStage;
     @Override

@@ -1,6 +1,14 @@
-package project.GUI;
-import java.io.IOException;
+/**
+ * This class represents icon used for dragging to right pane,
+ * which after dropping creates a draggable node.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
 
+package project.GUI;
+
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;

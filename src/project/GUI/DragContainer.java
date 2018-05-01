@@ -1,17 +1,21 @@
+/**
+ * This class represents container for storing
+ * IDs of drag and drop objects.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.input.DataFormat;
 import javafx.util.Pair;
 
 public class DragContainer implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -1890998765646621338L;
 
     public static final DataFormat AddNode =

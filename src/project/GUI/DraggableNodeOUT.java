@@ -1,12 +1,19 @@
+/**
+ * This class represents draggable block
+ * of right pane used for output.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
-import java.lang.reflect.Field;
 import java.util.Map;
 
 /**
@@ -44,7 +51,6 @@ public class DraggableNodeOUT extends DraggableNode {
             int i = 1;
             for (Map.Entry<String, Double> entry : map.entrySet())
             {
-                System.out.println(entry.getKey() + "/" + entry.getValue());
                 String value = String.valueOf(entry.getValue());
                 if (i == 1) {
                     key1.setText(entry.getKey());

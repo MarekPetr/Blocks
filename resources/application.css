@@ -1,3 +1,11 @@
+/**
+ * Styles defined in this file are used for all objects
+ * of this application.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 .dragicon {
     /*-fx-background-radius: 10;*/
 }

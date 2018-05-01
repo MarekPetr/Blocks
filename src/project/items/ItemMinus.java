@@ -2,9 +2,6 @@ package project.items;
 
 import java.util.Map;
 
-/**
- * Created by petr on 3/28/18.
- */
 public class ItemMinus extends AbstractItem {
     public ItemMinus(String name, double operand) {
         super(name, operand);

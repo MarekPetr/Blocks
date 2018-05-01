@@ -1,16 +1,16 @@
+/**
+ * This class performs loading of already saved scheme.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import project.blockArray.BlockArray;
-
-import java.util.Iterator;
 import java.util.ListIterator;
-import java.util.Map;
-import java.util.UUID;
-
-import static project.GUI.DragIconType.in;
 
 /**
  * Created by petr on 4/27/18.

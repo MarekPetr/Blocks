@@ -1,3 +1,11 @@
+/**
+ * This represents the root layout of root AnchorPane.
+ * Every node in this application belongs to this layout.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
 import javafx.event.EventHandler;
@@ -21,12 +29,9 @@ import java.io.*;
 import java.util.Map;
 import java.util.UUID;
 
+import static project.Errors.printErr;
 import static project.GUI.DragIconType.*;
-import static project.blockArray.BlockArray.printErr;
 
-/**
- * Created by petr on 4/21/18.
- */
 public class RootLayout extends AnchorPane {
     private EventHandler mIconDragOverRoot=null;
     private EventHandler mIconDragDropped=null;
@@ -70,9 +75,9 @@ public class RootLayout extends AnchorPane {
 
     @FXML
     private void initialize() {
-        //Add one icon that will be used for the drag-drop processblue
-        //This is added as a child to the root AnchorPane so it can begreen
-        //visible on both sides of the split pane.green
+        //Add one icon that will be used for the drag-drop operations
+        //This is added as a child to the root AnchorPane so it can be
+        //visible on both sides of the split RootPane
         mDragOverIcon = new DragIcon();
 
         mDragOverIcon.setVisible(false);
@@ -106,7 +111,6 @@ public class RootLayout extends AnchorPane {
 
         step_button.setOnMouseClicked(event -> {
             if (blocks.cyclesExists()) {
-                System.err.println("ERROR: Cycle found.");
                 printErr("Cycle found.");
                 return;
             }

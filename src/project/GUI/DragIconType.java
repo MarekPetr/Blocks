@@ -1,3 +1,10 @@
+/**
+ * This class represents types of DragIcons
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
 /**

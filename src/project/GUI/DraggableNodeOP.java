@@ -1,8 +1,15 @@
+/**
+ * This class represents draggable block
+ * of right pane used for operations.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +20,6 @@ public class DraggableNodeOP extends DraggableNode {
     @FXML private TextField value;
     @FXML private VBox table;
     @FXML private AnchorPane body_handle;
-
 
     public DraggableNodeOP(RootLayout layout, String id) {
         super(layout, id);

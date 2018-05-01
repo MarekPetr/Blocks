@@ -1,8 +1,15 @@
+/**
+ * This class represents draggable block
+ * of right pane.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
 import java.io.IOException;
 import java.util.*;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
-import javax.xml.soap.Text;
+import static project.Errors.printErr;
 
 public class DraggableNode extends AnchorPane {
 
@@ -340,8 +345,7 @@ public class DraggableNode extends AnchorPane {
             value = Double.parseDouble(input_field.getText());
         } catch (NumberFormatException e) {
             success = false;
-            // TODO PRIDAT VYPIS CHYBY NA OBRAZOVKU
-            System.err.println("Input is not a float value");
+            printErr("Input is not a float value");
         }
 
         if (success) {

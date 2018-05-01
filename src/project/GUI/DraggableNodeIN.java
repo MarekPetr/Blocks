@@ -1,3 +1,11 @@
+/**
+ * This class represents draggable block
+ * of right pane used for input.
+ *
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
+
 package project.GUI;
 
 import javafx.fxml.FXML;
@@ -7,15 +15,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import project.items.ItemFirst;
-
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by petr on 4/24/18.
- */
 public class DraggableNodeIN extends DraggableNode {
     @FXML private TextField key1;
     @FXML private TextField key2;

@@ -7,13 +7,14 @@ import java.util.HashSet;
 import java.util.List;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import project.GUI.*;
 import project.connection.Connection;
 import project.items.*;
+
+import static project.Errors.printErr;
 
 public class BlockArray implements Serializable {
     private boolean first = true;
@@ -268,7 +269,6 @@ public class BlockArray implements Serializable {
 
     public void run() {
         if (cyclesExists()) {
-            System.err.println("ERROR: Cycle found.");
             printErr("Cycle found.");
             return;
         }
@@ -300,32 +300,27 @@ public class BlockArray implements Serializable {
 
     public boolean check() {
         if (!contains(ItemFirst.class)) {
-            System.err.println("ERROR: System does not contain IN block.");
             printErr("System does not contain IN block.");
             return true;
         }
 
         if (countInstances(ItemFirst.class) != 1) {
-            System.err.println("ERROR: System contains more than one IN block.");
             printErr("System contains more than one IN block.");
             return true;
         }
 
         if (!check_con()) {
-            System.err.println("ERROR: No connection between IN and OUT block.");
             printErr("No connection between IN and OUT block.");
             return true;
         }
 
         if (!contains(ItemLast.class)) {
-            System.err.println("ERROR: System does not contain OUT block.");
             printErr("System does not contain OUT block.");
             return true;
         }
 
         int index = index(ItemFirst.class);
         if (get(index).inValue.isEmpty()) {
-            System.err.println("ERROR: In value is null.");
             printErr("Input value in IN block is null.");
             return true;
         }
@@ -349,12 +344,6 @@ public class BlockArray implements Serializable {
         }
         check_items.clear();
         return false;
-    }
-
-    public static void printErr(String error) {
-        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-        errorAlert.setHeaderText(error);
-        errorAlert.showAndWait();
     }
 
     public void runStep() {
@@ -391,10 +380,8 @@ public class BlockArray implements Serializable {
             int items_size = current_step_items.size();
             for (int i = 0; i < items_size; i++) {
                 current_step_items.get(i).execute();
-                //highlightBlock(current_step_items.get(i).getName());
                 for (Connection connection : connections) {
                     if (connection.getInBlock().equals(current_step_items.get(i))) {
-                        //highlightBlock(current_step_items.get(i).getName());
                         connection.transferValue();
                         next_step_items.add(connection.getOutBlock());
                     }
@@ -410,15 +397,12 @@ public class BlockArray implements Serializable {
     private void highlightBlock(String id) {
 
         if (lastStepID != null) {
-            //System.out.println("lastStep" + lastStepID);
             setBlockBorder(lastStepID, true);
         }
         setBlockBorder(id, false);
     }
 
     public void setBlockBorder(String id, boolean deleteBorder) {
-
-        //System.out.println("id " + id);
         VBox block;
         if (right_pane == null)
             return;

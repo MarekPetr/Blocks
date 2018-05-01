@@ -1,11 +1,8 @@
 package project.items;
 
-import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by petr on 3/28/18.
- */
+import static project.Errors.printErr;
 public class ItemDiv extends AbstractItem {
     public ItemDiv(String name, double operand) {
         super(name, operand);
@@ -19,6 +16,7 @@ public class ItemDiv extends AbstractItem {
                 super.outValue.put(entry.getKey(), entry.getValue() / super.operand);
             }
         } else {
+            printErr("Division by zero!");
             throw new ArithmeticException("Division by zero!");
         }
     }

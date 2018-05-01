@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!--
+    author  Petr Marek
+    author Jakub Štefanišin
+-->
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <fx:root fx:id="root_pane"
          maxHeight="-Infinity"
