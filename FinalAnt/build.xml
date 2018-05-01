@@ -1,58 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" ?>
  
-<project name="JavaFX Hello World Example" default="default" basedir="."
+<project name="Blocks" default="default" basedir="."
   xmlns:fx="javafx:com.sun.javafx.tools.ant">
- 
-  <property name="JAVA_HOME" value="/usr/lib/jvm/java-8-oracle"/>
-  <property name="build.src.dir" value="src/src"/>
-  <property name="build.classes.dir" value="build"/>
-  <property name="build.dist.dir" value="dest_client"/>
-  <property name="build.resources.dir" value="src/resources"/>
- 
-  <target name="compile" depends="clean,build">
- 
-    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
-      uri="javafx:com.sun.javafx.tools.ant"
-      classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
- 	  
+  <property name="src.dir" value="src/src"/>
+  <property name="classes.dir" value="build"/>
+  <property name="dist.dir" value="dest_client"/>
+  <property name="resources.dir" value="src/resources"/>
+  <property name="doc.dir" value="doc"/>
+  
+  <target name="compile" depends="init-fx-tasks, build"> 	  
       <fx:application id="BlocksID"
         name="JavaFXBlocksApp"
         mainClass="project.Main"/>
         
       <fx:resources id="appRes">
-        <fx:fileset dir="${build.dist.dir}" includes="Blocks.jar"/>
+        <fx:fileset dir="${dist.dir}" includes="Blocks.jar"/>
       </fx:resources>
  
-      <fx:jar destfile="${build.dist.dir}/Blocks.jar">
+      <fx:jar destfile="${dist.dir}/Blocks.jar">
         <fx:application refid="BlocksID"/>
         <fx:resources refid="appRes"/>
-        <fileset dir="${build.classes.dir}"/>
-        <fileset dir="${build.resources.dir}"/>
+        <fileset dir="${classes.dir}"/>
+        <fileset dir="${resources.dir}"/>
       </fx:jar>
   </target>
- 
-  <target name="clean">
-    <mkdir dir="${build.classes.dir}"/>
-    <mkdir dir="${build.dist.dir}"/>    
-     <delete>
-      <fileset dir="${build.classes.dir}" includes="**/*"/>
-      <fileset dir="${build.dist.dir}" includes="**/*"/>
-    </delete>
+  
+  <target name="init-fx-tasks">
+		<path id="fxant">
+			<filelist>
+				<file name="${java.home}\..\lib\ant-javafx.jar"/>
+				<file name="${java.home}\lib\jfxrt.jar"/>
+				<file name="${basedir}"/>
+			</filelist>
+		</path>
+	
+		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+			uri="javafx:com.sun.javafx.tools.ant"
+			classpathref="fxant"/>
   </target>
   
-  <target name="build" depends="clean"> 
+  <target name="build" depends="clean, doc"> 
     <javac includeantruntime="false"
-      srcdir="${build.src.dir}"
-      destdir="${build.classes.dir}"
-      fork="yes"
-      executable="${JAVA_HOME}/bin/javac"
+      srcdir="${src.dir}"
+      destdir="${classes.dir}"
+      classpathref="fxant"
       source="8"
-      debug="on">
+      debug="off">
     </javac>
   </target>
   
+  <target name="doc">
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+  </target>   
+ 
+  <target name="clean">
+    <mkdir dir="${classes.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${doc.dir}"/> 
+     <delete>
+      <fileset dir="${classes.dir}" includes="**/*"/>
+      <fileset dir="${dist.dir}" includes="**/*"/>
+      <fileset dir="${doc.dir}" includes="**/*"/>
+    </delete>
+    
+  </target>
+  
   <target name="run">
-        <java jar="${build.dist.dir}/Blocks.jar" fork="true"/>
+        <java jar="${dist.dir}/Blocks.jar" fork="true"/>
   </target>  
  
 </project>

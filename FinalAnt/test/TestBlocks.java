@@ -67,11 +67,11 @@ public class TestBlocks {
     @Test
     public void test02() {
         itFirst.setInValue("value", 0.0);
-        Blocks.addToList(new BlockArrayItem(itFirst));
-        Blocks.addToList(new BlockArrayItem(conFirstPlus));
-        Blocks.addToList(new BlockArrayItem(itPlus));
-        Blocks.addToList(new BlockArrayItem(conPlusLast));
-        Blocks.addToList(new BlockArrayItem(itLast));
+        Blocks.addToList(itFirst);
+        Blocks.connections.add(conFirstPlus);
+        Blocks.addToList(itPlus);
+        Blocks.connections.add(conPlusLast);
+        Blocks.addToList(itLast);
         Assert.assertEquals("Test First out value", 0.0, itFirst.inValue.get("value"), 1.0);
         Blocks.run();
         Assert.assertEquals("Test Last in value", 100.0, itLast.inValue.get("value"), 1.0);
@@ -81,11 +81,11 @@ public class TestBlocks {
     @Test
     public void test03() {
         itFirst.setInValue("value", 0.0);
-        Blocks.addToList(new BlockArrayItem(conFirstPlus));
-        Blocks.addToList(new BlockArrayItem(itFirst));
-        Blocks.addToList(new BlockArrayItem(itLast));
-        Blocks.addToList(new BlockArrayItem(conPlusLast));
-        Blocks.addToList(new BlockArrayItem(itPlus));
+        Blocks.connections.add(conFirstPlus);
+        Blocks.addToList(itFirst);
+        Blocks.addToList(itLast);
+        Blocks.connections.add(conPlusLast);
+        Blocks.addToList(itPlus);
         Assert.assertEquals("Test First out value", 0.0, itFirst.getInValue().get("value"), 1.0);
         Blocks.run();
         Assert.assertEquals("Test Last in value", 100.0, itLast.inValue.get("value"), 1.0);
@@ -94,11 +94,11 @@ public class TestBlocks {
     @Test
     public void test04() throws IOException {
         itFirst.setInValue("value", 0.0);
-        Blocks.addToList(new BlockArrayItem(itFirst));
-        Blocks.addToList(new BlockArrayItem(conFirstPlus));
-        Blocks.addToList(new BlockArrayItem(itPlus));
-        Blocks.addToList(new BlockArrayItem(conPlusLast));
-        Blocks.addToList(new BlockArrayItem(itLast));
+        Blocks.addToList(itFirst);
+        Blocks.connections.add(conFirstPlus);
+        Blocks.addToList(itPlus);
+        Blocks.connections.add(conPlusLast);
+        Blocks.addToList(itLast);
         FileOutputStream fos = new FileOutputStream("save.txt");
         ObjectOutput oos = new ObjectOutputStream(fos);
         oos.writeObject(Blocks);
@@ -111,8 +111,8 @@ public class TestBlocks {
         ObjectInputStream ois = new ObjectInputStream(fis);
         BlockArray bb = (BlockArray) ois.readObject();
         ois.close();
-        Assert.assertEquals("Test First in value", 0.0, bb.get(0).item.inValue.get("value"), 1.0);
+        Assert.assertEquals("Test First in value", 0.0, bb.get(0).inValue.get("value"), 1.0);
         bb.run();
-        Assert.assertEquals("Test Last in value", 100.0, bb.get(bb.size() - 1).item.inValue.get("value"), 1.0);
+        Assert.assertEquals("Test Last in value", 100.0, bb.get(bb.size() - 1).inValue.get("value"), 1.0);
     }
 }
