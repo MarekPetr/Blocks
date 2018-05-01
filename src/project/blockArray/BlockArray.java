@@ -249,30 +249,8 @@ public class BlockArray implements Serializable {
             showCycleError(); 
             return;
         }
-        
-        if (!contains(ItemFirst.class)) {
-            System.err.println("ERROR: System does not contain IN block."); 
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
-            errorAlert.setHeaderText("System does not contain IN block."); 
-            errorAlert.showAndWait(); 
-            return;
-        }
 
-        if (!contains(ItemLast.class)) {
-            System.err.println("ERROR: System does not contain OUT block."); 
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
-            errorAlert.setHeaderText("System does not contain OUT block."); 
-            errorAlert.showAndWait(); 
-            return;
-        }
-
-        if (get(0).inValue.isEmpty()) {
-            System.err.println("ERROR: In value is null."); 
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR); 
-            errorAlert.setHeaderText("Input value in IN block is null."); 
-            errorAlert.showAndWait(); 
-            return;
-        }
+        if (check()) { return; }
 
         run_items.add(get(0));
         while (!(run_items.isEmpty())) {
@@ -297,8 +275,36 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    private boolean check() {
+        if (!contains(ItemFirst.class)) {
+            System.err.println("ERROR: System does not contain IN block.");
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("System does not contain IN block.");
+            errorAlert.showAndWait();
+            return true;
+        }
+
+        if (!contains(ItemLast.class)) {
+            System.err.println("ERROR: System does not contain OUT block.");
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("System does not contain OUT block.");
+            errorAlert.showAndWait();
+            return true;
+        }
+
+        if (get(0).inValue.isEmpty()) {
+            System.err.println("ERROR: In value is null.");
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Input value in IN block is null.");
+            errorAlert.showAndWait();
+            return true;
+        }
+        return false;
+    }
+
     public void runStep() {
         if (current_step_index == 0) {
+            if (check()) { return; }
             current_step_items.clear();
             cleanVals();
             get(0).execute();
