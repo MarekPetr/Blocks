@@ -1,6 +1,10 @@
 /**
  * @author  Petr Marek
  * @author  Jakub Štefanišin
+ *
+ * Drag and drop operation and source codes mainly in this package
+ * connected with it are based on this tutorial:
+ * https://monograff76.wordpress.com/2015/02/17/developing-a-drag-and-drop-ui-in-javafx-part-i-skeleton-application/
  */
 
 package project.GUI;
