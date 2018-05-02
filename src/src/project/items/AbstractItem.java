@@ -1,3 +1,7 @@
+/**
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
 package project.items;
 
 import javafx.geometry.Point2D;

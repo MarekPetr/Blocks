@@ -1,4 +1,9 @@
+/**
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
 package project.connection;
+
 import project.items.AbstractItem;
 
 import java.io.Serializable;
@@ -6,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * This class represents the connection between AbstractItem elements
+ */
 public class Connection implements Serializable {
 	private final String id;
 	private AbstractItem inBlock;

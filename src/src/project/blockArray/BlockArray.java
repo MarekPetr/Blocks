@@ -1,3 +1,7 @@
+/**
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
 package project.blockArray;
 
 import java.io.Serializable;
@@ -16,6 +20,9 @@ import project.items.*;
 
 import static project.Errors.printErr;
 
+/**
+ * This class represents internal implementation for creating schemes
+ */
 public class BlockArray implements Serializable {
     private boolean first = true;
     private int size;
@@ -35,6 +42,9 @@ public class BlockArray implements Serializable {
 
     private static final long serialVersionUID = 3787098173998467225L;
 
+    /**
+     * Constructs the list.
+     */
     public BlockArray() {
         super();
         this.blockArray = empty_element_data;
@@ -46,6 +56,9 @@ public class BlockArray implements Serializable {
         check_items = new ArrayList<>();
     }
 
+    /**
+     * Cleans inValues and outValues for all AbstractItem elements in this list except ItemFirst instance's inValue.
+     */
     public void cleanVals() {
         for (int i = 0; i < size(); i++) {
             get(i).outValue.clear();
@@ -55,8 +68,16 @@ public class BlockArray implements Serializable {
         }
     }
 
+    /**
+     * Returns the number of AbstractItem elements in this list.
+     * @return the number of AbstractItem elements in this list
+     */
     public int size() { return this.size; }
 
+    /**
+     * Adds the specified AbstractItem element to this list.
+     * @param e AbstractItem element to be added
+     */
     public void addToList(AbstractItem e) {
         if (size == blockArray.length) {
             ensureCapacity(size + 1);
@@ -69,6 +90,11 @@ public class BlockArray implements Serializable {
         }
     }
 
+    /**
+     * Returns true if this list contains instance of the specified class. More formally, returns true if and only if this list contains at least one instance of the class C
+     * @param C class whose instance presence in this list is to be tested
+     * @return true if this list contains instance of the specified class
+     */
     public boolean contains(Class C) {
         for (int i = 0; i < size; i++) {
             if (get(i).getClass().equals(C)) {
@@ -78,6 +104,12 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    /**
+     * Returns true if this list contains Connection between two specified AbstractItem instances.
+     * @param in AbstractItem instance where Connection starts
+     * @param out AbstractItem instance where Connection ends
+     * @return true if this list contains specified Connection
+     */
     public boolean containsConnection(AbstractItem in, AbstractItem out) {
         for (Connection connection : connections) {
             if (connection.getInBlock().equals(in) && connection.getOutBlock().equals(out)) {
@@ -87,6 +119,11 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    /**
+     * Returns true if this list contains Connection with the specified name.
+     * @param id name of Connection whose presence is to be tested
+     * @return true if this list contains specified Connection
+     */
     public boolean containsConnectionByID(String id) {
         for (Connection connection : connections) {
             if (connection.getId().equals(id)) {
@@ -96,15 +133,28 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    /**
+     * Returns true if this list contains no AbstractItem elements.
+     * @return true if this list contains no AbstractItem elements
+     */
     private boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Appends the specified AbstractItem element to the end of this list.
+     * @param e AbstractItem element to be appended to the list
+     */
     private void add(AbstractItem e) {
         ensureCapacity(size + 1);
         blockArray[size++] = e;
     }
 
+    /**
+     * Inserts the specified AbstractItem element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+     * @param index index at which the specified AbstractItem element is to be inserted
+     * @param e AbstractItem element to be inserted to the list
+     */
     private void add(int index, AbstractItem e) {
         ensureCapacity(size + 1);
         System.arraycopy(blockArray, index, blockArray, index + 1, size - index);
@@ -112,6 +162,11 @@ public class BlockArray implements Serializable {
         size++;
     }
 
+    /**
+     * Returns the AbstractItem element at the specified position in this list.
+     * @param index index of the AbstractItem element to return
+     * @return the AbstractItem element at the specified position in this list
+     */
     public AbstractItem get(int index) {
         if (index >= size) {
             throw new ArrayIndexOutOfBoundsException("Index out of bound exception.");
@@ -120,7 +175,11 @@ public class BlockArray implements Serializable {
         }
     }
 
-
+    /**
+     * Returns the AbstractItem element with the specified name in this list.
+     * @param name name of the AbstractItem element to return
+     * @return the AbstractItem element with the specified name in this list
+     */
     public AbstractItem get(String name) {
         for (int i = 0; i < size; i++) {
             if (get(i).getName().equals(name)) {
@@ -130,6 +189,10 @@ public class BlockArray implements Serializable {
         return null;
     }
 
+    /**
+     * Increases the capacity of this BlockArray instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
+     * @param minCapacity the desired minimum capacity
+     */
     private void ensureCapacity(int minCapacity) {
         int oldCapacity = blockArray.length;
         if (minCapacity > oldCapacity) {
@@ -140,6 +203,11 @@ public class BlockArray implements Serializable {
         }
     }
 
+    /**
+     * Returns the index of the first occurrence of the specified Connection in this list, or -1 if this list does not contain Connection with the specified name.
+     * @param name name of Connection whose index to return
+     * @return index of Connection with the specified name
+     */
     private int indexC(String name) {
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getId().equals(name)) {
@@ -149,6 +217,10 @@ public class BlockArray implements Serializable {
         return -1;
     }
 
+    /**
+     * Removes the AbstractItem element with the specified name in this list. Shifts any subsequent elements to the left (subtracts one from their indices). Removes all connections coming in and out from this AbstractItem element.
+     * @param name name of the AbstractItem element to be removed from this list
+     */
     public void remove(String name) {
         removeConnections(name);
         List<Connection> to_remove = new ArrayList<>();
@@ -170,6 +242,10 @@ public class BlockArray implements Serializable {
         this.size--;
     }
 
+    /**
+     * Removes all connections coming out of the AbstractItem element with the specified name.
+     * @param input_name name of the AbstractItem element where all Connections to be removed starts
+     */
     private void removeConnections(String input_name) {
         List<Connection> to_remove = new ArrayList<>();
         for (int i = 0; i < connections.size(); i++) {
@@ -181,6 +257,11 @@ public class BlockArray implements Serializable {
         connections.removeAll(to_remove);
     }
 
+    /**
+     * Removes connection connecting two AbstractItem elements specified by their names.
+     * @param input_name name of the AbstractItem element where Connection to be removed starts
+     * @param output_name name of the AbstractItem element where Connection to be removed ends
+     */
     public void removeConnection(String input_name, String output_name) {
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getInBlock().getName().equals(input_name) && connections.get(i).getOutBlock().getName().equals(output_name)) {
@@ -190,6 +271,9 @@ public class BlockArray implements Serializable {
         }
     }
 
+    /**
+     * Removes all of the AbstractItem elements and Connections. The list will be empty after this call returns.
+     */
     public void clear() {
         for (int i = 0; i < size; i++) {
             blockArray[i] = null;
@@ -198,6 +282,11 @@ public class BlockArray implements Serializable {
         this.connections.clear();
     }
 
+    /**
+     * Returns the index of the first occurrence of the specified AbstractItem element in this list, or -1 if this list does not contain AbstractItem element with the specified name.
+     * @param name name of the AbstractItem element whose index to return
+     * @return index of the AbstractItem element with the specified name
+     */
     private int index(String name) {
         for (int i = 0; i < size(); i++) {
             if (get(i).getName().equals(name)) {
@@ -207,6 +296,11 @@ public class BlockArray implements Serializable {
         return -1;
     }
 
+    /**
+     * Returns the index of the first occurrence of instance of the specified Class in this list, or -1 if this list does not contain any instance of the specified Class.
+     * @param c Class whose instance's index to return
+     * @return index of instance of the specified Class
+     */
     private int index(Class c) {
         for (int i = 0; i < size(); i++) {
             if (get(i).getClass().equals(c)) {
@@ -216,6 +310,11 @@ public class BlockArray implements Serializable {
         return -1;
     }
 
+    /**
+     * Return number of instances of the specified Class in this list.
+     * @param c Class whose number of instances to return
+     * @return number of instances of the specified Class
+     */
     private int countInstances(Class c) {
         int count = 0;
         for (int i = 0; i < size(); i++) {
@@ -226,6 +325,10 @@ public class BlockArray implements Serializable {
         return count;
     }
 
+    /**
+     * Checks if block scheme created from AbstractItem and Connection elements create cycle. This method is based on detecting cycles in a directed graph using colors. Uses Depth First Search method.
+     * @return true if scheme contains cycle
+     */
     public boolean cyclesExists() {
         HashSet<Integer> whiteSet = new HashSet<>();
         HashSet<Integer> graySet = new HashSet<>();
@@ -243,23 +346,30 @@ public class BlockArray implements Serializable {
         return false;
     }
 
-    private boolean isCycleUtil(int vertex, HashSet<Integer> whiteSet, HashSet<Integer> graySet, HashSet<Integer> blackSet){
+    /**
+     * Auxiliary method used in cyclesExists method for detecting cycles
+     * @param i index of current AbstractItem element to be checked
+     * @param whiteSet HashSet with indexes of AbstractItem elements which have not been processed yet
+     * @param graySet HashSet with indexed of AbstractItem elements which are being processed
+     * @param blackSet HashSet with indexed of AbstractItem elements which are already been processed
+     */
+    private boolean isCycleUtil(int i, HashSet<Integer> whiteSet, HashSet<Integer> graySet, HashSet<Integer> blackSet){
         whiteSet.remove(vertex);
         graySet.add(vertex);
 
-        for (int i = 0; i < get(vertex).links.size() ; i++) {
-            String id = get(vertex).links.get(i);
+        for (int i = 0; i < get(i).links.size() ; i++) {
+            String id = get(i).links.get(i);
             int index = indexC(id);
             String name = connections.get(index).getOutBlock().getName();
-            int adjVertex = index(name);
+            int adjI = index(name);
 
-            if (graySet.contains(adjVertex))
+            if (graySet.contains(adjI))
                 return true;
 
-            if (blackSet.contains(adjVertex))
+            if (blackSet.contains(adjI))
                 continue;
 
-            if (isCycleUtil(adjVertex, whiteSet, graySet, blackSet))
+            if (isCycleUtil(adjI, whiteSet, graySet, blackSet))
                 return true;
         }
         graySet.remove(vertex);
@@ -267,6 +377,9 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    /**
+     * Runs the calculation for the created scheme based on type of blocks and values inserted
+     */
     public void run() {
         if (cyclesExists()) {
             printErr("Cycle found.");
@@ -288,6 +401,12 @@ public class BlockArray implements Serializable {
         }
         run_items.clear();
     }
+
+    /**
+     * Return true if this list contains AbstractItem element with the specified name.
+     * @param name name of AbstractItem element to be checked
+     * @return true if list contains AbstractItem element with the specified name
+     */
     public boolean itemExists(String name) {
         for (int i = 0; i < size; i++) {
             String current = get(i).getName();
@@ -298,6 +417,10 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    /**
+     * Return true if any of checks of constructed scheme failed
+     * @return true if any of checks failed
+     */
     public boolean check() {
         if (!contains(ItemFirst.class)) {
             printErr("System does not contain IN block.");
@@ -327,6 +450,10 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    /**
+     * Return true if set of Connections between instances of ItemFirst and ItemLast in this list exists
+     * @return true if set of Connections between ItemFist instance and ItemLast instance exists
+     */
     private boolean check_con() {
         int index = index(ItemFirst.class);
         check_items.add(this.get(index));
@@ -346,6 +473,9 @@ public class BlockArray implements Serializable {
         return false;
     }
 
+    /**
+     * Runs one step of calculation for the created scheme based on type of blocks and values inserted
+     */
     public void runStep() {
         int index = index(ItemFirst.class);
         if (current_step_index == 0) {

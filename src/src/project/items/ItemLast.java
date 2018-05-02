@@ -1,4 +1,9 @@
+/**
+ * @author  Petr Marek
+ * @author  Jakub Štefanišin
+ */
 package project.items;
+
 public class ItemLast extends AbstractItem {
     public ItemLast(String name) {
         super(name, 0);
