@@ -21,7 +21,7 @@ import project.items.*;
 import static project.Errors.printErr;
 
 /**
- * This class represents internal implementation for creating schemes
+ * This class represents internal implementation for creating schemes.
  */
 public class BlockArray implements Serializable {
     private boolean first = true;
@@ -347,7 +347,7 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Auxiliary method used in cyclesExists method for detecting cycles
+     * Auxiliary method used in cyclesExists method for detecting cycles.
      * @param i index of current AbstractItem element to be checked
      * @param whiteSet HashSet with indexes of AbstractItem elements which have not been processed yet
      * @param graySet HashSet with indexed of AbstractItem elements which are being processed
@@ -378,7 +378,7 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Runs the calculation for the created scheme based on type of blocks and values inserted
+     * Runs the calculation for the created scheme based on type of blocks and values inserted.
      */
     public void run() {
         if (cyclesExists()) {
@@ -418,7 +418,7 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Return true if any of checks of constructed scheme failed
+     * Return true if any of checks of constructed scheme failed.
      * @return true if any of checks failed
      */
     public boolean check() {
@@ -451,7 +451,7 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Return true if set of Connections between instances of ItemFirst and ItemLast in this list exists
+     * Return true if set of Connections between instances of ItemFirst and ItemLast in this list exists.
      * @return true if set of Connections between ItemFist instance and ItemLast instance exists
      */
     private boolean check_con() {
@@ -474,7 +474,7 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Runs one step of calculation for the created scheme based on type of blocks and values inserted
+     * Runs one step of calculation for the created scheme based on type of blocks and values inserted.
      */
     public void runStep() {
         int index = index(ItemFirst.class);

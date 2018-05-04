@@ -74,6 +74,7 @@ public class NodeLink extends AnchorPane {
     /**
      * Gets reference to graphical representation of this NodeLink.
      * It is a cubic curve linking blocks.
+     * @return reference to link object in workspace
      */
     public CubicCurve getLink() {
         return node_link;
@@ -163,7 +164,7 @@ public class NodeLink extends AnchorPane {
     /**
      * Sets ending point of the curve.
      * This impacts only its shape.
-     * @param startPoint point where curve is going to end
+     * @param endPoint point where curve is going to end
      */
     public void setEnd(Point2D endPoint) {
 

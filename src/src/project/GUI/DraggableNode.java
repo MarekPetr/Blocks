@@ -64,6 +64,8 @@ public class DraggableNode extends AnchorPane {
 
     /**
      * Constructs the DraggableNode.
+     * @param lay root layout containing all nodes
+     * @param id future ID of this node
      */
     public DraggableNode(RootLayout lay, String id) {
         // dragging has to be handled in root Anchor - referenced by 'this'
@@ -138,7 +140,7 @@ public class DraggableNode extends AnchorPane {
 
     /**
      * Returns node as graphical object VBox.
-     * @return VBox
+     * @return VBox returns reference to graphical object of this node (block)
      */
     public VBox getBlock() {
         return this.block;
@@ -319,7 +321,7 @@ public class DraggableNode extends AnchorPane {
 
     /**
      * Relocates object to the given point.
-     * @param p point where the object is to be relocated
+     * @param p Point where the object is to be relocated
      */
     public void relocateToPoint (Point2D p) {
         //relocates the object to a point that has been converted to
@@ -338,7 +340,7 @@ public class DraggableNode extends AnchorPane {
 
     /**
      * Gets type of current instance of DragIcon
-     * @return one of DragIconType types
+     * @return DragIconType one of DragIconType types
      */
     public DragIconType getType () { return mType; }
 
@@ -390,7 +392,8 @@ public class DraggableNode extends AnchorPane {
 
     /**
      * Gets the input from given TextField
-     * @return input from given TextField 
+     * @param input_field input from given TextField
+     * @return double this returns input of given TextField converted to double
      */
     public double get_double_input(TextField input_field) {
         double value = 0;

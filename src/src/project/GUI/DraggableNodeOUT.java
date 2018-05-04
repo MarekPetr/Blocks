@@ -30,6 +30,8 @@ public class DraggableNodeOUT extends DraggableNode {
 
     /**
      * Constructs the DraggableNodeOUT.
+     * @param layout root layout
+     * @param id ID of this future block
      */
     public DraggableNodeOUT(RootLayout layout, String id) {
         super(layout, id);

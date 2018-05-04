@@ -37,6 +37,8 @@ public class DraggableNodeIN extends DraggableNode {
 
     /**
      * Constructs the DraggableNodeIN.
+     * @param layout root layout
+     * @param id ID of this future block
      */
     public DraggableNodeIN(RootLayout layout, String id) {
         super(layout, id);

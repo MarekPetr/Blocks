@@ -35,9 +35,10 @@ public class DragContainer implements Serializable {
     }
 
      /**
-     * Returns  a particular value of given key from DragContainer instance
+     * Returns a particular value of given key from DragContainer instance
+     * @param <T> the expected class of the value.
      * @param key key of which value is to be returned
-     * @return value of given key
+     * @return T value of given key
      */
     public <T> T getValue (String key) {
         for (Pair<String, Object> data: mDataPairs) {
@@ -50,8 +51,7 @@ public class DragContainer implements Serializable {
 
     /**
      * Returns total list of data from DragContainer instance
-     * @param key key of which value is to be returned
-     * @return list containing all keys and values
+     * @return List list containing all keys and values
      */
     public List <Pair<String, Object> > getData () { return mDataPairs; }
 }

@@ -23,6 +23,8 @@ public class DraggableNodeOP extends DraggableNode {
 
     /**
      * Constructs the DraggableNodeOP.
+     * @param layout root layout
+     * @param id ID of this future block
      */
     public DraggableNodeOP(RootLayout layout, String id) {
         super(layout, id);

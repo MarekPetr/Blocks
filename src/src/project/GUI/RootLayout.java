@@ -62,6 +62,7 @@ public class RootLayout extends AnchorPane {
 
     /**
      * Constructs the RootLayout.
+     * @param primaryStage stage of the whole window
      */
     public RootLayout(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -301,6 +302,7 @@ public class RootLayout extends AnchorPane {
      * @param type type of future block
      * @param id of future block
      * @param toList based on this value is block added to list of blocks (to be saved) or not (it is already saved)
+     * @return node added
      */
     public DraggableNode addNode(DragIconType type, String id, boolean toList) {
         DraggableNode node;
