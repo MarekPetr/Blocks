@@ -60,6 +60,9 @@ public class RootLayout extends AnchorPane {
     // semi transparent icon drawn on drag and drop
     private DragIcon mDragOverIcon = null;
 
+    /**
+     * Constructs the RootLayout.
+     */
     public RootLayout(Stage primaryStage) {
         this.primaryStage = primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -78,6 +81,9 @@ public class RootLayout extends AnchorPane {
         }
     }
 
+    /**
+     * Initializes DraggableNode instance.
+     */
     @FXML
     private void initialize() {
         //Add one icon that will be used for the drag-drop operations
@@ -102,6 +108,9 @@ public class RootLayout extends AnchorPane {
         setMenuButtons();
     }
 
+    /**
+     * Sets menu buttons handlers
+     */
     private void setMenuButtons() {
         clear_button.setOnMouseClicked(event -> {
             LoadScheme loadScheme = new LoadScheme(blocks, right_pane, this);
@@ -171,6 +180,9 @@ public class RootLayout extends AnchorPane {
         });
     }
 
+    /**
+     * Builds drag handlers.
+     */
     private void buildDragHandlers() {
         //drag over transition to move widget form left pane to right pane
         mIconDragOverRoot = (EventHandler<DragEvent>) event -> {
@@ -284,6 +296,12 @@ public class RootLayout extends AnchorPane {
         });
     }
 
+    /**
+     * Adds block (node) to workspace
+     * @param type type of future block
+     * @param id of future block
+     * @param toList based on this value is block added to list of blocks (to be saved) or not (it is already saved)
+     */
     public DraggableNode addNode(DragIconType type, String id, boolean toList) {
         DraggableNode node;
         if (type == in) {
@@ -342,6 +360,10 @@ public class RootLayout extends AnchorPane {
         return node;
     }
 
+    /**
+     * Adds detections for icon in left panel
+     * @param dragIcon icon to which detection is to be added
+     */
     private void addDragDetection(DragIcon dragIcon) {
 
         dragIcon.setOnDragDetected (event -> {

@@ -47,6 +47,12 @@ public class NodeLink extends AnchorPane {
     private final DoubleProperty mControlDirectionX2 = new SimpleDoubleProperty();
     private final DoubleProperty mControlDirectionY2 = new SimpleDoubleProperty();
 
+    /**
+     * Constructs the DraggableNode.
+     * @param lay root layout
+     * @param sourceId ID of source block
+     * @param id future ID of this link
+     */
     public NodeLink(RootLayout lay, String sourceId, String id) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -65,10 +71,17 @@ public class NodeLink extends AnchorPane {
         }
         setId(id);
     }
+    /**
+     * Gets reference to graphical representation of this NodeLink.
+     * It is a cubic curve linking blocks.
+     */
     public CubicCurve getLink() {
         return node_link;
     }
 
+    /**
+     * Initializes NodeLink instance.
+     */
     @FXML
     private void initialize() {
         mControlOffsetX.set(100.0);
@@ -136,20 +149,33 @@ public class NodeLink extends AnchorPane {
         });
     }
 
-    // set starting point of the curve
-    // - has impact on its shape, nothing else
+    /**
+     * Sets starting point of the curve.
+     * This impacts only its shape.
+     * @param startPoint point where curve is going to start
+     */
     public void setStart(Point2D startPoint) {
 
         node_link.setStartX(startPoint.getX());
         node_link.setStartY(startPoint.getY());
     }
-    // set ending point of the curve
-    // - has impact on its shape, nothing else
+
+    /**
+     * Sets ending point of the curve.
+     * This impacts only its shape.
+     * @param startPoint point where curve is going to end
+     */
     public void setEnd(Point2D endPoint) {
 
         node_link.setEndX(endPoint.getX());
         node_link.setEndY(endPoint.getY());
     }
+
+    /**
+     * Binds two blocks (nodes) together with a link.
+     * @param source node from where link starts
+     * @param target target node
+     */
     public void bindEnds (DraggableNode source, DraggableNode target) {
         node_link.startXProperty().bind(
                 Bindings.add(source.layoutXProperty(),(40)));

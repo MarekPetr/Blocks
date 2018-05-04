@@ -28,17 +28,26 @@ public class DraggableNodeOUT extends DraggableNode {
     @FXML private VBox table;
     @FXML private AnchorPane body_handle;
 
-
+    /**
+     * Constructs the DraggableNodeOUT.
+     */
     public DraggableNodeOUT(RootLayout layout, String id) {
         super(layout, id);
     }
 
+    /**
+     * Sets resource file for current node.
+     * @return FXMLLoader object
+     */
     @Override
     public FXMLLoader setResource() {
         return new FXMLLoader(
                 getClass().getResource("/DraggableNodeOUT.fxml"));
     }
 
+    /**
+     * Builds handlers for output tables.
+     */
     @Override
     public void buildInputHandlers() {
         table_pane.setVisible(false);

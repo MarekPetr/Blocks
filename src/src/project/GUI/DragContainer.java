@@ -34,7 +34,11 @@ public class DragContainer implements Serializable {
         mDataPairs.add(new Pair<String, Object>(key, value));
     }
 
-    // get a particular value
+     /**
+     * Returns  a particular value of given key from DragContainer instance
+     * @param key key of which value is to be returned
+     * @return value of given key
+     */
     public <T> T getValue (String key) {
         for (Pair<String, Object> data: mDataPairs) {
             if (data.getKey().equals(key)) {
@@ -44,6 +48,10 @@ public class DragContainer implements Serializable {
         return null;
     }
 
-    // Get total list of data
+    /**
+     * Returns total list of data from DragContainer instance
+     * @param key key of which value is to be returned
+     * @return list containing all keys and values
+     */
     public List <Pair<String, Object> > getData () { return mDataPairs; }
 }

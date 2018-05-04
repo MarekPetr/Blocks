@@ -62,6 +62,9 @@ public class DraggableNode extends AnchorPane {
     private final List mLinkIds = new ArrayList();
     private String id;
 
+    /**
+     * Constructs the DraggableNode.
+     */
     public DraggableNode(RootLayout lay, String id) {
         // dragging has to be handled in root Anchor - referenced by 'this'
         this.id = id;
@@ -79,15 +82,26 @@ public class DraggableNode extends AnchorPane {
         setId(id);
     }
 
+    /**
+     * Returns the ID of current node instance.
+     * @return ID of current node instance
+     */
     public String getNodeId() {
         return this.id;
     }
 
+    /**
+     * Sets resource file for current node.
+     * @return FXMLLoader object
+     */
     public FXMLLoader setResource() {
         return new FXMLLoader(
                 getClass().getResource("/DraggableNode.fxml"));
     }
 
+    /**
+     * Initializes DraggableNode instance.
+     */
     @FXML
     private void initialize() {
         buildNodeDragHandlers();
@@ -108,16 +122,31 @@ public class DraggableNode extends AnchorPane {
                 -> right_pane = (AnchorPane) getParent());
     }
 
+    /**
+     * Builds handlers for input/output tables.
+     * DraggableNode has no tables.
+     */
     public void buildInputHandlers() {
     }
 
+    /**
+     * Builds middle handler of node - displaying input/output.
+     * DraggableNode has no inputs/outputs.
+     */
     public void buildBodyHandler() {
     }
 
+    /**
+     * Returns node as graphical object VBox.
+     * @return VBox
+     */
     public VBox getBlock() {
         return this.block;
     }
 
+    /**
+     * Builds drag handlers.
+     */
     public void buildNodeDragHandlers() {
         //drag detection (on title bar) for node dragging
         title_bar.setOnDragDetected (event -> {
@@ -193,6 +222,9 @@ public class DraggableNode extends AnchorPane {
         });
     }
 
+    /**
+     * Builds link drag handlers.
+     */
     private void buildLinkDragHandlers() {
         mLinkHandleDragDetected = event -> {
             getParent().setOnDragOver(null);
@@ -277,10 +309,18 @@ public class DraggableNode extends AnchorPane {
         };
     }
 
+    /**
+     * Registers link in DragContainer
+     * @param linkId ID of the link
+     */
     public void registerLink(String linkId) {
             mLinkIds.add(linkId);
     }
 
+    /**
+     * Relocates object to the given point.
+     * @param p point where the object is to be relocated
+     */
     public void relocateToPoint (Point2D p) {
         //relocates the object to a point that has been converted to
         //scene coordinates
@@ -296,8 +336,16 @@ public class DraggableNode extends AnchorPane {
         relocate ((int) (newX), (int) (newY));
     }
 
+    /**
+     * Gets type of current instance of DragIcon
+     * @return one of DragIconType types
+     */
     public DragIconType getType () { return mType; }
 
+    /**
+     * Sets type of current instance of DraggableNode
+     * @param type one of DragIconType types
+     */
     public void setType (DragIconType type) {
 
         mType = type;
@@ -339,6 +387,11 @@ public class DraggableNode extends AnchorPane {
                 break;
         }
     }
+
+    /**
+     * Gets the input from given TextField
+     * @return input from given TextField 
+     */
     public double get_double_input(TextField input_field) {
         double value = 0;
         boolean success = true;

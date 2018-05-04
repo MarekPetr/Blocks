@@ -18,11 +18,21 @@ public class LoadScheme {
     private AnchorPane right_pane;
     private RootLayout rootLayout;
 
+    /**
+     * Constructs LoadScheme.
+     * @param toLoad loaded state
+     * @param right_pane pane where scheme is loaded
+     * @param rootLayout root layout containing whole stage
+     */
     public LoadScheme(BlockArray toLoad, AnchorPane right_pane, RootLayout rootLayout) {
         this.toLoad = toLoad;
         this.right_pane = right_pane;
         this.rootLayout = rootLayout;
     }
+
+    /**
+     * Performs loading of a scheme.
+     */
     public void load(){
         deleteNodes();
         spawnBlocks();
@@ -30,6 +40,9 @@ public class LoadScheme {
         connectNodes();
     }
 
+    /**
+     * Adds blocks on scene.
+     */
     private void spawnBlocks() {
         // print IDs ant types of all blocks
         DraggableNode node;
@@ -48,6 +61,9 @@ public class LoadScheme {
         }
     }
 
+    /**
+     * Connects spawned blocks.
+     */
     private void connectNodes() {
         System.out.println("loading");
         String sourceId;
@@ -87,6 +103,9 @@ public class LoadScheme {
         }
     }
 
+    /**
+     * Clears workspace
+     */
     public void deleteNodes() {
         for (ListIterator<Node> iterNode = right_pane.getChildren().listIterator();
              iterNode.hasNext();)

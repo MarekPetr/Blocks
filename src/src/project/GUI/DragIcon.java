@@ -21,6 +21,9 @@ public class DragIcon extends AnchorPane{
 
     private DragIconType mType = null;
 
+    /**
+     * Constructs the DragIcon.
+     */
     public DragIcon() {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("/DragIcon.fxml")
@@ -36,9 +39,16 @@ public class DragIcon extends AnchorPane{
         }
     }
 
+    /**
+     * Initializes DragIcon instance.
+     */
     @FXML
     private void initialize() {}
 
+    /**
+     * Relocates the icon to a given point.
+     * @param p point where to relocate icon
+     */
     public void relocateToPoint (Point2D p) {
 
         //relocates the object to a point that has been converted to
@@ -51,8 +61,16 @@ public class DragIcon extends AnchorPane{
         );
     }
 
+    /**
+     * Gets type of current instance of DragIcon
+     * @return one of DragIconType types
+     */
     public DragIconType getType () { return mType; }
 
+    /**
+     * Sets type of current instance of DragIcon
+     * @param type one of DragIconType types
+     */
     public void setType (DragIconType type) {
 
         mType = type;

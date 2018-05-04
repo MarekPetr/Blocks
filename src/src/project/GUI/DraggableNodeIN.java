@@ -35,16 +35,26 @@ public class DraggableNodeIN extends DraggableNode {
 
     @FXML private Pane table_pane;
 
+    /**
+     * Constructs the DraggableNodeIN.
+     */
     public DraggableNodeIN(RootLayout layout, String id) {
         super(layout, id);
     }
 
+    /**
+     * Sets resource file for current node.
+     * @return FXMLLoader object
+     */
     @Override
     public FXMLLoader setResource() {
         return new FXMLLoader(
                 getClass().getResource("/DraggableNodeIN.fxml"));
     }
 
+    /**
+     * Builds handlers for input tables.
+     */
     @Override
     public void buildInputHandlers() {
         if (layout.blocks.contains(ItemFirst.class)) {
@@ -77,6 +87,9 @@ public class DraggableNodeIN extends DraggableNode {
         setValueField(value3, 6);
     }
 
+    /**
+     * Builds middle handler of node - displaying input/output.
+     */
     @Override
     public void buildBodyHandler() {
         table_pane.setVisible(false);
@@ -89,6 +102,11 @@ public class DraggableNodeIN extends DraggableNode {
         });
     }
 
+    /**
+     * Sets the key value of item corresponding to current node.
+     * @param text_field reference to field where value is stored
+     * @param index order of text field
+     */
     private void setKeyField(TextField text_field, int index) {
         text_field.setOnKeyPressed(ke -> {
             if (ke.getCode().equals(KeyCode.ENTER))
@@ -108,6 +126,11 @@ public class DraggableNodeIN extends DraggableNode {
         });
     }
 
+    /**
+     * Sets the value of item corresponding to current node.
+     * @param text_field reference to field where value is stored
+     * @param index order of text field 
+     */
     private void setValueField(TextField text_field, int index) {
 
         text_field.textProperty().addListener((observable, oldValue, newValue) -> {

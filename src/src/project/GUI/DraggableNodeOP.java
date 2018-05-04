@@ -21,16 +21,26 @@ public class DraggableNodeOP extends DraggableNode {
     @FXML private VBox table;
     @FXML private AnchorPane body_handle;
 
+    /**
+     * Constructs the DraggableNodeOP.
+     */
     public DraggableNodeOP(RootLayout layout, String id) {
         super(layout, id);
     }
 
+    /**
+     * Sets resource file for current node.
+     * @return FXMLLoader object
+     */
     @Override
     public FXMLLoader setResource() {
         return new FXMLLoader(
                 getClass().getResource("/DraggableNodeOP.fxml"));
     }
 
+    /**
+     * Builds handlers for input tables.
+     */
     @Override
     public void buildInputHandlers() {
         String id = getNodeId();
@@ -42,6 +52,10 @@ public class DraggableNodeOP extends DraggableNode {
         setTextField(value);
     }
 
+    /**
+     * Sets the operand value of item corresponding to current node.
+     * @param text_field reference to field where value is stored
+     */
     private void setTextField(TextField field) {
         field.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d.*")) {
@@ -60,6 +74,9 @@ public class DraggableNodeOP extends DraggableNode {
         });
     }
 
+    /**
+     * Builds middle handler of node - displaying input/output.
+     */
     @Override
     public void buildBodyHandler() {
         table.setVisible(false);
