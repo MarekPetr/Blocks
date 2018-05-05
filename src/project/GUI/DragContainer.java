@@ -34,6 +34,7 @@ public class DragContainer implements Serializable {
     }
 
     // get a particular value
+    @SuppressWarnings("unchecked")
     public <T> T getValue (String key) {
         for (Pair<String, Object> data: mDataPairs) {
             if (data.getKey().equals(key)) {

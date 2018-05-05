@@ -337,10 +337,12 @@ public class RootLayout extends AnchorPane {
         return node;
     }
 
+    @SuppressWarnings("unchecked")
     private void addDragDetection(DragIcon dragIcon) {
 
         dragIcon.setOnDragDetected (event -> {
             // set the other drag event handles on their respective objects
+
             base_pane.setOnDragOver(mIconDragOverRoot);
             right_pane.setOnDragOver(mIconDragOverRightPane);
             right_pane.setOnDragDropped(mIconDragDropped);
