@@ -61,6 +61,7 @@ public class DraggableNodeOUT extends DraggableNode {
             for (Map.Entry<String, Double> entry : map.entrySet())
             {
                 String value = String.valueOf(entry.getValue());
+                
                 if (i == 1) {
                     key1.setText(entry.getKey());
                     value1.setText(value);

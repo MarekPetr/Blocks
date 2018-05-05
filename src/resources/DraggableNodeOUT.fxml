@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
     author  Petr Marek
     author Jakub Štefanišin
 -->
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -45,34 +47,34 @@
                 </HBox>
             </children>
         </VBox>
-      <Pane fx:id="table_pane" layoutX="40.0" layoutY="121.0" prefHeight="121.0" prefWidth="154.0">
+      <Pane fx:id="table_pane" layoutX="40.0" layoutY="121.0" prefHeight="147.0" prefWidth="268.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="121.0" stroke="#8d8d8d" strokeType="INSIDE" width="154.0" />
-              <VBox fx:id="table" layoutX="14.0" layoutY="13.0" prefHeight="96.0" prefWidth="140.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d5dbe1" height="147.0" stroke="#acb2b2" strokeType="INSIDE" width="268.0" />
+              <VBox fx:id="table" layoutX="7.0" layoutY="5.0" prefHeight="135.0" prefWidth="256.0">
                   <children>
                       <HBox prefHeight="100.0" prefWidth="200.0">
                           <children>
-                              <Label prefHeight="26.0" prefWidth="100.0" text="Name" />
-                              <Label prefHeight="26.0" prefWidth="100.0" text="Value" />
+                              <Label prefHeight="26.0" prefWidth="127.0" text="Name" />
+                              <Label prefHeight="26.0" prefWidth="88.0" text="Value" />
                           </children>
                       </HBox>
-                      <Line endX="121.0" />
+                      <Line endX="250.0" />
                       <HBox prefHeight="100.0" prefWidth="200.0">
                           <children>
-                              <Label fx:id="key1" prefHeight="26.0" prefWidth="100.0" />
-                              <Label fx:id="value1" prefHeight="26.0" prefWidth="100.0" />
-                          </children>
-                      </HBox>
-                      <HBox prefHeight="100.0" prefWidth="200.0">
-                          <children>
-                              <Label fx:id="key2" prefHeight="26.0" prefWidth="100.0" />
-                              <Label fx:id="value2" prefHeight="26.0" prefWidth="100.0" />
+                              <Label fx:id="key1" prefHeight="26.0" prefWidth="150.0" />
+                              <Label fx:id="value1" prefHeight="26.0" prefWidth="150.0" />
                           </children>
                       </HBox>
                       <HBox prefHeight="100.0" prefWidth="200.0">
                           <children>
-                              <Label fx:id="key3" prefHeight="26.0" prefWidth="100.0" />
-                              <Label fx:id="value3" prefHeight="26.0" prefWidth="100.0" />
+                              <Label fx:id="key2" prefHeight="26.0" prefWidth="150.0" />
+                              <Label fx:id="value2" prefHeight="26.0" prefWidth="150.0" />
+                          </children>
+                      </HBox>
+                      <HBox prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                              <Label fx:id="key3" prefHeight="26.0" prefWidth="150.0" />
+                              <Label fx:id="value3" prefHeight="26.0" prefWidth="150.0" />
                           </children>
                       </HBox>
                   </children>

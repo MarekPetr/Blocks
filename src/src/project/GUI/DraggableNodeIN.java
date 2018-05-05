@@ -134,8 +134,8 @@ public class DraggableNodeIN extends DraggableNode {
     private void setValueField(TextField text_field, int index) {
 
         text_field.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d\\.*")) {
-                text_field.setText(newValue.replaceAll("[^\\d.]", ""));
+            if (!newValue.matches("\\d{0,7}([\\.]\\d{0,3})?")) {
+                text_field.setText(oldValue);
             }
         });
         text_field.setOnKeyPressed(ke -> {
@@ -147,7 +147,8 @@ public class DraggableNodeIN extends DraggableNode {
                         layout.blocks.get(getId()).setInValue(current_key, value);
                     }
                 }
-                keys.add(index - 1, text_field.getText());
+                keys.add(index - 1, input_field.getText());
+                this.requestFocus();
             }
         });
     }

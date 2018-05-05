@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -19,6 +20,7 @@ import javafx.scene.layout.VBox;
 public class DraggableNodeOP extends DraggableNode {
     @FXML private TextField value;
     @FXML private VBox table;
+    @FXML private Pane table_pane;
     @FXML private AnchorPane body_handle;
 
     /**
@@ -59,8 +61,8 @@ public class DraggableNodeOP extends DraggableNode {
      */
     private void setTextField(TextField field) {
         field.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d.*")) {
-                field.setText(newValue.replaceAll("[^\\d.]", ""));
+            if (!newValue.matches("\\d{0,7}([\\.]\\d{0,3})?")) {
+                field.setText(oldValue);
             }
         });
         field.setOnKeyPressed(ke -> {
@@ -79,11 +81,14 @@ public class DraggableNodeOP extends DraggableNode {
      */
     @Override
     public void buildBodyHandler() {
+        table_pane.setVisible(false);
         table.setVisible(false);
         body_handle.setOnMouseClicked(event -> {
-            if (table.isVisible()) {
+            if (table_pane.isVisible()) {
+                table_pane.setVisible(false);
                 table.setVisible(false);
             } else {
+                table_pane.setVisible(true);
                 table.setVisible(true);
             }
         });
