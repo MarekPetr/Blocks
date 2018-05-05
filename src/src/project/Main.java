@@ -18,8 +18,8 @@ public class Main extends Application {
     public Stage primaryStage;
 
     /**
-     * Start method used for setting and loading primary stage.
-     * @param primaryStage primary window of application
+     * Start method used for setting and loading the primary stage.
+     * @param primaryStage primary window of the application
      */
     @Override
     public void start(Stage primaryStage) {
