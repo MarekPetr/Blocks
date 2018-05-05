@@ -15,6 +15,7 @@ import project.items.ItemFirst;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import project.Errors;
 
 /**
  * This class represents draggable block
@@ -141,11 +142,15 @@ public class DraggableNodeIN extends DraggableNode {
         text_field.setOnKeyPressed(ke -> {
             TextField input_field = (TextField) ke.getSource();
             if (ke.getCode().equals(KeyCode.ENTER)) {
-                if (!current_key.isEmpty()) {
-                    if (current_index == index - 1) {
-                        double value = get_double_input(input_field);
-                        layout.blocks.get(getId()).setInValue(current_key, value);
+                try {
+                    if (!current_key.isEmpty()) {
+                        if (current_index == index - 1) {
+                            double value = get_double_input(input_field);
+                            layout.blocks.get(getId()).setInValue(current_key, value);
+                        }
                     }
+                } catch (NullPointerException e) {
+                    Errors.printErr("Name field has to be filled first.");
                 }
                 keys.add(index - 1, input_field.getText());
                 this.requestFocus();

@@ -4,6 +4,9 @@
  */
 package project.items;
 
+/**
+ * Interface for creating Blocks
+ */
 public interface Item {
     String getName();
     void execute();

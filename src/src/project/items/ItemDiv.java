@@ -7,6 +7,10 @@ package project.items;
 import java.util.Map;
 
 import static project.Errors.printErr;
+
+/**
+ * This class in internal representation of DraggableNode with type Div
+ */
 public class ItemDiv extends AbstractItem {
     public ItemDiv(String name, double operand) {
         super(name, operand);

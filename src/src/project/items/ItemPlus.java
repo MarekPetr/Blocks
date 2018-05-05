@@ -6,6 +6,9 @@ package project.items;
 
 import java.util.Map;
 
+/**
+ * This class in internal representation of DraggableNode with type Plus
+ */
 public class ItemPlus extends AbstractItem {
     public ItemPlus(String name, double operand) {
         super(name, operand);

@@ -6,6 +6,9 @@ package project.items;
 
 import java.util.Map;
 
+/**
+ * This class in internal representation of DraggableNode with type Pow
+ */
 public class ItemPow extends AbstractItem {
     public ItemPow(String name, double operand) {
         super(name, operand);

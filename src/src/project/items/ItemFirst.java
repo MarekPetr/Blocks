@@ -4,6 +4,9 @@
  */
 package project.items;
 
+/**
+ * This class in internal representation of DraggableNode with type In
+ */
 public class ItemFirst extends AbstractItem {
     public ItemFirst(String name) {
         super(name, 0);

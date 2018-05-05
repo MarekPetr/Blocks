@@ -4,6 +4,9 @@
  */
 package project.items;
 
+/**
+ * This class in internal representation of DraggableNode with type Out
+ */
 public class ItemLast extends AbstractItem {
     public ItemLast(String name) {
         super(name, 0);
