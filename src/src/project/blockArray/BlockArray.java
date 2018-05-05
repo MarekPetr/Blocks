@@ -226,13 +226,12 @@ public class BlockArray implements Serializable {
         List<Connection> to_remove = new ArrayList<>();
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getOutBlock().getName().equals(name)) {
-                System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + connections.get(i).getInBlock().getName() + " and output: " + name);
                 connections.get(i).getInBlock().links.remove(connections.get(i).getId());
                 to_remove.add(connections.get(i));
             }
         }
         connections.removeAll(to_remove);
-        System.out.println("Item " + name + " is being removed.");
+        //System.out.println("Item " + name + " is being removed.");
         int index = index(name);
         //
         if (get(index) instanceof ItemFirst && countInstances(ItemFirst.class) == 1) {
@@ -250,7 +249,6 @@ public class BlockArray implements Serializable {
         List<Connection> to_remove = new ArrayList<>();
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getInBlock().getName().equals(input_name)) {
-                System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + input_name + " and output: " + connections.get(i).getOutBlock().getName());
                 to_remove.add(connections.get(i));
             }
         }
@@ -265,7 +263,6 @@ public class BlockArray implements Serializable {
     public void removeConnection(String input_name, String output_name) {
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getInBlock().getName().equals(input_name) && connections.get(i).getOutBlock().getName().equals(output_name)) {
-                System.out.println("Removing connection " + connections.get(i).getId() + " with input: " + input_name + " and output: " + output_name);
                 System.arraycopy(connections.toArray(), i + 1, connections.toArray(), i, connections.size() - i - 1);
             }
         }

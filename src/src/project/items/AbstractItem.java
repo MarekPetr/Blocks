@@ -40,7 +40,6 @@ public abstract class AbstractItem implements Item, Serializable {
 
 
     public void setCoords(double x, double y) {
-        //System.out.println("Coords set to x: " + coordsX + ", y:" + coordsY);
         this.coordsX = x;
         this.coordsY = y;
     }
@@ -59,7 +58,6 @@ public abstract class AbstractItem implements Item, Serializable {
 
     public void setOperand(double val) {
         this.operand = val;
-        //System.out.println("Operand for " + id + " was set to " + val);
     }
 
     public double getOperand() {
@@ -105,7 +103,6 @@ public abstract class AbstractItem implements Item, Serializable {
     }
 
     public void setInValue(String _key, double _value) {
-        //System.out.println("To item " + id + " inValue with key " + _key + " and value " + _value);
         if (_key == null) {
             printErr("Key is null.");
         }

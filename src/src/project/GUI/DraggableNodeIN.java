@@ -116,13 +116,11 @@ public class DraggableNodeIN extends DraggableNode {
                 TextField input_field = (TextField) ke.getSource();
                 if (keys.size() >= index && keys.get(index - 1) != null) {
                     layout.blocks.get(getId()).inValue.remove(current_key);
-                    System.out.println("Removing key " + current_key);
                 }
                 keys.add(index - 1, input_field.getText());
                 current_key = input_field.getText();
                 current_index = index;
 
-                System.out.printf("%d. saved\n", index);
                 this.requestFocus();
             }
         });
@@ -150,7 +148,6 @@ public class DraggableNodeIN extends DraggableNode {
                     }
                 }
                 keys.add(index - 1, text_field.getText());
-                System.out.printf("%d. saved\n", index);
             }
         });
     }

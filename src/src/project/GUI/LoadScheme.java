@@ -49,8 +49,6 @@ public class LoadScheme {
         for (int i = 0; i < toLoad.size(); i++) {
             DragIconType type = toLoad.get(i).getType();
             String id = toLoad.get(i).getName();
-            System.out.println("Name: " + toLoad.get(i).getName() + ", type: " + toLoad.get(i).getType());
-
             node = rootLayout.addNode(type, id, false);
 
             double coordsX = toLoad.get(i).getX();
@@ -65,11 +63,9 @@ public class LoadScheme {
      * Connects spawned blocks.
      */
     private void connectNodes() {
-        System.out.println("loading");
         String sourceId;
         String targetId;
         String connectId;
-
 
         for (int i = 0; i < toLoad.connections.size(); i++) {
             sourceId = toLoad.connections.get(i).getInBlock().getName();
@@ -95,7 +91,6 @@ public class LoadScheme {
             }
 
             if (source != null && target != null && source != target) {
-                System.out.println("Binding");
                 link.bindEnds(source, target);
             } else {
                 link.setVisible(false);

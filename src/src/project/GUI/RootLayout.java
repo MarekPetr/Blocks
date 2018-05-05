@@ -288,7 +288,6 @@ public class RootLayout extends AnchorPane {
 
                     if (source != null && target != null && source != target) {
                         blocks.connections.add(new Connection(link.getId(), blocks.get(sourceId), blocks.get(targetId)));
-                        System.out.println("Connection between " + blocks.get(sourceId).getName() + " and " + blocks.get(targetId).getName() + " added.");
                         link.bindEnds(source, target);
                     }
                 }
@@ -330,31 +329,24 @@ public class RootLayout extends AnchorPane {
             switch (node.getType()) {
                 case in:
                     blocks.addToList(new ItemFirst(node.getId()));
-                    System.out.println("ItemFirst added.");
                     break;
                 case out:
                     blocks.addToList(new ItemLast(node.getId()));
-                    System.out.println("ItemLast added.");
                     break;
                 case plus:
                     blocks.addToList(new ItemPlus(node.getId()));
-                    System.out.println("ItemPlus added.");
                     break;
                 case minus:
                     blocks.addToList(new ItemMinus(node.getId()));
-                    System.out.println("ItemMinus added.");
                     break;
                 case mul:
                     blocks.addToList(new ItemMul(node.getId()));
-                    System.out.println("ItemMul added.");
                     break;
                 case div:
                     blocks.addToList(new ItemDiv(node.getId()));
-                    System.out.println("ItemDiv added.");
                     break;
                 case pow:
                     blocks.addToList(new ItemPow(node.getId()));
-                    System.out.println("ItemPow added.");
                     break;
             }
             blocks.get(node.getId()).setType(node.getType());
