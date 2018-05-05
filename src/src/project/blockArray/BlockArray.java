@@ -354,11 +354,11 @@ public class BlockArray implements Serializable {
      * @param blackSet HashSet with indexed of AbstractItem elements which are already been processed
      */
     private boolean isCycleUtil(int i, HashSet<Integer> whiteSet, HashSet<Integer> graySet, HashSet<Integer> blackSet){
-        whiteSet.remove(vertex);
-        graySet.add(vertex);
+        whiteSet.remove(i);
+        graySet.add(i);
 
-        for (int i = 0; i < get(i).links.size() ; i++) {
-            String id = get(i).links.get(i);
+        for (int j = 0; j < get(i).links.size() ; j++) {
+            String id = get(i).links.get(j);
             int index = indexC(id);
             String name = connections.get(index).getOutBlock().getName();
             int adjI = index(name);
@@ -372,8 +372,8 @@ public class BlockArray implements Serializable {
             if (isCycleUtil(adjI, whiteSet, graySet, blackSet))
                 return true;
         }
-        graySet.remove(vertex);
-        blackSet.add(vertex);
+        graySet.remove(i);
+        blackSet.add(i);
         return false;
     }
 
