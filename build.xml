@@ -57,15 +57,13 @@
   </target>   
  
   <target name="clean">
+    <delete dir="${classes.dir}"/>
+    <delete dir="${dist.dir}"/>
+    <delete dir="${doc.dir}"/>
+    
     <mkdir dir="${classes.dir}"/>
     <mkdir dir="${dist.dir}"/>
-    <mkdir dir="${doc.dir}"/> 
-     <delete>
-      <fileset dir="${classes.dir}" includes="**/*"/>
-      <fileset dir="${dist.dir}" includes="**/*"/>
-      <fileset dir="${doc.dir}" includes="**/*"/>
-    </delete>
-    
+    <mkdir dir="${doc.dir}"/>    
   </target>
   
   <target name="run">
