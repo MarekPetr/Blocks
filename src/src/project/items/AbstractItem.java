@@ -72,14 +72,6 @@ public abstract class AbstractItem implements Item, Serializable {
     }
 
     /**
-     * Returns current coordinates of Block in layout
-     * @return current coordinates of Block in layout
-     */
-    public Point2D getCoords(Point2D coords) {
-        return new Point2D(this.coordsX, this.coordsY);
-    }
-
-    /**
      * Sets Block operand value
      * @param val operand value to be set
      */

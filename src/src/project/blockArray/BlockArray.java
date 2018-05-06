@@ -91,7 +91,8 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Returns true if this list contains instance of the specified class. More formally, returns true if and only if this list contains at least one instance of the class C
+     * Returns true if this list contains instance of the specified class.
+     * More formally, returns true if and only if this list contains at least one instance of the class C.
      * @param C class whose instance presence in this list is to be tested
      * @return true if this list contains instance of the specified class
      */
@@ -151,7 +152,9 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Inserts the specified AbstractItem element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+     * Inserts the specified AbstractItem element at the specified position in this list.
+     * Shifts the element currently at that position (if any)
+     * and any subsequent elements to the right (adds one to their indices).
      * @param index index at which the specified AbstractItem element is to be inserted
      * @param e AbstractItem element to be inserted to the list
      */
@@ -190,7 +193,9 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Increases the capacity of this BlockArray instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
+     * Increases the capacity of this BlockArray instance,
+     * if necessary, to ensure that it can hold at least
+     * the number of elements specified by the minimum capacity argument.
      * @param minCapacity the desired minimum capacity
      */
     private void ensureCapacity(int minCapacity) {
@@ -204,7 +209,8 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Returns the index of the first occurrence of the specified Connection in this list, or -1 if this list does not contain Connection with the specified name.
+     * Returns the index of the first occurrence of the specified Connection in this list.
+     * Returns -1 if this list does not contain Connection with the specified name.
      * @param name name of Connection whose index to return
      * @return index of Connection with the specified name
      */
@@ -218,7 +224,9 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Removes the AbstractItem element with the specified name in this list. Shifts any subsequent elements to the left (subtracts one from their indices). Removes all connections coming in and out from this AbstractItem element.
+     * Removes the AbstractItem element with the specified name in this list.
+     * Shifts any subsequent elements to the left (subtracts one from their indices).
+     * Removes all connections coming in and out from this AbstractItem element.
      * @param name name of the AbstractItem element to be removed from this list
      */
     public void remove(String name) {
@@ -280,7 +288,8 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Returns the index of the first occurrence of the specified AbstractItem element in this list, or -1 if this list does not contain AbstractItem element with the specified name.
+     * Returns the index of the first occurrence of the specified AbstractItem element in this list.
+     * Returns -1 if this list does not contain AbstractItem element with the specified name.
      * @param name name of the AbstractItem element whose index to return
      * @return index of the AbstractItem element with the specified name
      */
@@ -294,7 +303,8 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Returns the index of the first occurrence of instance of the specified Class in this list, or -1 if this list does not contain any instance of the specified Class.
+     * Returns the index of the first occurrence of instance of the specified Class in this list.
+     * Returns -1 if this list does not contain any instance of the specified Class.
      * @param c Class whose instance's index to return
      * @return index of instance of the specified Class
      */
@@ -323,7 +333,8 @@ public class BlockArray implements Serializable {
     }
 
     /**
-     * Checks if block scheme created from AbstractItem and Connection elements create cycle. This method is based on detecting cycles in a directed graph using colors. Uses Depth First Search method.
+     * Checks if block scheme created from AbstractItem and Connection elements create cycle. 
+     * This method is based on detecting cycles in a directed graph using colors. Uses Depth First Search method.
      * @return true if scheme contains cycle
      */
     public boolean cyclesExists() {
@@ -517,10 +528,19 @@ public class BlockArray implements Serializable {
         }
     }
 
+    /**
+     * Updates right_pane variable reference to this instance
+     * @param right_pane workspace pane
+     */
     public void setRightPane(AnchorPane right_pane) {
         this.right_pane = right_pane;
     }
 
+    /**
+     * Highlight a block given by ID parameter. 
+     * If there is a block already highlighted, delete its border (highlight).
+     * @param id ID of block to highlight
+     */
     private void highlightBlock(String id) {
 
         if (lastStepID != null) {
@@ -529,6 +549,11 @@ public class BlockArray implements Serializable {
         setBlockBorder(id, false);
     }
 
+    /**
+     * Finds node in workspace by it´s ID and set border (highlight) based on deleteBorder value.     
+     * @param id ID of block to highlight
+     * @param deleteBorder if true deletes border, otherwise creates border
+     */
     public void setBlockBorder(String id, boolean deleteBorder) {
         VBox block;
         if (right_pane == null)
@@ -553,6 +578,10 @@ public class BlockArray implements Serializable {
         }
     }
 
+    /**
+     * Returns ID of previously processed block.
+     * @return ID of previously processed block
+     */
     public String getLastStepID() {
         return this.lastStepID;
     }
