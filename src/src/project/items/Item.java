@@ -10,10 +10,12 @@ package project.items;
 public interface Item {
     /**
     * Returns name (ID) of item.
+    * @return name (ID) of item
     */
     String getName();
+    
     /**
-    * Performs an operation on item.
-    */
+    * Performs an operation on item. 
+    */ 
     void execute();
 }
