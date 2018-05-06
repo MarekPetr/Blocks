@@ -2,10 +2,10 @@
  
 <project name="Blocks" default="default" basedir="."
   xmlns:fx="javafx:com.sun.javafx.tools.ant">
-  <property name="src.dir" value="./src/src"/>
+  <property name="src.dir" value="./src/"/>
   <property name="classes.dir" value="./build"/>
   <property name="dist.dir" value="./dest_client"/>
-  <property name="resources.dir" value="./src/resources"/>
+  <property name="resources.dir" value="./lib/resources"/>
   <property name="doc.dir" value="./doc"/>
   
   <target name="compile" depends="init-fx-tasks, build"> 	  
