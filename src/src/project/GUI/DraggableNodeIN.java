@@ -141,19 +141,24 @@ public class DraggableNodeIN extends DraggableNode {
         });
         text_field.setOnKeyPressed(ke -> {
             TextField input_field = (TextField) ke.getSource();
+            boolean nameEntered = false;
+
             if (ke.getCode().equals(KeyCode.ENTER)) {
                 try {
                     if (!current_key.isEmpty()) {
                         if (current_index == index - 1) {
                             double value = get_double_input(input_field);
                             layout.blocks.get(getId()).setInValue(current_key, value);
+                            nameEntered = true;
                         }
                     }
                 } catch (NullPointerException e) {
                     Errors.printErr("Name field has to be filled first.");
                 }
-                keys.add(index - 1, input_field.getText());
-                this.requestFocus();
+                if (nameEntered) {
+                    keys.add(index - 1, input_field.getText());                    
+                }
+                this.requestFocus();                 
             }
         });
     }
